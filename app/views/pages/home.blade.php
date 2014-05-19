@@ -14,7 +14,16 @@
          </div>
          <div class="row">
             <div class="col-sm-12">
-               <a class="btn btn-lg btn-block btn-primary" href="{{ URL::route('signup') }}">Create New Account</a>
+
+               @if(!Auth::check())
+                     <a class="btn btn-lg btn-primary" href="{{ URL::route('signup') }}">Create Account</a>
+                     <a class="btn btn-lg btn-primary" href="{{ URL::route('login') }}">Login</a> 
+                @else
+                     <a class="btn btn-lg btn-primary" href="{{ URL::route('logout') }}">Logout</a>
+                     <a class="btn btn-lg btn-primary" href="{{ URL::route('dashboard') }}">Open Dashboard</a>
+                @endif
+               
+               {{ Auth::user() }}
             </div>
          </div>
       </div>

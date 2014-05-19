@@ -1,10 +1,10 @@
-@extends('layouts.default')
+@extends('layouts.dashboard.default')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
             <hr>
-            <h3 class="">New Account <small>It's free and always will be.</small></h3>
+            <h3 class="">New Organization </h3>
             <div class="col-sm-8 clearfix">
                 <div class="row">
                     @if($errors->has())
@@ -25,50 +25,48 @@
                     </div>
                     @endif
                     
-                    {{ Form::open(array('url' => 'account','id'=>'new_account','method' => 'post', 'files'=>true)) }}
+                    {{ Form::open(array('url' => 'organization','id'=>'new_organization','method' => 'post', 'files'=>true)) }}
 
                     <hr class="colorgraph">
-                    <h6>User Account</h6>
+                    <h6>Organization Details</h6>
                     <div class="row">
                         
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control input-lg','placeholder'=>'First Name','tabindex'=>'2')) }}
+                                {{Form::text('name', '', array('id'=>'name','class'=>'form-control','placeholder'=>'Orgnization Name','tabindex'=>'1')) }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::text('lastname', '', array('id'=>'lastname','class'=>'form-control input-lg','placeholder'=>'Last Name', 'tabindex'=>'3')) }}
+                                {{Form::text('sport', '', array('id'=>'sport','class'=>'form-control','placeholder'=>'Sport', 'tabindex'=>'2')) }}
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        {{Form::text('address', '', array('id'=>'address','class'=>'form-control','placeholder'=>'Address', 'tabindex'=>'3')) }}
                     </div>
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::email('email', '', array('id'=>'email','class'=>'form-control input-lg','placeholder'=>'Email Address', 'tabindex'=>'4')) }}
+                                {{Form::text('city', '', array('id'=>'city','class'=>'form-control','placeholder'=>'City','tabindex'=>'4')) }}
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
                             <div class="form-group">
-                                {{Form::text('mobile', '', array('id'=>'mobile','class'=>'form-control input-lg','placeholder'=>'Mobile #', 'tabindex'=>'5')) }}                                
+                                {{Form::text('state', '', array('id'=>'state','class'=>'form-control','placeholder'=>'State', 'tabindex'=>'5')) }}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                             <div class="form-group">
+                                {{Form::text('zip', '', array('id'=>'zip','class'=>'form-control','placeholder'=>'Zip','tabindex'=>'6')) }}
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                                {{Form::textarea('description', '', array('id'=>'description','class'=>'form-control ','placeholder'=>'Tell us a little bit about the organanization', 'tabindex'=>'7')) }}
+                            </div>
 
-                    
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::password('password', array('id'=>'password','class'=>'form-control input-lg','placeholder'=>'Password', 'tabindex'=>'6')) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::password('password_confirmation',array('id'=>'password_confirmation','class'=>'form-control input-lg','placeholder'=>'Confirm Password', 'tabindex'=>'7')) }}
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <span class="btn btn-primary btn-embossed btn-file btn-sm">                        
@@ -86,26 +84,14 @@
                             <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×
                             </a>
                         </div>
-                        <small><span class="text-muted">Select your profile picture.</span></small>
+                        <small><span class="text-muted">Select your organization logo.</span></small>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-4 col-sm-3 col-md-3">
-                            <span class="button-checkbox">
-                                <button type="button" class="btn btn-xs" data-color="info" tabindex="7">
-                                    I Agree
-                                </button>
-                                {{Form::checkbox('agreement', '1',false, array('id'=>'agreement','class'=>'hidden')) }}
-                            </span>
-                        </div>
-                        <div class="col-xs-8 col-sm-9 col-md-9">
-                            <small>By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</small>
-                        </div>
-                    </div>
+
                     <br class="colorgraph">
                     <div class="row">
                       <div class="col-sm-12">
-                        <button class="btn btn-primary  btn-lg" id="register">Register</button>
-                        <a href="{{ URL::route('login') }}" class="btn btn-info  btn-lg" >Sign In</a>
+                        <button class="btn btn-primary btn-embossed btn-sm" id="register">Create</button>
+                        <a href="{{ URL::route('dashboard') }}" class="btn btn-info btn-embossed btn-sm" >Cancel</a>
                     </div>
                 </div>
                 {{ Form::close() }}

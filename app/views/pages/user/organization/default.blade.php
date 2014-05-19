@@ -105,7 +105,7 @@
                     <div class="row">
                       <div class="col-sm-12">
                         <button class="btn btn-primary  btn-lg" id="register">Register</button>
-                        <a href="{{ URL::route('login') }}" class="btn btn-info  btn-lg" >Sign In</a>
+                        <a href="{{ URL::route('user.login') }}" class="btn btn-info  btn-lg" >Sign In</a>
                     </div>
                 </div>
                 {{ Form::close() }}

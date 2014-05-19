@@ -2,7 +2,7 @@
 <html lang="en">
 @include('includes.header')
 <body>
-  @yield('content')
-  @include('includes.footer')
+	@yield('content')
+	@include('includes.footer')
 </body>
 </html>

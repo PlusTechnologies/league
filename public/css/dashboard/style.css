@@ -1,0 +1,10 @@
+body{
+	background-color:#fafafa;
+}
+p small{
+	font-size: 14px
+}
+p small br {
+   display: block;
+   margin: -5px 0;
+}
