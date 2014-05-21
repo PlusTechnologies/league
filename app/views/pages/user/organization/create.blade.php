@@ -25,7 +25,7 @@
                     </div>
                     @endif
                     
-                    {{ Form::open(array('url' => 'organization','id'=>'new_organization','method' => 'post', 'files'=>true)) }}
+                    {{ Form::open(array('route' => 'dashboard.organization.store','id'=>'new_organization','method' => 'post', 'files'=>true)) }}
 
                     <hr class="colorgraph">
                     <h6>Organization Details</h6>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{Form::text('address', '', array('id'=>'address','class'=>'form-control','placeholder'=>'Address', 'tabindex'=>'3')) }}
+                        {{Form::text('add1', '', array('id'=>'add1','class'=>'form-control','placeholder'=>'Address', 'tabindex'=>'3')) }}
                     </div>
 
                     <div class="row">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                                {{Form::textarea('description', '', array('id'=>'description','class'=>'form-control ','placeholder'=>'Tell us a little bit about the organanization', 'tabindex'=>'7')) }}
+                                {{Form::textarea('description', null, array('id'=>'description','size' => '30x5','class'=>'form-control','placeholder'=>'Tell us a little bit about the organanization', 'tabindex'=>'7')) }}
                             </div>
 
                     <div class="form-group">
@@ -78,7 +78,7 @@
                                     <span class="fui-gear"></span>  
                                     Change
                                 </span>
-                                <input type="file" name="avatar">
+                                <input type="file" name="logo">
                             </span>
                             <span class="fileinput-filename"></span>
                             <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×
@@ -90,8 +90,8 @@
                     <br class="colorgraph">
                     <div class="row">
                       <div class="col-sm-12">
-                        <button class="btn btn-primary btn-embossed btn-sm" id="register">Create</button>
-                        <a href="{{ URL::route('dashboard') }}" class="btn btn-info btn-embossed btn-sm" >Cancel</a>
+                        <button class="btn btn-primary btn-embossed" id="register">Create</button>
+                        <a href="{{ URL::action('DashboardController@show') }}" class="btn btn-info btn-embossed" >Cancel</a>
                     </div>
                 </div>
                 {{ Form::close() }}

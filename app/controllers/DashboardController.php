@@ -1,6 +1,6 @@
 <?php
 
-class DashboardController extends \BaseController {
+class DashboardController extends BaseController {
 
 
 	/**
@@ -27,9 +27,12 @@ class DashboardController extends \BaseController {
 
 		// }
 		$user =Auth::user();
+		$organizationlist = $user->organizations;
+		//return $organizationlist;
 		$title = 'League Together - Dashboard';
 		return View::make('pages.user.dashboard')
 			->with('page_title', $title)
+			->with('organizations', $organizationlist)
 			->withUser($user);
 	}
 
