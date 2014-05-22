@@ -35,7 +35,6 @@
                      <h6 class="media-heading">User Info</h6>
                      <div class="media">
                            {{HTML::image($user->avatar, $user->firstname, array('class'=>'img-thumbnail pull-right','width'=>95));}}
-
                         <div class="media-body">
                            <p>
                               <small>
@@ -91,6 +90,7 @@
                </div>
             </div>
          </div>
+         <hr>
       </div>
    </div>
 </div>

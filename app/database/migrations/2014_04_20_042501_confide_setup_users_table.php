@@ -20,6 +20,8 @@ class ConfideSetupUsersTable extends Migration {
             $table->string('mobile');
             $table->integer('type');
             $table->string('avatar');
+            $table->string('facebook');
+            $table->string('twitter');
             $table->boolean('first_login')->default(false);
             $table->string('password');
             $table->string('confirmation_code');

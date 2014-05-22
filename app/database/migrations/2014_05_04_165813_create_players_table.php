@@ -17,7 +17,7 @@ class CreatePlayersTable extends Migration {
 			$table->date('dob');
 			$table->string('gender');
 			$table->string('class');
-			$table->string('fbid');
+			$table->string('lx_id');
 			$table->timestamps();
 		});
 	}
