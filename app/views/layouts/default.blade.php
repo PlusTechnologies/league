@@ -4,5 +4,6 @@
 <body>
 	@yield('content')
 	@include('includes.footer')
+	@yield('script')
 </body>
 </html>

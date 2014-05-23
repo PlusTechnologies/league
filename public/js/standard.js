@@ -1,5 +1,12 @@
 //Login page, agree button
 $(function () {
+    // Focus state for append/prepend inputs
+    $('.input-group').on('focus', '.form-control', function () {
+      $(this).closest('.input-group, .form-group').addClass('focus');
+    }).on('blur', '.form-control', function () {
+      $(this).closest('.input-group, .form-group').removeClass('focus');
+    });
+    
     $('.button-checkbox').each(function () {
         // Settings
         var $widget = $(this),
@@ -64,11 +71,12 @@ $(function () {
     });
 });
 // Select trigget
-$("select").selectpicker({style: 'select-block btn-primary', menuStyle: 'dropdown-menu'});
+$("select").selectpicker({style: 'select-block btn-primary', menuStyle: 'dropdown-inverse'});
 
 //registration
 $(document).ready(function() {
     $('#mobile').mask('(000) 000-0000');
+
 
     // $( '#register' ).on( 'click', function() {
  
