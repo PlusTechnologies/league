@@ -11,6 +11,7 @@
 {{ HTML::script('js/jquery.placeholder.js')}}
 {{ HTML::script('js/flatui-fileinput.js')}}
 {{ HTML::script('js/jquery.mask.min.js')}}
+{{ HTML::script('js/jquery.maskMoney.min.js')}}
 {{ HTML::script('js/standard.js')}}
 
 @if($user->first_login == false)

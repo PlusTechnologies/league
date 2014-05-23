@@ -4,5 +4,6 @@
 <body>
   	@yield('content')
   	@include('includes.dashboard.footer')
+  	@yield('script')
 </body>
 </html>

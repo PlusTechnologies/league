@@ -1,121 +1,134 @@
-@extends('layouts.default')
+@extends('layouts.dashboard.default')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>
+                        Dashboard
+
+                        @if(Auth::check())
+                        <a class="btn btn-lg pull-right btn-primary" href="{{ URL::route('logout') }}">Logout</a>
+                        @endif
+
+                    </h5>
+                </div>
+            </div>
             <hr>
-            <h3 class="">New Account <small>It's free and always will be.</small></h3>
-            <div class="col-sm-8 clearfix">
-                <div class="row">
-                    @if($errors->has())
+            <div class="row">
+                <div class="col-sm-12">
+                    @if(Session::has('message'))
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="alert alert-warning alert-dismissable">
                                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                    <ul>
-                                        @foreach ($errors->all() as $error) 
-                                        <li>{{$error}}</li>
-                                        @endforeach
-                                    </ul>
-                                    
+                                    {{ Session::get('message') }}
                                 </div>
                             </div>
                         </div>
                     </div>
                     @endif
-                    
-                    {{ Form::open(array('url' => 'account','id'=>'new_account','method' => 'post', 'files'=>true)) }}
-
-                    <hr class="colorgraph">
-                    <h6>User Account</h6>
                     <div class="row">
-                        
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control input-lg','placeholder'=>'First Name','tabindex'=>'2')) }}
+                        <div class="col-sm-6">
+                            <h6 class="media-heading">User Info</h6>
+                            <div class="media">
+                                {{HTML::image($user->avatar, $user->firstname, array('class'=>'img-thumbnail pull-right','width'=>95));}}
+                                <div class="media-body">
+                                    <p>
+                                        <small>
+                                            Name: {{$user->firstname}} {{$user->lastname}}
+                                            <br>
+                                            Email: {{$user->email}}
+                                            <br>
+                                            Mobile: {{$user->mobile}}
+                                        </small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::text('lastname', '', array('id'=>'lastname','class'=>'form-control input-lg','placeholder'=>'Last Name', 'tabindex'=>'3')) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::email('email', '', array('id'=>'email','class'=>'form-control input-lg','placeholder'=>'Email Address', 'tabindex'=>'4')) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::text('mobile', '', array('id'=>'mobile','class'=>'form-control input-lg','placeholder'=>'Mobile #', 'tabindex'=>'5')) }}                                
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::password('password', array('id'=>'password','class'=>'form-control input-lg','placeholder'=>'Password', 'tabindex'=>'6')) }}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {{Form::password('password_confirmation',array('id'=>'password_confirmation','class'=>'form-control input-lg','placeholder'=>'Confirm Password', 'tabindex'=>'7')) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <span class="btn btn-primary btn-embossed btn-file btn-sm">                        
-                                <span class="fileinput-new">
-                                    <span class="fui-upload"></span>  
-                                    Attach File
-                                </span>
-                                <span class="fileinput-exists">
-                                    <span class="fui-gear"></span>  
-                                    Change
-                                </span>
-                                <input type="file" name="avatar">
-                            </span>
-                            <span class="fileinput-filename"></span>
-                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×
-                            </a>
-                        </div>
-                        <small><span class="text-muted">Select your profile picture.</span></small>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 col-sm-3 col-md-3">
-                            <span class="button-checkbox">
-                                <button type="button" class="btn btn-xs" data-color="info" tabindex="7">
-                                    I Agree
-                                </button>
-                                {{Form::checkbox('agreement', '1',false, array('id'=>'agreement','class'=>'hidden')) }}
-                            </span>
-                        </div>
-                        <div class="col-xs-8 col-sm-9 col-md-9">
-                            <small>By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</small>
-                        </div>
-                    </div>
-                    <br class="colorgraph">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <button class="btn btn-primary  btn-lg" id="register">Register</button>
-                        <a href="{{ URL::route('user.login') }}" class="btn btn-info  btn-lg" >Sign In</a>
                     </div>
                 </div>
-                {{ Form::close() }}
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Organization Details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <div class="search-result row">
+                                    <div class="col-xs-12 col-sm-12 col-md-3">
+                                        {{HTML::image($organization->logo, $organization->name, array('class'=>'img-thumbnail','width'=>200));}}
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+
+                                        <h5>{{$organization->name}}</h5>
+                                        Location: 
+                                        <br>
+                                        {{$organization->add1}} <br>
+                                        {{$organization->city}}, {{$organization->state}} {{$organization->zip}} <br>
+                                        <br>
+                                        <small>Created: {{date('d M Y H:i a',strtotime($organization->created_at)) }}</small>
+
+
+                                        <span class="plus">
+                                            <a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-pen"></i></a>
+                                        </span>
+                                    </div>
+                                    <span class="clearfix borda"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Events</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="list-group">
+
+                                    </div>
+                                    <a class="btn btn-info btn-embossed" href="{{URL::action('EventController@create', $organization->id)}}">
+                                        New Event
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addevent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add event</h4>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
-    <div class="col-sm-10 col-sm-offset-1">
-        <hr>
-    </div>
-</div>
-</div>
 </div>
 @stop

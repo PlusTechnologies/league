@@ -29,5 +29,10 @@ Route::get('dashboard', 						array('before' => 'auth','as' => 'dashboard', 'use
 
 Route::group(array('before' => 'auth', 'prefix' => 'dashboard', ), function() {
 	Route::resource('organization', 'OrganizationController');
+	Route::resource('organization.event', 'EventController');
 });
+
+	
+
+
 

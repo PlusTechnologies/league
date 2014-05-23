@@ -3,7 +3,6 @@
 class Organization extends Eloquent{
 
 	protected $fillable = array('name','logo','sport','description','add1','city','state','zip');
-
 	public static $rules = array(
 			'name'=>'required|min:3',
 			'sport'=>'required',
@@ -16,5 +15,10 @@ class Organization extends Eloquent{
 		);
 	public function Users() {
         return $this->belongsToMany('User');    
+    }
+
+    public function events()
+    {
+        return $this->hasMany('events');
     }
 }

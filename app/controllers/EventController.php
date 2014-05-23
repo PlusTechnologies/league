@@ -1,6 +1,6 @@
 <?php
 
-class OrganizationController extends BaseController {
+class EventController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -17,13 +17,16 @@ class OrganizationController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
 		$user =Auth::user();
-		$title = 'League Together - Organization';
-		return View::make('pages.user.organization.create')
+		$organization = Organization::find($id);
+		$title = 'League Together - '.$organization ->name.' Event';
+		return View::make('pages.user.organization.event.create')
 			->with('page_title', $title)
+			->with('organization', $organization)
 			->withUser($user);
+
 	}
 
 	/**
@@ -31,21 +34,12 @@ class OrganizationController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id)
 	{
+		
+		$organization = Organization::find($id);	
 
-		$messages = array(
-        'name.required'     		=> 'Organization name field is required.',
-        'sport.required'     		=> 'Please select a sport',
-        'add1.required'       		=> 'Street address field is required',
-        'city.required'       		=> 'City field is required',
-        'state.required'       		=> 'State field is required',
-        'zip.required'       		=> 'Zipcode field is required',
-        'description.required'      => 'Description field is required',
-        'logo.required'       		=> 'Logo is required',
-        );
-
-        $validator= Validator::make(Input::all(), Organization::$rules, $messages);
+        $validator= Validator::make(Input::all(), Events::$rules);
 
         if($validator->passes()){
 
@@ -81,10 +75,9 @@ class OrganizationController extends BaseController {
         }
         // Get validation errors (see Ardent package)
         $error = $validator->errors()->all(':message');
-        return Redirect::action('OrganizationController@create')
+        return Redirect::action('EventController@create',$organization->id )
         ->withErrors($validator)
         ->withInput();
-
 	}
 
 	/**
@@ -95,18 +88,7 @@ class OrganizationController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//Prevent unauthorize user to see other organizations
-		$user =Auth::user();
-		$organization = Organization::find($id);
-		if(!$organization){
-			return Redirect::action('DashboardController@show');
-		}
-		$title = 'League Together - '.$organization->name;
-		return View::make('pages.user.organization.default')
-			->with('page_title', $title)
-			->with('organization', $organization)
-			->withUser($user);
-		
+		//
 	}
 
 	/**

@@ -4,5 +4,6 @@
 <body id="page-top" class="index">
 	@yield('content')
 	@include('includes.footer')
+	@yield('script')
 </body>
 </html>
