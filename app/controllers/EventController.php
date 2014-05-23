@@ -38,9 +38,8 @@ class EventController extends BaseController {
 	{
 		
 		$organization = Organization::find($id);	
-		$event = new Event;
-		return Event::$rules;	
-        $validator= Validator::make(Input::all(), Event::$rules);
+
+        $validator= Validator::make(Input::all(), Events::$rules);
 
         if($validator->passes()){
 

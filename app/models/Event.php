@@ -1,8 +1,9 @@
 <?php
 
-class Event extends Eloquent {
-	protected $fillable = array('name','type','descriptions','location','fee','group_fee','start','end','open','close');
+class Events extends Eloquent {
 
+	protected $fillable = array('name','type','descriptions','location','fee','group_fee','start','end','open','close');
+	
 	public static $rules = array(
 		'name'			=>'required',
 		'type'			=>'required',
