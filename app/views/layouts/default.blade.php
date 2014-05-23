@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('includes.header')
-<body>
+<body id="page-top" class="index">
 	@yield('content')
 	@include('includes.footer')
 </body>
