@@ -68,8 +68,14 @@
                                     <div class="list-group">
                                         <h2>{{$event->name}}</h2>
                                         <p><strong>Location: </strong> {{$event->location}} <br>
-                                        <strong>Date: </strong> {{ date("M d, Y",strtotime($event->start)) }} <br>
-                                        <strong>Fee: </strong> $ {{money_format('%i',$event->fee)  }}</p>
+                                            <strong>Date: </strong> {{ date("M d, Y",strtotime($event->start)) }} <br>
+                                            <strong>Fee: </strong> $ {{money_format('%i',$event->fee)  }}
+                                            @if($event->group_fee > 0)
+                                            <br>   
+                                            <strong>Team Fee: </strong> $ {{money_format('%i',$event->group_fee)}}</p>
+                                            @else
+                                        </p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -89,9 +95,32 @@
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="list-group">
-                                        
-                                    </div>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Name</th>
+                                                <th>$USD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>The Shawshank Redemption</td>
+                                                <td>1994</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>The Godfather</td>
+                                                <td>1972</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>The Godfather: Part II</td>
+                                                <td>1974</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

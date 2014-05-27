@@ -273,3 +273,14 @@ p.copyright {
 .navbar-nav > li > a {
     padding: 0.5em;
 }
+
+/* Cart*/
+.cart-totals {
+    height: 100%;
+    width: 100%;
+}
+.totals {
+    border-left: 1px solid #DDDDDD;
+    vertical-align: top;
+    width: 28%;
+}

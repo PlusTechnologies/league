@@ -34,6 +34,14 @@ Route::group(array('before' => 'auth', 'prefix' => 'dashboard', ), function() {
 
 Route::get( 'public/event/{id}',         	  	'EventoController@publico');
 
+//Payment Process routes
+Route::get( 'cart',         	  				'PaymentController@index');
+Route::get( 'checkout',         	  			array('before' => 'auth','as' => 'checkout', 'uses' => 'PaymentController@create'));
+Route::post( 'cart/add',         	  			'PaymentController@addtocart');
+Route::post( 'cart/remove',         	  		'PaymentController@removefromcart');
+
+
+
 
 	
 

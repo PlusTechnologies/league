@@ -120,8 +120,12 @@ class EventoController extends BaseController {
 	 */
 	public function publico($id)
 	{
-		$event = Evento::with('organization')->whereId($id)->firstOrFail();
-		return $event;
+		$e = Evento::with('organization')->whereId($id)->firstOrFail();
+		$title = 'League Together - '.$e->name.' Event';
+		return View::make('pages.public.event')
+					->with('page_title', $title)
+					->withEvent($e)
+					->with('message', 'message flash here');
 	}
 
 

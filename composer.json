@@ -7,7 +7,9 @@
 		"laravel/framework": "4.1.*",
 		"laravelbook/ardent": "dev-master",
 		"zizaco/confide": "3.2.x",
-		"intervention/image": "dev-master"
+		"intervention/image": "dev-master",
+		"dompdf/dompdf" : "dev-master",
+		"moltin/laravel-cart" : "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -35,7 +37,7 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable",
+	"minimum-stability": "dev",
 	"require-dev": {
 		"way/generators": "2.*"
 	}
