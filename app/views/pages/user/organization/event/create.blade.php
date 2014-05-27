@@ -25,7 +25,7 @@
                     </div>
                     @endif
 
-                    {{ Form::open(array('action' => array('EventController@show', $organization->id),'id'=>'new_event','method' => 'post')) }}
+                    {{ Form::open(array('action' => array('EventoController@show', $organization->id),'id'=>'new_event','method' => 'post')) }}
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -109,7 +109,7 @@
                     <br class="colorgraph">
                     <div class="row">
                         <div class="col-sm-12">
-                            <button class="btn btn-primary btn-embossed" id="register">Create</button>
+                            <button class="btn btn-primary btn-embossed" id="add-event">Create</button>
                             <a href="{{ URL::action('OrganizationController@show', $organization->id) }}" class="btn btn-info btn-embossed" >Cancel</a>
                         </div>
                     </div>
@@ -128,6 +128,23 @@
 <script type="text/javascript">
 
 $(function() {
+    $('#add-event').click(function(event){
+        event.preventDefault();
+        //clean dates
+        var dateTypeVar_start = $('#start').datepicker('getDate');
+        $('#start').val($.datepicker.formatDate('yy-mm-dd', dateTypeVar_start));
+        var dateTypeVar_end = $('#end').datepicker('getDate');
+        $('#end').val($.datepicker.formatDate('yy-mm-dd', dateTypeVar_end));
+        var dateTypeVar_open = $('#open').datepicker('getDate');
+        $('#open').val($.datepicker.formatDate('yy-mm-dd', dateTypeVar_open));
+        var dateTypeVar_close = $('#close').datepicker('getDate');
+        $('#close').val($.datepicker.formatDate('yy-mm-dd', dateTypeVar_close));
+        //clean amount 
+        $("#fee").val($("#fee").maskMoney('unmasked')[0]);
+        $("#fee_group").val($("#fee_group").maskMoney('unmasked')[0]);
+        //submit form
+        $( "#new_event" ).submit()
+    });
 
     $("#fee, #fee_group").maskMoney({thousands:',', decimal:'.', allowZero:true, prefix:'USD$ ',});
     // jQuery UI Datepicker JS init
@@ -135,7 +152,7 @@ $(function() {
     $(datepickerSelector).datepicker({
         showOtherMonths: true,
         selectOtherMonths: true,
-        dateFormat: "d MM, yy",
+        dateFormat: "MM d, yy",
         yearRange: '-3:+3'
     }).prev('.btn').on('click', function (e) {
         e && e.preventDefault();
@@ -143,6 +160,7 @@ $(function() {
     });
     // Now let's align datepicker with the prepend button
     $(datepickerSelector).datepicker('widget').css({'margin-left': -$(datepickerSelector).prev('.btn').outerWidth() - 49});
+
 
 });
 </script>

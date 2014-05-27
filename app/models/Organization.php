@@ -17,8 +17,8 @@ class Organization extends Eloquent{
         return $this->belongsToMany('User');    
     }
 
-    public function events()
+    public function Events()
     {
-        return $this->hasMany('events');
+        return $this->hasMany('evento');
     }
 }

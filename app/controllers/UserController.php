@@ -51,11 +51,12 @@ class UserController extends BaseController {
                 $avatar             = input::file('avatar');
                 $filename = time()."-profile_pic.".$avatar->getClientOriginalExtension();
                 $path = public_path('images/avatar/' . $filename);
-                Image::make($avatar->getRealPath())->resize(null, 300, true)->crop(200,200)->save($path);
+                $img = Image::make($avatar->getRealPath());
+                $img->resize(null, 300, function($constraint){ $constraint->aspectRatio(); })->crop(200,200)->save($path);
                 $user->avatar = "images/avatar/".$filename;
                 $user->save();
 
-
+                
                 if ( $user->id )
                 {
                     // Redirect with success message, You may replace "Lang::get(..." for your custom message.
@@ -64,6 +65,8 @@ class UserController extends BaseController {
                     // return Response::json($message);
                     return Redirect::action('UserController@login')
                     ->with( 'notice', Lang::get('confide::confide.alerts.account_created') );
+                }else{
+                    return dd($user->errors()->all());
                 }
 
             }else{

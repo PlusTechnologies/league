@@ -1,5 +1,6 @@
 
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
+{{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js') }}
 {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
 {{ HTML::script('js/jquery.ui.touch-punch.min.js')}}
 {{ HTML::script('js/bootstrap.min.js') }}
@@ -12,7 +13,6 @@
 {{ HTML::script('js/flatui-fileinput.js')}}
 {{ HTML::script('js/jquery.mask.min.js')}}
 {{ HTML::script('js/standard.js')}}
-{{ HTML::script('js/classie.js')}}
 {{ HTML::script('js/cbpAnimatedHeader.js')}}
 {{ HTML::script('js/custom.js')}}
 {{ HTML::script('js/classie.js')}}
@@ -38,4 +38,3 @@
         }
     });
     </script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

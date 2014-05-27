@@ -61,7 +61,7 @@ class OrganizationController extends BaseController {
             $logo             = input::file('logo');
             $filename = time()."-profile_pic.".$logo->getClientOriginalExtension();
             $path = public_path('images/logo/' . $filename);
-            Image::make($logo->getRealPath())->resize(null, 300, true)->crop(200,200)->save($path);
+            Image::make($logo->getRealPath())->resize(null, 300,function($constraint){ $constraint->aspectRatio(); })->crop(200,200)->save($path);
             $organization->logo = "images/logo/".$filename;
             $id = Auth::user()->id;
             User::find($id)->Organizations()->save($organization);

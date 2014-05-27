@@ -98,9 +98,13 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="list-group">
-
+                                            @foreach ($organization->events as $event)
+                                                    <a class="list-group-item" href="{{URL::action('EventoController@show', array($organization->id,$event->id))}}">
+                                                        {{ $event->name }}
+                                                    </a>
+                                            @endforeach
                                     </div>
-                                    <a class="btn btn-info btn-embossed" href="{{URL::action('EventController@create', $organization->id)}}">
+                                    <a class="btn btn-info btn-embossed" href="{{URL::action('EventoController@create', $organization->id)}}">
                                         New Event
                                     </a>
                                 </div>

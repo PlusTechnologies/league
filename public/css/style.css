@@ -10,12 +10,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family:'Open Sans Condensed', sans-serif;
     font-weight: 700;
 }
-/** Falt UI Overrides **/
+/** Flat UI Overrides **/
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	border-color: rgba(116, 119, 134, 0.5);
 }
  .navbar-default {
-    background-color: #363b48;
+    background-color: #34495E;
 }
 .navbar-default .navbar-nav > li > a {
     color: #f4f5f0;
@@ -29,15 +29,19 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-toggle:before {
     color: #47c9b0;
 }
-/** / Falt UI Overrides **/
+/** / Flat UI Overrides **/
+.btn-primary-outline{
+    background-color: transparent;
+    border: solid 2px #1ABC9C;
+}
  .logo {
     background-size: cover;
     background-position: center center;
 }
 .navbar-brand > .logo {
-    width: 5em;
-    height: 5em;
-    margin-top: -1.25em;
+    width: 4em;
+    height: 4em;
+    margin-top: -0.75em;
 }
 .nav > li.nav-btn {
 	position: absolute;
@@ -60,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 .intro-header {
     padding-top: 50px;
     /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
+    padding-bottom: 150px;
     color: #f8f8f8;
     background-size: cover;
     text-align: center;
@@ -126,9 +130,7 @@ footer p {
 }
 .network-name {
     text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 2px;
+    font-weight: 700;
 }
 .content-section-a {
     background-color: #f8f8f8;
@@ -220,7 +222,7 @@ footer p {
     }
 }
 footer {
-    background-color: #363b48;
+    background-color: #34495E;
     padding: 50px 0;
 }
 p.copyright {
@@ -237,7 +239,7 @@ p.copyright {
 }
 @media(min-width:768px) {
     .navbar-fixed-top {
-        padding: 25px 0;
+        padding: 15px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;

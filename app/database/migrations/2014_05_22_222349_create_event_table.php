@@ -16,7 +16,7 @@ class CreateEventTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('type');
-			$table->string('descriptions');
+			$table->string('description');
 			$table->string('location');
 			$table->double('fee');
 			$table->double('group_fee');
@@ -26,11 +26,9 @@ class CreateEventTable extends Migration {
 			$table->date('close');
 			$table->integer('organization_id')->unsigned()->index();
 			$table->foreign('organization_id')->references('id')->on('organizations');
-			
 			$table->timestamps();
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.
@@ -39,7 +37,7 @@ class CreateEventTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('event');
+		Schema::drop('events');
 	}
 
 }
