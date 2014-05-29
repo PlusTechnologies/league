@@ -40,99 +40,66 @@
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <!-- Cart Contents -->
+
+
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th class="hidden-xs">Item</th>
                                                     <th>Description</th>
-                                                    <th class="hidden-xs">Price</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for($i=0;$i<count(Session::get('order.item')) ;$i++)
-                                                
+                                                @foreach($products as $item)
                                                 <tr>
-                                                    <td class="image hidden-xs">
-                                                       {{Session::get('order.item')[$i]['event']}}
-                                                    </td>
                                                     <td class="details">
                                                         <div class="clearfix">
+                                                            <a class="delete btn pull-right btn-danger btn-xs" href="{{URL::action('PaymentController@removefromcart', array($item->identifier))}}"><i class="fa fa-trash-o"></i>
+                                                            </a>
                                                             <div class="pull-left no-float-xs">
-                                                                <a class="title" href="#"></a>
-                                                                <div class="rating">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star disabled"></i>
-                                                                    <i class="fa fa-star disabled"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="action pull-right no-float-xs">
-                                                                <div class="clearfix">
-                                                                    <button class="edit"><i class="fa fa-pencil"></i></button>
-                                                                    <button class="refresh"><i class="fa fa-refresh"></i></button>
-                                                                    
-                                        {{ Form::open(array('action' => array('PaymentController@removefromcart'),'method' => 'post')) }}
-                                        {{ Form::hidden('index', $i) }}
-                                        <button class="delete"><i class="fa fa-trash-o"></i></button> 
-                                        {{ Form::close() }}
-                                                                      
-                                                                </div>
+                                                                <a class="title" href="{{URL::action('EventoController@publico', array($item->event))}}">{{$item->name}}
+                                                                </a>
+
+                                                                {{ Cart::has($item->id)}}
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td class="total-price"><span class="currency">$</span>1500.00</td>
+                                                    <td class="text-center">{{$item->quantity}}</td>
+                                                    <td>{{money_format('%.2n',$item->price)  }}</td>
                                                 </tr>
-                                                @endfor
+                                                @endforeach
+
+                                                <tr>
+                                                    <td colspan="2" class="text-right">Subtotal</td>
+                                                    <td>{{money_format("%.2n",Cart::total(false))  }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" class="text-right">Service Fee</td>
+                                                    <td>{{money_format("%.2n",Cart::tax())}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" class="text-right">Total</td>
+                                                    <td>{{money_format('%.2n',Cart::total())  }}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <!-- /Cart Contents -->
-
-                                        <table class="table table-bordered">
-                                            <tbody><tr>
-                                                <td class="terms">  
-                                                    <h5><i class="fa fa-info-circle"></i> our return policy</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                                                </td>
-                                                <td class="totals"> 
-                                                    <table class="cart-totals">
-                                                        <tbody><tr>
-                                                            <td>Sub Total</td>
-                                                            <td class="price">$ 4500.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Service Fee</td>
-                                                            <td class="price">$ 500.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Taxes</td>
-                                                            <td class="price">$ 250.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="cart-total">Total</td>
-                                                            <td class="cart-total price">$ 5250.00</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> 
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="btn btn-success pull-right" href="{{URL::action('PaymentController@create')}}">Check out</a>
+                </div>
+            </div>
+            <hr>
         </div>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-12">
-            <button class="btn btn-success pull-right">Pay Now</button>
-        </div>
-    </div>
-    <hr>
-</div>
-</div>
 </div>
 @stop

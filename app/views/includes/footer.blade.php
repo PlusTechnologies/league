@@ -16,25 +16,27 @@
 {{ HTML::script('js/cbpAnimatedHeader.js')}}
 {{ HTML::script('js/custom.js')}}
 {{ HTML::script('js/classie.js')}}
+@if(Route::currentRouteName() == 'home')
 {{ HTML::script('js/stepsForm.js')}}
 <script>
-    var theForm = document.getElementById('theForm');
+var theForm = document.getElementById('theForm');
 
-    new stepsForm(theForm, {
-        onSubmit: function(form) {
-            // hide form
-            classie.addClass(theForm.querySelector('.simform-inner'), 'hide');
+new stepsForm(theForm, {
+    onSubmit: function(form) {
+        // hide form
+        classie.addClass(theForm.querySelector('.simform-inner'), 'hide');
 
-            /*
-					form.submit()
-					or
-					AJAX request (maybe show loading indicator while we don't have an answer..)
-					*/
+        /*
+				form.submit()
+				or
+				AJAX request (maybe show loading indicator while we don't have an answer..)
+				*/
 
-            // let's just simulate something...
-            var messageEl = theForm.querySelector('.final-message');
-            messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
-            classie.addClass(messageEl, 'show');
-        }
-    });
-    </script>
+        // let's just simulate something...
+        var messageEl = theForm.querySelector('.final-message');
+        messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+        classie.addClass(messageEl, 'show');
+    }
+});
+</script>
+@endif

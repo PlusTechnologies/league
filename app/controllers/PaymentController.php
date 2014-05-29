@@ -1,6 +1,7 @@
 <?php
 
 class PaymentController extends BaseController {
+	
 
 	/**
 	 * Display a listing of the resource.
@@ -10,48 +11,57 @@ class PaymentController extends BaseController {
 	 */
 	public function index()
 	{
+		setlocale(LC_MONETARY,"en_US");
 		// Session::flush();
 		// array_values(Session::get('order.item'));
 		// return Session::get('order.item');
+		//return Cart::contents(true);
 		return View::make('pages.public.cart')
-					->with('page_title', 'Order');
+					->with('page_title', 'Order')
+					->with('products',Cart::contents());
 	}
 
 	
 	public function addtocart()
 	{
-		if(Input::get('order')==1){
-			$e = Evento::with('organization')->whereId(Input::get('event'))->firstOrFail();
-			$s = Session::push('order.item',array(
-				'event'			=> $e->id,
-				'type'			=> $e->type,
-				'organization'	=> $e->organization->id
-				));
-		}
 
+		if(Input::get('order')==1){
+			$group 	= Input::get('team');
+			$id 	= Input::get('event');
+			$qty	= Input::get('qty');
+			$e = Evento::with('organization')->whereId(Input::get('event'))->firstOrFail();
+
+			if(!$group == 1){
+				$s = Cart::insert(array(
+					'id'			=> $e->id.$group,
+					'name'			=> $e->name. '- Player Registration',
+					'price'			=> $e->fee,
+					'quantity'		=> $qty,
+					'tax'      		=> getenv("SV_FEE"),
+					'organization' 	=> $e->organization->name,
+					'event'			=> $e->id
+				));
+			}else{
+				$s = Cart::insert(array(
+					'id'			=> $e->id.$group,
+					'name'			=> $e->name . '- Team Registration',
+					'price'			=> $e->group_fee,
+					'quantity'		=> $qty,
+					'tax'      		=> getenv("SV_FEE"),
+					'organization' 	=> $e->organization->name,
+					'event'			=> $e->id 
+				));
+			}
+		}
 		return Redirect::action('PaymentController@index');
 
 		//return Redirect::action('PaymentController@create');
 	}
 
-	public function removefromcart()
+	public function removefromcart($i)
 	{
-
-		$i = Input::get('index');
-		// $a = Session::get('order.item.'.$i);
-		// $b = Session::get('order.item');
-		// unset($a);
-
-
-		$o = Session::get('order.item');
-		unset($o[$i]);
-		Session::flush();
-		Session::push('order.item', $o);
-
-
-		//$s = array_splice($a, $i);  // removes $input[1] array_except($a, $i);
-			
-		return $o;
+		$item = Cart::item($i);
+		$item->remove();
 		
 		return Redirect::action('PaymentController@index');
 		//return Redirect::action('PaymentController@create');
@@ -67,8 +77,12 @@ class PaymentController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('pages.public.cart')
-					->with('page_title', 'Order');
+		setlocale(LC_MONETARY,"en_US");
+		$user =Auth::user();
+		return View::make('pages.public.checkout')
+					->with('page_title', 'Checkout')
+					->withUser($user)
+					->with('products',Cart::contents());
 		return Session::get('order.item');
 	}
 
@@ -79,8 +93,34 @@ class PaymentController extends BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
-		//
+	{	
+
+		$amount = Cart::total();
+		$user =Auth::user();
+		
+		$params = "username=cfdemo&password=cfdemo2013&type=sale&ccnumber=5431111111111111&ccexp=0715&cvv=999&amount=$amount&email=$user->email";
+		$uri = "https://secure.cardflexonline.com/api/transact.php";
+		$ch = curl_init($uri);
+		curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER  =>true,
+		CURLOPT_VERBOSE     => 1,
+		CURLOPT_POSTFIELDS =>$params
+		));
+		
+		$out = curl_exec($ch) or die(curl_error());
+
+		$response_array = parse_str($out, $output);
+		curl_close($ch);
+
+		$object = json_decode(json_encode($output), FALSE);
+
+		return $object->responsetext;
+
+
+
+		$i = Input::all();
+		$cart = Cart::contents(true);
+		return $i;
 	}
 
 	/**

@@ -43,7 +43,7 @@
                                     <div class="list-group">
                                         <h2>{{$event->name}}</h2>
                                         <p><strong>Location: </strong> {{$event->location}} <br>
-                                            <strong>Date: </strong> {{ date("M d, Y",strtotime($event->start)) }} <br>
+                                            <strong>Date: </strong> {{ date("M d, Y",strtotime($event->start)) }} - {{ date("M d, Y",strtotime($event->end)) }} <br>
                                             <strong>Player Fee: </strong> $ {{money_format('%i',$event->fee)  }}
                                             @if($event->group_fee > 0)
                                             <br>   
@@ -68,6 +68,7 @@
                         {{ Form::open(array('action' => array('PaymentController@addtocart'),'method' => 'post')) }}
                         {{ Form::hidden('order', 1) }}
                         {{ Form::hidden('team', 1) }}
+                        {{ Form::hidden('qty', 1) }}
                         {{ Form::hidden('event', $event->id) }}
                         <button class="btn btn-info">Register Team</button>
                         {{ Form::close() }}
@@ -76,6 +77,7 @@
                     {{ Form::open(array('action' => array('PaymentController@addtocart'),'method' => 'post')) }}
                     {{ Form::hidden('order', 1) }}
                     {{ Form::hidden('team', 0) }}
+                    {{ Form::hidden('qty', 1) }}
                     {{ Form::hidden('event', $event->id) }}
                     <button class="btn btn-info">Register Player</button>
                     {{ Form::close() }}

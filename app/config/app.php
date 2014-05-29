@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'fallback_locale' => 'en',
+	'fallback_locale' => 'en_US',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -122,6 +122,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Zizaco\Confide\ConfideServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Moltin\Cart\CartServiceProvider',
 
 	),
 
@@ -190,6 +191,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Confide'    	  => 'Zizaco\Confide\ConfideFacade',
 		'Image'    	  	  => 'Intervention\Image\Facades\Image',
+		'Cart' 			  => 'Moltin\Cart\Facade',
 	),
 
 );
