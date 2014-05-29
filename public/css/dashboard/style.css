@@ -1,10 +1,100 @@
-body{
-	background-color:#fafafa;
+body {
+    background-color:#fafafa;
+    font-family:'Open Sans', sans-serif;
 }
-p small{
-	font-size: 14px
+p small {
+    font-size: 14px
 }
 p small br {
-   display: block;
-   margin: -5px 0;
+    display: block;
+    margin: -5px 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family:'Open Sans Condensed', sans-serif;
+    font-weight: 700;
+}
+.app-frame {
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, .175);
+}
+.app-header {
+    background:#363b48;
+    border-radius:10px 10px 0px 0px;
+    color:#fff;
+}
+.menu {
+    border-right:1px solid rgba(0, 0, 0, 0.15);
+    width:165px;
+    height:100%;
+    position:absolute;
+}
+h5 {
+	font-size: 20px;
+	line-height: 30px;
+}
+h6 {
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 30px;
+    font-family:'Open Sans', sans-serif;
+}
+.search {
+    margin-top:10px;
+    max-width:300px;
+}
+.menu + .col-sm-12 {
+    margin-left:165px;
+    padding-left:1em;
+}
+.user-avatar {
+    background-position:top center;
+    width:164px;
+    height:164px;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.logo {
+    width:125px;
+    height:125px;
+    background-size:contain;
+    background-position:center center;
+    background-repeat:no-repeat;
+    margin:-3.5em auto 0 auto;
+}
+.user-name, .menu-container {
+    border-right:1px solid rgba(255, 255, 255, 0.15);
+    text-align:center;
+    height:100%;
+    position:relative;
+    padding-right:1em;
+}
+.user-name {
+    margin-right:1em;
+    width:150px;
+}
+.menu-container {
+    margin-top:-1.5em;
+}
+.menu-container h5 {
+	height: 100%;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+.menu-item {
+    height:135px;
+    width:165px;
+    border-bottom:1px solid rgba(0, 0, 0, 0.15);
+    position:relative;
+    display:table;
+}
+h5 > i {
+    font-size:45px;
+    margin:0.25em;
+}
+.menu-item:first-child {
+    height:85px;
 }
