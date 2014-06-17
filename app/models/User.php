@@ -22,4 +22,9 @@ class User extends ConfideUser {
         return $this->belongsToMany('Organization');    
     }
 
+    public function Events() {
+        return $this->belongsToMany('Evento','event_participant', 'event', 'user')
+        ->withPivot("payment", "payment");
+    }
+
 }

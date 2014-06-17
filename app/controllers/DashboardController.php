@@ -11,21 +11,7 @@ class DashboardController extends BaseController {
 	 */
 	public function show()
 	{
-		// return 
-
-		// try{
-		// 	$user = User::whereId($id)->firstOrFail();
-		// 	if($user->type == 1){
-		// 		$user = User::whereId($id)->with('organizations')->firstOrFail();
-		// 	}else{
-		// 		$user = User::whereId($id)->with('player')->firstOrFail();
-		// 	}
-		// }
-		// catch(Illuminate\Database\Eloquent\ModelNotFoundException $e){
-
-		// 	return Redirect::route('home');
-
-		// }
+	
 		$user =Auth::user();
 		$organizationlist = $user->organizations;
 		//return $organizationlist;
@@ -35,6 +21,19 @@ class DashboardController extends BaseController {
 			->with('organizations', $organizationlist)
 			->withUser($user);
 	}
+
+	public function element()
+	{
+		$user =Auth::user();
+		$organizationlist = $user->organizations;
+		//return $organizationlist;
+		$title = 'League Together - Dashboard';
+		return View::make('pages.user.elements')
+			->with('page_title', $title)
+			->with('organizations', $organizationlist)
+			->withUser($user);
+	}
+
 
 
 }

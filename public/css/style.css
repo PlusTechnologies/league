@@ -1,21 +1,22 @@
 body, html {
     height: 100%;
     width: 100%;
+    background-color:  #FAFAFA;
 }
 body {
-    font-weight: 700;
-    font-family:'Open Sans', sans-serif;
+   /* font-weight: 700;*/
+    /*font-family:'Open Sans', sans-serif;*/
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family:'Open Sans Condensed', sans-serif;
-    font-weight: 700;
+    /*font-family:'Open Sans Condensed', sans-serif;*/
+    font-weight: normal;
 }
 /** Flat UI Overrides **/
  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: rgba(116, 119, 134, 0.5);
 }
 .navbar-default {
-    background-color: #34495E;
+    background-color: rgba(52, 73, 94,0.9);
 }
 .navbar-default .navbar-nav > li > a {
     color: #f4f5f0;
@@ -38,14 +39,29 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
     background-position: center center;
 }
+.logo-login{
+    background-position: center center;
+    background-size: cover;
+    height: 130px;
+    margin: -10px auto;
+    position: relative;
+    width: 150px;
+    z-index: 5;
+}
 .navbar-brand > .logo {
-    width: 4em;
-    height: 4em;
+    width: 2.75em;
+    height: 2.75em;
     margin-top: -0.75em;
 }
-.nav > li.nav-btn {
-    position: absolute;
-    right: 1em;
+a.nav-btn {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 2px solid;
+    margin-left: 1em;
+    position: relative;
+    top: 5px;
+}
+.navbar-right > li {
+    float: right;
 }
 .footer-brand {
     width: 100%;
@@ -72,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .intro-message {
     position: relative;
-    padding-top: 10%;
+    padding-top: 20%;
     padding-bottom: 20%;
     text-align: left;
 }
@@ -82,15 +98,37 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid rgba(54, 59, 72, 1);
     margin-left: 0em;
 }
+hr.carved {
+  clear: both; 
+  float: none; 
+  width: 100%; 
+  height: 2px;
+  margin: 1.4em 0;
+  border: none; 
+  background: #ddd;
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.5, rgb(221,221,221)),
+      color-stop(0.5, rgb(255,255,255))
+  );
+  background-image: -moz-linear-gradient(
+      center top,
+      rgb(221,221,221) 50%,
+      rgb(255,255,255) 50%
+  );
+}
 .intro-message > h1, .intro-message > h3, .intro-message p, .intro-message strong {
-    color: #363b48;
-    text-shadow: 0px 1px 0px rgba(244, 245, 240, 0.6);
+    color: #FFF;
+    /*color: #363b48;*/
+    /*text-shadow: 0px 1px 0px rgba(244, 245, 240, 0.6);*/
 }
 .intro-message > h1 {
-    font-size: 50px;
+    font-size: 34px;
 }
 .intro-message > h3 {
-    font-size: 30px;
+    font-size: 20px;
     margin-top: -0.25em;
 }
 .intro-message strong {
@@ -258,8 +296,7 @@ p.copyright {
     }
 }
 .navbar {
-    text-transform: uppercase;
-    font-weight: 700;
+    /*text-transform: uppercase;*/
 }
 .navbar a:focus {
     outline: 0;
@@ -272,6 +309,8 @@ p.copyright {
 }
 .navbar-nav > li > a {
     padding: 0.5em;
+    font-weight: normal;
+    font-size: 13px;
 }
 /* Cart*/
  .cart-totals {
@@ -292,4 +331,37 @@ p.copyright {
 }
 .pl-ziro {
     padding-left: 0px;
+}
+/* Login page*/
+div#main-body {
+    /*background: linear-gradient(#FFFFFF, #F2F6F9) repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+    border-radius: 6px;
+    /*box-shadow: 0 0 0 1px rgba(14, 41, 57, 0.12), 0 2px 5px rgba(14, 41, 57, 0.44), 0 -1px 2px rgba(14, 41, 57, 0.15) inset;*/
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border: 1px solid #E0E2E3;
+    background-color: #FDFEFE;
+}
+div#head-body{
+    font-weight: 800;
+    margin: 0 auto;
+    padding: 15px 0;
+
+}
+div#head-body h1{
+    font-size: 34px;
+    font-weight: 800;
+}
+
+#login-help {
+    border: 1px solid rgba(14, 41, 57, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: #455B67;
+    display: block;
+    padding: 15px;
+}
+#login-help a, #login-help label {
+    font-size: 13px; 
+    color: #455B67;
 }

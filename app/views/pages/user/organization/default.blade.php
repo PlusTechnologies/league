@@ -1,138 +1,77 @@
 @extends('layouts.dashboard.default')
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h5>
-                        Dashboard
-
-                        @if(Auth::check())
-                        <a class="btn btn-lg pull-right btn-primary" href="{{ URL::route('logout') }}">Logout</a>
-                        @endif
-
-                    </h5>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-12">
-                    @if(Session::has('message'))
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <div class="alert alert-warning alert-dismissable">
-                                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                    {{ Session::get('message') }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h6 class="media-heading">User Info</h6>
-                            <div class="media">
-                                {{HTML::image($user->avatar, $user->firstname, array('class'=>'img-thumbnail pull-right','width'=>95));}}
-                                <div class="media-body">
-                                    <p>
-                                        <small>
-                                            Name: {{$user->firstname}} {{$user->lastname}}
-                                            <br>
-                                            Email: {{$user->email}}
-                                            <br>
-                                            Mobile: {{$user->mobile}}
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Organization Details</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <div class="search-result row">
-                                    <div class="col-xs-12 col-sm-12 col-md-3">
-                                        {{HTML::image($organization->logo, $organization->name, array('class'=>'img-thumbnail','width'=>200));}}
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-
-                                        <h5>{{$organization->name}}</h5>
-                                        Location: 
-                                        <br>
-                                        {{$organization->add1}} <br>
-                                        {{$organization->city}}, {{$organization->state}} {{$organization->zip}} <br>
-                                        <br>
-                                        <small>Created: {{date('d M Y H:i a',strtotime($organization->created_at)) }}</small>
-
-
-                                        <span class="plus">
-                                            <a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-pen"></i></a>
-                                        </span>
-                                    </div>
-                                    <span class="clearfix borda"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6">
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Events</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="list-group">
-                                            @foreach ($organization->events as $event)
-                                                    <a class="list-group-item" href="{{URL::action('EventoController@show', array($organization->id,$event->id))}}">
-                                                        {{ $event->name }}
-                                                    </a>
-                                            @endforeach
-                                    </div>
-                                    <a class="btn btn-info btn-embossed" href="{{URL::action('EventoController@create', $organization->id)}}">
-                                        New Event
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
+  <div class="row">
+    <div class="col-sm-12 app-header">
+    </div> 
+    <div class="col-sm-12 app-frame">
+      <div class="row ">
+        <div class="col-sm-2 app-menu">
+          <div class="menu-title">General</div>
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+              <i class="fa fa-user"></i> Roster
+            </a>
+            <a href="#" class="list-group-item">
+              <i class="fa fa-users"></i> Teams
+            </a>
+            <a href="#" class="list-group-item">
+              <i class="fa fa-bar-chart-o"></i> Accounting
+            </a>
+            <a href="#" class="list-group-item">
+              <i class="fa fa-envelope-o"></i> Communication
+            </a>
+            <a href="#" class="list-group-item">
+              <i class="fa fa-ticket"></i> Discounts
+            </a>
+          </div>
         </div>
-    </div>
-</div>
+        <div class="col-sm-10 col-sm-offset-2">
+          <div class="app-title">
+            <div style="background-image: url(http://leaguetogether.dev/images/landing-background-1.jpg)" class="row dashboard-background">
+              <div class="col-sm-12">
+                <!-- <div class="team-count pull-left">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h1>10</h1>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h6>Teams</h6>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="org-header pull-left">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="fileinput-new thumbnail org-thumb">
+                        <img src="{{$organization->logo}}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="org-name pull-left dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h2 class="">{{$organization->name}}<span class="caret"></span></h2></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Organization Name 2</a></li>
+                    <li><a href="#">Organization Name 3</a></li>
+                    <li><a href="#">Organization Name 4</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-<div class="modal fade" id="addevent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Add event</h4>
-            </div>
-            <div class="modal-body">
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+            <div class="image"><i class="fa fa-sitemap"></i></div>
+            <h2 class="text-center home-title">Organization Management</h2>
+            <p class="text-center"><small >Take your first by exploring all the option in our system.</small> </p>
+            <a class="btn btn-primary btn-sm" href="/dashboard/organization/create"> Create new organization</a>
+            <hr>
+
+          </div>
+        </div>  
+      </div>
+
     </div>
-</div>
-@stop
+  </div>
+  @stop

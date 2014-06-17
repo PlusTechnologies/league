@@ -15,15 +15,15 @@ class CreatePaymentTable extends Migration {
 		Schema::create('payments', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('user');
-			$table->integer('type');
+			$table->string('type');
 			$table->string('customer');
 			$table->string('transaction');
 			$table->string('promo');
-			$table->double('fee');
-			$table->double('service_fee');
-			$table->double('tax');
-			$table->double('discount');
-			$table->double('total');
+			$table->double('subtotal',15, 2);
+			$table->double('service_fee',15, 2);
+			$table->double('tax',15, 2);
+			$table->double('discount',15, 2);
+			$table->double('total',15, 2);
 			$table->timestamps();
 		});
 	}

@@ -83,6 +83,7 @@ define('NET_SCP_SSH2',  2);
  *
  * @package Net_SCP
  * @author  Jim Wigginton <terrafrost@php.net>
+ * @version 0.1.0
  * @access  public
  */
 class Net_SCP
@@ -215,7 +216,7 @@ class Net_SCP
             $sent+= strlen($temp);
 
             if (is_callable($callback)) {
-                call_user_func($callback, $sent);
+                $callback($sent);
             }
         }
         $this->_close();

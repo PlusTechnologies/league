@@ -5,7 +5,11 @@
   {{HTML::style('bootstrap/css/bootstrap.css')}}
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
-  {{HTML::style('css/style.css')}}
+  @if(Route::currentRouteName())
+    {{HTML::style('css/login-style.css')}}
+  @else
+    {{HTML::style('css/public-style.css')}}
+  @endif
   <link rel="shortcut icon" href="images/favicon.ico">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
   <!--[if lt IE 9]>

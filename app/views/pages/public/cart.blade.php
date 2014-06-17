@@ -76,11 +76,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" class="text-right">Service Fee</td>
-                                                    <td>{{money_format("%.2n",Cart::tax())}}</td>
+                                                    <td>{{money_format("%.2n",$service_fee)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" class="text-right">Total</td>
-                                                    <td>{{money_format('%.2n',Cart::total())  }}</td>
+                                                    <td>{{money_format('%.2n',$cart_total)  }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

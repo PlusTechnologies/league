@@ -22,5 +22,22 @@ class Evento extends Eloquent {
     {
         return $this->belongsTo('organization');
     }
+
+    // public function Users()
+    // {
+    //     return $this->hasMany('item');
+    // }
+
+    public function Users() {
+        return $this->belongsToMany('User','event_participant', 'user','event' )
+        ->withPivot("payment")
+        ->join('payments', 'event_participant.payment', '=', 'payments.id')
+        ->select('*');
+    }
+
+    // public function Participants()
+    // {
+    //     return $this->hasMany('participant');
+    // }
 }
 

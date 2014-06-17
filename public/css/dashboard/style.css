@@ -1,6 +1,7 @@
 body {
-    background-color:#fafafa;
+    background-color:#F2F4F5;
     font-family:'Open Sans', sans-serif;
+    margin-top: 65px;
 }
 p small {
     font-size: 14px
@@ -10,23 +11,58 @@ p small br {
     margin: -5px 0;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family:'Open Sans Condensed', sans-serif;
-    font-weight: 700;
+}
+h1{
+
+}
+h2{
+    font-size: 28px;
+    font-weight: 300;
+}
+.home-title{
+    padding: 20px 0px 0px;
 }
 .display-none {
     display: none;
 }
 .app-frame {
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 10px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, .175);
+    position: relative;
+    border-width: 0px 1px 1px 1px;
+    border-color: #ccc;
+    border-style: solid;
+    border-radius: 0px 0px 5px 5px;
+    background-color: #fff;
+/*    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, .175);*/
 }
 .app-header {
-    background:#363b48;
-    border-radius:10px 10px 0px 0px;
+    background: linear-gradient(#3895cb, #015e94) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 5px 5px 0px 0px;
+    height: 49px;
+    padding: 1px;
+    position: relative;
+    z-index: 30;
     color:#fff;
+    width: 100%
 }
+.app-title{
+    text-align: center;
+    padding-top: 50px;
+}
+.app-title .image i{
+   font-size:32px;
+}
+div.toolbar-view {
+    background: linear-gradient(#3895cb, #015e94) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 5px 5px 1px 1px;
+    height: 49px;
+    margin: -1px -1px 0;
+    padding: 1px;
+    position: relative;
+    z-index: 30;
+}
+
+
 .menu {
     border-right:1px solid rgba(0, 0, 0, 0.15);
     width:165px;
@@ -66,7 +102,6 @@ h6 {
     width:125px;
     height:125px;
     background-size:contain;
-    background-position:center center;
     background-repeat:no-repeat;
     margin:-3.5em auto 0 auto;
 }
@@ -109,6 +144,7 @@ h5 > a > i {
     height:284px;
     background-size:cover;
     background-position:left center;
+     margin-top: -50px;
 }
 .team-count > .row h6 {
     text-transform: uppercase;
@@ -261,10 +297,203 @@ textarea {
     background: #ffffff;
     height: auto;
     padding: 7px 12px;
-    font-weight: 300;
+    /*font-weight: 300;*/
     border-radius: 3px;
     border-radius: 6px;
 }
 .media-right .media-body {
     text-align:right;
+}
+
+/**/
+/** Flat UI Overrides **/
+
+ .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: rgba(54, 59, 72, 1);
+}
+.navbar-default {
+    background-color:#F2F4F5;
+}
+
+.navbar-default .navbar-nav > li > a {
+    font-weight: 400;
+    font-size: 12px;
+    color: #999;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-bottom-color: #aaa;
+    border-top-color: #aaa;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #47c9b0;
+}
+.navbar-default .navbar-toggle:before {
+    color: #f4f5f0;
+}
+.navbar-toggle:before {
+    color: #47c9b0;
+}
+.navbar-fixed-top {
+        padding: 15px 0;
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        transition: padding .3s;
+    }
+.brand-text{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 13px;
+    color:#1E4578;
+    margin:0;
+    padding: 10px 0 0;
+}
+.brand-text>span{
+    color: #e74c3c;
+}
+
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.navbar-content
+{
+    width:320px;
+    padding: 15px;
+    padding-bottom:10px;
+}
+.navbar-content:before, .navbar-content:after
+{
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.navbar-footer 
+{
+    background-color:#DDD;
+}
+.navbar-footer-content { 
+    padding:15px 15px 15px 15px; 
+}
+.open > .dropdown-menu {
+    margin-top: 7px !important; 
+    box-shadow: 0px 0px 15px -3px #363b48;
+}
+.open > .dropdown-arrow {
+    margin-top: 0px;
+    opacity: 1;
+    z-index: 99999 !important;
+}
+.navbar-nav .dropdown-arrow-inverse {
+    border-bottom-color: #fff !important;
+    border-top-color: #fff !important;
+}
+.navbar-nav > li > a {
+    padding: 5px 21px;
+}
+.dropdown-menu .divider {
+    margin: 9px 0 !important;
+}
+.dropdown-menu {
+padding: 0px;
+overflow: hidden;
+background-color: #fff;
+box-shadow: 1 1 1 #ddd;
+}
+
+.box > .icon {
+    text-align:center;
+    position:relative; 
+}
+.box > .icon > .image { 
+    position: relative; 
+    z-index: 2; 
+    margin: auto; 
+    width: 88px; 
+    height: 88px; 
+    border: 1px solid #ccc; 
+    line-height: 88px; 
+    border-radius: 50%; 
+    background: #FFF; 
+    vertical-align: middle; 
+}
+.box > .icon > .image > i { font-size: 32px !important; }
+.box > .icon > .info { 
+    margin-top: -24px; 
+    border: 1px solid #ccc; 
+    padding: 15px 0 10px 0; 
+    border-radius: 5px;
+}
+
+.box > .icon > .info > h3.title, .panel>ul>li { 
+    font-size: 16px; 
+    color: #222; 
+    font-weight: 500; 
+}
+.box > .icon > .info > p { 
+    font-size: 13px; 
+    color: #666; 
+    line-height: 1.5em; 
+    margin: 20px;
+}
+.box > .icon:hover > .info > h3.title, .box > .icon:hover > .info > p, .box > .icon:hover > .info > .more > a { color: #222; }
+.box > .icon > .info > .more a { 
+    font-size: 12px; 
+    color: #222; 
+    line-height: 12px; 
+    text-transform: uppercase; 
+    text-decoration: none; }
+.box > .icon:hover > .info > .more > a { color: #fff; padding: 6px 8px; background-color: #1abc9c; }
+.box .space { height: 30px; }
+
+
+/*Tables*/
+.table-org{
+    
+}
+.table-org tbody{
+    font-size: 24px;
+    font-weight: 600;    
+}
+.org-logo{
+    width: 60px;
+    height: 60px;
+
+}
+
+.app-menu{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: #f1f3f5;
+    font-size: 11px;
+    font-weight: 600;
+    border-right: 1px solid #ccc;
+    box-shadow: 0 0 1px 0;
+}
+.app-menu .menu-title{
+    margin-top: 20px;
+    text-transform: uppercase;
+    
+}
+.app-menu .list-group i{
+    font-size: 15px;
+    padding-right: 10px;
+}
+.app-menu .list-group-item{
+    background-color: transparent; 
+    border: 0;
+    border-radius: 0px;
+    padding: 5px 15px; 
+}
+.app-menu .list-group a:hover{
+    background-color: #C8D9DE;
+    color: #fff;
 }

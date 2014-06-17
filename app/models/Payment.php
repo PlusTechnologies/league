@@ -8,4 +8,12 @@ class Payment extends Eloquent {
         return $this->hasMany('item');
     }
 
+    public function sale($param){
+	    $cart = CardFlex::sale($param);
+	    $object = json_decode(json_encode($cart), FALSE);
+
+    return $object ;
+
+    }
+
 }

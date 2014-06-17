@@ -1,174 +1,244 @@
 <?php
 
 class PaymentController extends BaseController {
-	
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /payment
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		setlocale(LC_MONETARY,"en_US");
-		// Session::flush();
-		// array_values(Session::get('order.item'));
-		// return Session::get('order.item');
-		//return Cart::contents(true);
-		return View::make('pages.public.cart')
-					->with('page_title', 'Order')
-					->with('products',Cart::contents());
-	}
 
-	
-	public function addtocart()
-	{
+/**
+* Display a listing of the resource.
+* GET /payment
+*
+* @return Response
+*/
+public function index()
+{
+	setlocale(LC_MONETARY,"en_US");
+	$fee = (Cart::total() / getenv("SV_FEE")) - Cart::total() ;
+	$total = $fee + Cart::total();
 
-		if(Input::get('order')==1){
-			$group 	= Input::get('team');
-			$id 	= Input::get('event');
-			$qty	= Input::get('qty');
-			$e = Evento::with('organization')->whereId(Input::get('event'))->firstOrFail();
+	return View::make('pages.public.cart')
+	->with('page_title', 'Order')
+	->with('products',Cart::contents())
+	->with('service_fee',$fee)
+	->with('cart_total',$total);
+}
 
-			if(!$group == 1){
-				$s = Cart::insert(array(
-					'id'			=> $e->id.$group,
-					'name'			=> $e->name. '- Player Registration',
-					'price'			=> $e->fee,
-					'quantity'		=> $qty,
-					'tax'      		=> getenv("SV_FEE"),
-					'organization' 	=> $e->organization->name,
-					'event'			=> $e->id
-				));
-			}else{
-				$s = Cart::insert(array(
-					'id'			=> $e->id.$group,
-					'name'			=> $e->name . '- Team Registration',
-					'price'			=> $e->group_fee,
-					'quantity'		=> $qty,
-					'tax'      		=> getenv("SV_FEE"),
-					'organization' 	=> $e->organization->name,
-					'event'			=> $e->id 
-				));
-			}
+
+public function addtocart()
+{
+
+	if(Input::get('order')==1){
+		$group 	= Input::get('team');
+		$id 	= Input::get('event');
+		$qty	= Input::get('qty');
+		$e = Evento::with('organization')->whereId(Input::get('event'))->firstOrFail();
+
+		if(!$group == 1){
+
+			$item = array(
+				'id'			=> $e->id.$group,
+				'name'			=> $e->name. ' - Player Registration',
+				'price'			=> $e->fee,
+				'quantity'		=> $qty,
+				'tax'      		=> 0,
+				'organization' 	=> $e->organization->name,
+				'event'			=> $e->id,
+				);
+			Cart::insert($item);
+
+		}else{
+
+			$item = array(
+				'id'			=> $e->id.$group,
+				'name'			=> $e->name . ' - Team Registration',
+				'price'			=> $e->group_fee,
+				'quantity'		=> $qty,
+				'tax'      		=> 0,
+				'organization' 	=> $e->organization->name,
+				'event'			=> $e->id,
+				);
+			Cart::insert($item);
 		}
-		return Redirect::action('PaymentController@index');
 
-		//return Redirect::action('PaymentController@create');
 	}
+	return Redirect::action('PaymentController@index');
+}
 
-	public function removefromcart($i)
-	{
-		$item = Cart::item($i);
-		$item->remove();
+public function removefromcart($i)
+{
+	$item = Cart::item($i);
+	$item->remove();
+	return Redirect::action('PaymentController@index');
+//return Redirect::action('PaymentController@create');
+}
+
+public function success()
+{
+
+	setlocale(LC_MONETARY,"en_US");
+	$user =Auth::user();
+	$fee = (Cart::total() / getenv("SV_FEE")) - Cart::total() ;
+	$total = $fee + Cart::total();
+
+	return View::make('pages.public.success')
+	->with('page_title', 'Payment Complete')
+	->withUser($user)
+	->with('products',Cart::contents())
+	->with('service_fee',$fee)
+	->with('cart_total',$total);
+}
+
+
+/**
+* Show the form for creating a new resource.
+* GET /payment/create
+*
+* @return Response
+*/
+public function create()
+{
+
+	setlocale(LC_MONETARY,"en_US");
+	$user =Auth::user();
+	$fee = (Cart::total() / getenv("SV_FEE")) - Cart::total() ;
+	$total = $fee + Cart::total();
+
+	return View::make('pages.public.checkout')
+	->with('page_title', 'Checkout')
+	->withUser($user)
+	->with('products',Cart::contents())
+	->with('service_fee',$fee)
+	->with('cart_total',$total);
+}
+
+/**
+* Store a newly created resource in storage.
+* POST /payment
+*
+* @return Response
+*/
+public function store()
+{	
+	
+	$user =Auth::user();
+	$param = array(
+		'ccnumber'			=> Input::get('card'),
+		'ccexp'				=> Input::get('month').Input::get('year'),
+		'cvv'      			=> Input::get('cvc'),
+		'zip'				=> Input::get('zip')
+	);
+
+	$payment = new Payment;
+	$transaction = $payment->sale($param);
+
+	if($transaction->response == 3 || $transaction->response == 2 ){
+		return Redirect::action('PaymentController@create')->with('error',$transaction->responsetext);
+	}else{
 		
-		return Redirect::action('PaymentController@index');
-		//return Redirect::action('PaymentController@create');
+		$payment->user        	= $user->id;
+		$payment->type     		= $transaction->type;
+		$payment->transaction   = $transaction->transactionid;	
+		$payment->subtotal 		= $transaction->subtotal;
+		$payment->service_fee   = $transaction->fee;
+		$payment->total   		= $transaction->total;
+		// $payment->customer   = ;
+		// $payment->promo      = ;
+		// $payment->tax   		= ;
+		// $payment->discout   	= ;
+		$payment->save();
+
+		if($payment->id){
+
+			foreach( Cart::contents() as $item){
+				$salesfee = ($item->price / getenv("SV_FEE")) - $item->price; 
+				$sale = new Item;
+				$sale->description 	= $item->name;
+				$sale->quantity 	= $item->quantity;
+				$sale->price 		= $item->price;
+				$sale->fee 			= $salesfee;
+				// $sale->discout	= ;
+				// $sale->item      = ;
+				// $sale->type     	= ;
+				Payment::find($payment->id)->Items()->save($sale);
+				$participant = new Participant;
+				$participant->event 	= $item->event;
+				$participant->user 		= $user->id;
+				$participant->payment 	= $payment->id;
+				$participant->save();
+			}	
+		}
+		return Redirect::action('PaymentController@success')->with('result',$transaction);
 	}
+}
 
+/**
+* Display the specified resource.
+* GET /payment/{id}
+*
+* @param  int  $id
+* @return Response
+*/
+public function receipt($id)
+{
+	setlocale(LC_MONETARY,"en_US");
+	$user =Auth::user();
+	$fee = (Cart::total() / getenv("SV_FEE")) - Cart::total() ;
+	$total = $fee + Cart::total();
 
+	return View::make('emails.receipt.default')
+	->with('page_title', 'Payment Complete')
+	->withUser($user)
+	->with('products',Cart::contents())
+	->with('service_fee',$fee)
+	->with('cart_total',$total);
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /payment/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		setlocale(LC_MONETARY,"en_US");
-		$user =Auth::user();
-		return View::make('pages.public.checkout')
-					->with('page_title', 'Checkout')
-					->withUser($user)
-					->with('products',Cart::contents());
-		return Session::get('order.item');
-	}
+}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /payment
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{	
+/**
+* Display the specified resource.
+* GET /payment/{id}
+*
+* @param  int  $id
+* @return Response
+*/
+public function show($id)
+{
+//
+}
 
-		$amount = Cart::total();
-		$user =Auth::user();
-		
-		$params = "username=cfdemo&password=cfdemo2013&type=sale&ccnumber=5431111111111111&ccexp=0715&cvv=999&amount=$amount&email=$user->email";
-		$uri = "https://secure.cardflexonline.com/api/transact.php";
-		$ch = curl_init($uri);
-		curl_setopt_array($ch, array(
-		CURLOPT_RETURNTRANSFER  =>true,
-		CURLOPT_VERBOSE     => 1,
-		CURLOPT_POSTFIELDS =>$params
-		));
-		
-		$out = curl_exec($ch) or die(curl_error());
+/**
+* Show the form for editing the specified resource.
+* GET /payment/{id}/edit
+*
+* @param  int  $id
+* @return Response
+*/
+public function edit($id)
+{
+//
+}
 
-		$response_array = parse_str($out, $output);
-		curl_close($ch);
+/**
+* Update the specified resource in storage.
+* PUT /payment/{id}
+*
+* @param  int  $id
+* @return Response
+*/
+public function update($id)
+{
+//
+}
 
-		$object = json_decode(json_encode($output), FALSE);
-
-		return $object->responsetext;
-
-
-
-		$i = Input::all();
-		$cart = Cart::contents(true);
-		return $i;
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /payment/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /payment/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /payment/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /payment/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+/**
+* Remove the specified resource from storage.
+* DELETE /payment/{id}
+*
+* @param  int  $id
+* @return Response
+*/
+public function destroy($id)
+{
+//
+}
 
 }

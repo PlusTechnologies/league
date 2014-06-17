@@ -82,9 +82,19 @@ class EventoController extends BaseController {
 	 */
 	public function show($organizationid,$event)
 	{
+
+		setlocale(LC_MONETARY,"en_US");
 		$user= Auth::user();
+
 		$organization = User::with('organizations')->whereid($user->id)->firstOrFail();
 		$e = Evento::with('organization')->whereId($event)->firstOrFail();
+		$participant = Evento::with('users')->whereId($event)->firstOrFail();
+		// $participant = DB::table('event_participant')
+		// ->join('payments', 'event_participant.payment', '=', 'payments.id')
+		// ->join('users','event_participant.user', '=', 'users.id')
+		// ->where('event', '=', $e->id)->get();
+		
+		return $participant;
 		$title = 'League Together - '.$e->name.' Event';
 
 		if($organization->organizations->contains($organizationid)){
@@ -95,7 +105,8 @@ class EventoController extends BaseController {
 					->with('page_title', $title)
 					->withEvent($e)
 					->withUser($user)
-					->with('message', 'message flash here');
+					->with('message', 'message flash here')
+					->with('participants', $participant);
 			}else
 			{
 				return View::action('OrganizationController@show')

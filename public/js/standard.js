@@ -1,6 +1,28 @@
 //Login page, agree button
 $(function () {
-    
+
+    $('#login input.login-error-top').on('focus', function(){
+        $(this).removeClass('login-error-top');
+    });
+    $('#login input.login-error-bottom').on('focus', function(){
+        $(this).removeClass('login-error-bottom');
+    });
+
+    // $('#login input.login-bottom').on('focus', function(){
+    //     $('input.login-top').css('border-bottom',0);
+    // });
+
+    // $('#login input.login-bottom').on('blur', function(){
+    //     $('input.login-top').removeAttr('style')
+    // });
+
+
+    //image resize function.
+    $('.intro-header') .css({'height': (($(window).height()))+'px'});
+    $(window).resize(function(){
+        $('.intro-header') .css({'height': (($(window).height()))+'px'});
+    });
+
     // Focus state for append/prepend inputs
     $('.input-group').on('focus', '.form-control', function () {
       $(this).closest('.input-group, .form-group').addClass('focus');

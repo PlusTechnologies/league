@@ -100,25 +100,17 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Name</th>
-                                                <th>$USD</th>
+                                                <th>Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($participants as $participant)
                                             <tr>
-                                                <td>1</td>
-                                                <td>The Shawshank Redemption</td>
-                                                <td>1994</td>
+                                                <td>{{ date("M d, Y",strtotime($participant->created_at)) }}</td>
+                                                <td>{{$participant->firstname }} {{$participant->lastname}}</td>
+                                                <td>{{money_format('%.2n',$participant->total)  }}</td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>The Godfather</td>
-                                                <td>1972</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>The Godfather: Part II</td>
-                                                <td>1974</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

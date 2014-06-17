@@ -126,6 +126,7 @@ define('CRYPT_AES_MODE_MCRYPT', CRYPT_MODE_MCRYPT);
  *
  * @package Crypt_AES
  * @author  Jim Wigginton <terrafrost@php.net>
+ * @version 0.1.0
  * @access  public
  */
 class Crypt_AES extends Crypt_Rijndael
@@ -156,7 +157,7 @@ class Crypt_AES extends Crypt_Rijndael
      *
      * - CRYPT_AES_MODE_OFB
      *
-     * If not explicitly set, CRYPT_AES_MODE_CBC will be used.
+     * If not explictly set, CRYPT_AES_MODE_CBC will be used.
      *
      * @see Crypt_Rijndael::Crypt_Rijndael()
      * @see Crypt_Base::Crypt_Base()

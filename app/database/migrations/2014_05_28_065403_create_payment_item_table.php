@@ -15,13 +15,15 @@ class CreatePaymentItemTable extends Migration {
 		Schema::create('payment_item', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('payment')->unsigned()->index();
-			$table->foreign('payment')->references('id')->on('payments')->onDelete('cascade');
+			$table->integer('payment_id')->unsigned()->index();
+			$table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
 			$table->integer('item');
 			$table->integer('type');
-			$table->double('price');
-			$table->double('fee');
-			$table->double('discount');
+			$table->string('description');
+			$table->integer('quantity');
+			$table->double('price',15, 2);
+			$table->double('fee',15, 2);
+			$table->double('discount',15, 2);
 			$table->timestamps();
 		});
 	}

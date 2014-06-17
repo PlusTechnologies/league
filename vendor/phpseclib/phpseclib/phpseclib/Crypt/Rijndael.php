@@ -137,6 +137,7 @@ define('CRYPT_RIJNDAEL_MODE_MCRYPT', CRYPT_MODE_MCRYPT);
  *
  * @package Crypt_Rijndael
  * @author  Jim Wigginton <terrafrost@php.net>
+ * @version 0.1.0
  * @access  public
  */
 class Crypt_Rijndael extends Crypt_Base
@@ -166,7 +167,7 @@ class Crypt_Rijndael extends Crypt_Base
      * Mcrypt is useable for 128/192/256-bit $block_size/$key_size. For 160/224 not.
      * Crypt_Rijndael determines automatically whether mcrypt is useable
      * or not for the current $block_size/$key_size.
-     * In case of, $cipher_name_mcrypt will be set dynamically at run time accordingly.
+     * In case of, $cipher_name_mcrypt will be set dynamicaly at run time accordingly.
      *
      * @see Crypt_Base::cipher_name_mcrypt
      * @see Crypt_Base::engine
@@ -692,7 +693,7 @@ class Crypt_Rijndael extends Crypt_Base
      *
      * - CRYPT_RIJNDAEL_MODE_OFB
      *
-     * If not explicitly set, CRYPT_RIJNDAEL_MODE_CBC will be used.
+     * If not explictly set, CRYPT_RIJNDAEL_MODE_CBC will be used.
      *
      * @see Crypt_Base::Crypt_Base()
      * @param optional Integer $mode
@@ -754,7 +755,7 @@ class Crypt_Rijndael extends Crypt_Base
      *       you should not setKeyLength(160) or setKeyLength(224).
      *
      * Additional: In case of 160- and 224-bit keys, phpseclib will/can, for that reason, not use
-     *             the mcrypt php extension, even if available.
+     *             the mcrypt php extention, even if available.
      *             This results then in slower encryption.
      *
      * @access public

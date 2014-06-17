@@ -9,7 +9,14 @@ class OrganizationController extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		$user =Auth::user();
+		$organizationlist = $user->organizations;
+		//return $organizationlist;
+		$title = 'League Together - Dashboard';
+		return View::make('pages.user.organization.dashboard')
+			->with('page_title', $title)
+			->with('organizations', $organizationlist)
+			->withUser($user);
 	}
 
 	/**

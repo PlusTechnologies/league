@@ -123,6 +123,7 @@ return array(
 		'Zizaco\Confide\ConfideServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Moltin\Cart\CartServiceProvider',
+		'leaguetogether\Paymentgateway\CardFlexServiceProvider',
 
 	),
 
@@ -192,6 +193,7 @@ return array(
 		'Confide'    	  => 'Zizaco\Confide\ConfideFacade',
 		'Image'    	  	  => 'Intervention\Image\Facades\Image',
 		'Cart' 			  => 'Moltin\Cart\Facade',
+		'CardFlex'		  => 'leaguetogether\Facades\CardFlex',
 	),
 
 );
