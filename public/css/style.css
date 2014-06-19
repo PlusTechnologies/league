@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 /** Flat UI Overrides **/
+#page-login{
+    background-color: #34495e;
+    color:#f4f4f4;
+}
  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: rgba(116, 119, 134, 0.5);
 }

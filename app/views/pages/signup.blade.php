@@ -27,18 +27,17 @@
                     
                     {{ Form::open(array('url' => 'account','id'=>'new_account','method' => 'post', 'files'=>true)) }}
 
-                    <hr class="colorgraph">
                     <h6>User Account</h6>
                     <div class="row">
                         
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control input-lg','placeholder'=>'First Name','tabindex'=>'2')) }}
+                                {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control input-sm','placeholder'=>'First Name','tabindex'=>'2')) }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::text('lastname', '', array('id'=>'lastname','class'=>'form-control input-lg','placeholder'=>'Last Name', 'tabindex'=>'3')) }}
+                                {{Form::text('lastname', '', array('id'=>'lastname','class'=>'form-control input-sm','placeholder'=>'Last Name', 'tabindex'=>'3')) }}
                             </div>
                         </div>
                     </div>
@@ -46,12 +45,12 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::email('email', '', array('id'=>'email','class'=>'form-control input-lg','placeholder'=>'Email Address', 'tabindex'=>'4')) }}
+                                {{Form::email('email', '', array('id'=>'email','class'=>'form-control input-sm','placeholder'=>'Email Address', 'tabindex'=>'4')) }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::text('mobile', '', array('id'=>'mobile','class'=>'form-control input-lg','placeholder'=>'Mobile #', 'tabindex'=>'5')) }}                                
+                                {{Form::text('mobile', '', array('id'=>'mobile','class'=>'form-control input-sm','placeholder'=>'Mobile #', 'tabindex'=>'5')) }}                                
                             </div>
                         </div>
                     </div>
@@ -60,18 +59,18 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::password('password', array('id'=>'password','class'=>'form-control input-lg','placeholder'=>'Password', 'tabindex'=>'6')) }}
+                                {{Form::password('password', array('id'=>'password','class'=>'form-control input-sm','placeholder'=>'Password', 'tabindex'=>'6')) }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                {{Form::password('password_confirmation',array('id'=>'password_confirmation','class'=>'form-control input-lg','placeholder'=>'Confirm Password', 'tabindex'=>'7')) }}
+                                {{Form::password('password_confirmation',array('id'=>'password_confirmation','class'=>'form-control input-sm','placeholder'=>'Confirm Password', 'tabindex'=>'7')) }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
-                            <span class="btn btn-primary btn-embossed btn-file btn-sm">                        
+                            <span class="btn btn-primary btn-file btn-xs">                        
                                 <span class="fileinput-new">
                                     <span class="fui-upload"></span>  
                                     Attach File
@@ -104,8 +103,8 @@
                     <br class="colorgraph">
                     <div class="row">
                       <div class="col-sm-12">
-                        <button class="btn btn-primary  btn-lg" id="register">Register</button>
-                        <a href="{{ URL::route('login') }}" class="btn btn-info  btn-lg" >Sign In</a>
+                        <button class="btn btn-primary  btn-sm" id="register">Register</button>
+                        <a href="{{ URL::route('login') }}" class="btn btn-info  btn-sm" >Sign In</a>
                     </div>
                 </div>
                 {{ Form::close() }}
@@ -113,7 +112,6 @@
         </div>
     </div>
     <div class="col-sm-10 col-sm-offset-1">
-        <hr>
     </div>
 </div>
 </div>

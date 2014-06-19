@@ -45,7 +45,14 @@ Route::get( 'checkout/success',         	  	array('before' => 'auth','as' => 'ch
 Route::post( 'checkout/store',         	  		array('before' => 'auth','as' => 'checkout.store', 'uses' => 'PaymentController@store'));
 
 
-Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
+//Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
+
+
+Route::get('/email/receipt/{id}', function()
+{
+    return View::make('emails.receipt.default');
+});
+	
 
 
 
