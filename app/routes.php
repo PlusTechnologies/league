@@ -52,6 +52,7 @@ Route::get('/email/receipt/{id}', function()
 {
     return View::make('emails.receipt.default');
 });
+
 	
 
 
