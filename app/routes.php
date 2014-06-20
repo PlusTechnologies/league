@@ -65,6 +65,12 @@ Route::get('/password', function()
     return View::make('emails.receipt.default');
 });
 
+Route::get('/password/reset', function()
+{
+	/*add the proper view*/
+    return View::make('emails.receipt.default');
+});
+
 
 	
 
