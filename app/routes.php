@@ -53,6 +53,19 @@ Route::get('/email/receipt/{id}', function()
     return View::make('emails.receipt.default');
 });
 
+Route::get('/welcome', function()
+{
+	/*add the proper view*/
+    return View::make('emails.receipt.default');
+});
+
+Route::get('/password', function()
+{
+	/*add the proper view*/
+    return View::make('emails.receipt.default');
+});
+
+
 	
 
 
