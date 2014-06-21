@@ -30,48 +30,90 @@
           <div class="app-title">
             <div style="background-image: url(http://leaguetogether.dev/images/landing-background-1.jpg)" class="row dashboard-background">
               <div class="col-sm-12">
-                <!-- <div class="team-count pull-left">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <h1>10</h1>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <h6>Teams</h6>
-                    </div>
-                  </div>
-                </div> -->
-                <div class="org-header pull-left">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="fileinput-new thumbnail org-thumb">
-                        <img src="{{$organization->logo}}">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="org-name pull-left dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h2 class="">{{$organization->name}}<span class="caret"></span></h2></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Organization Name 2</a></li>
-                    <li><a href="#">Organization Name 3</a></li>
-                    <li><a href="#">Organization Name 4</a></li>
-                  </ul>
-                </div>
-              </div>
+<!-- <div class="team-count pull-left">
+<div class="row">
+<div class="col-sm-12">
+<h1>10</h1>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<h6>Teams</h6>
+</div>
+</div>
+</div> -->
+<div class="org-header pull-left">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="fileinput-new thumbnail org-thumb">
+        <img src="{{$organization->logo}}">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="org-name pull-left dropdown">
+  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><h2 class="">{{$organization->name}}<span class="caret"></span></h2></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Organization Name 2</a></li>
+    <li><a href="#">Organization Name 3</a></li>
+    <li><a href="#">Organization Name 4</a></li>
+  </ul>
+</div>
+</div>
+</div>
+<h2 class="text-center home-title">Overview</h2>
+<p class="text-center"><small >Here is the big picture.</small> </p>
+<hr>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title ">
+          <div class="row">
+            <div class = "col-md-6">Events</div>
+            <div class = "col-md-6 text-right">
+              <a class="btn btn-xs btn-success" href="#">
+                <i class="fa fa-plus"></i> Add
+              </a>
             </div>
+          </div> 
+        </h3>
+      </div>
 
-            <div class="image"><i class="fa fa-sitemap"></i></div>
-            <h2 class="text-center home-title">Organization Management</h2>
-            <p class="text-center"><small >Take your first by exploring all the option in our system.</small> </p>
-            <a class="btn btn-primary btn-sm" href="/dashboard/organization/create"> Create new organization</a>
-            <hr>
-
-          </div>
-        </div>  
+      <div class="panel-body">
       </div>
 
     </div>
   </div>
-  @stop
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <div class="row">
+            <div class = "col-md-6">Announcements</div>
+            <div class = "col-md-6 text-right">
+              <a class="btn btn-xs btn-success" href="#">
+                <i class="fa fa-plus"></i> Add
+              </a>
+            </div>
+          </div> 
+        </h3>
+      </div>
+
+      <div class="panel-body">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>  
+</div>
+
+</div>
+</div>
+@stop

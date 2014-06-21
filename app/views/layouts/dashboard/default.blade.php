@@ -2,7 +2,7 @@
 <html lang="en">
 @include('includes.dashboard.header')
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

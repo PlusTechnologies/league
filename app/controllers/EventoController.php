@@ -146,9 +146,18 @@ class EventoController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($org, $eve)
 	{
-		//
+
+		$event = Evento::whereId($eve)->where('organization_id', '=', $org)->firstOrFail();
+		$user =Auth::user();
+		$organization = Organization::with('events')->whereId($eve)->firstOrFail();
+		$title = 'League Together - '.$organization ->name.' Event';
+		return View::make('pages.user.organization.event.edit')
+		->with('page_title', $title)
+		->with('organization', $organization)
+		->with('event', $event)
+		->withUser($user);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 body {
     background-color:#F2F4F5;
     font-family:'Open Sans', sans-serif;
-    margin-top: 65px;
+    margin-top: 15px;
 }
 p small {
     font-size: 14px
@@ -36,7 +36,7 @@ h2{
     box-shadow: 0 3px 20px rgba(0, 0, 0, .175);*/
 }
 .app-header {
-    background: linear-gradient(#3895cb, #015e94) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: linear-gradient(#363b48, #363b48) repeat scroll 0 0 rgba(0, 0, 0, 0);
     border-radius: 5px 5px 0px 0px;
     height: 49px;
     padding: 1px;
@@ -497,3 +497,13 @@ box-shadow: 1 1 1 #ddd;
     background-color: #C8D9DE;
     color: #fff;
 }
+
+/*Overwrite bootstrap*/
+.panel-primary > .panel-heading{
+    background-color:#363b48;
+    border-color:#363b48;
+}
+.panel-primary {
+    border-color:#363b48 !important;
+}
+

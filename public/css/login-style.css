@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
     border-color: rgba(116, 119, 134, 0.5);
 }
 .navbar-default {
-    background-color: rgba(52, 73, 94,1);
+    background-color: #363B48;
 }
 .navbar-default .navbar-nav > li > a {
     color: #f4f5f0;

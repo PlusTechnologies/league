@@ -53,7 +53,7 @@ class UserController extends BaseController {
                 $path = public_path('images/avatar/' . $filename);
                 $img = Image::make($avatar->getRealPath());
                 $img->resize(null, 300, function($constraint){ $constraint->aspectRatio(); })->crop(200,200)->save($path);
-                $user->avatar = "images/avatar/".$filename;
+                $user->avatar = "/images/avatar/".$filename;
                 $user->save();
 
                 

@@ -113,7 +113,8 @@
                     </div>
                     @endif
                     <br/>
-                    <button class="btn btn-primary btn-block" type="submit">Process Payment</button>
+                    <button class="btn btn-primary btn-block vault" >Verify Payment</button>
+                    <button class="btn btn-primary btn-block" type="submit">Make Payment</button>
                     {{ Form::close() }}
                 </div>
                 <div class="col-md-7">

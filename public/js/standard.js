@@ -101,6 +101,17 @@ $(document).ready(function() {
     $('#mobile').mask('(000) 000-0000');
 
 
+    //Ajax save payment information to vault
+    $( '.vault' ).click(function(e) {
+        e.preventDefault();
+        var c   = $('input[name=card]').val();
+        var m   = $('input[name=month]').val();
+        var cv  = $('input[name=cvc]').val();
+        var z   = $('input[name=zip]').val();
+    })
+
+
+
     // $( '#register' ).on( 'click', function() {
  
     //     //.....
