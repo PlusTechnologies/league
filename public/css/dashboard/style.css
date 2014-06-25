@@ -462,6 +462,10 @@ box-shadow: 1 1 1 #ddd;
     font-size: 24px;
     font-weight: 600;    
 }
+.table-general tbody{
+    font-size: 14px;
+    font-weight: 600; 
+}
 .org-logo{
     width: 60px;
     height: 60px;
@@ -496,6 +500,21 @@ box-shadow: 1 1 1 #ddd;
 .app-menu .list-group a:hover{
     background-color: #C8D9DE;
     color: #fff;
+}
+/*graph panels*/
+.graph{
+    background-color: #f1f3f5;
+    padding: 10px;
+}
+.graph-area{
+    height: 160px;
+}
+.ranges>li>a {
+    font-size: 10px;
+    padding: 8px 15px;
+}
+.ranges>li{
+    display: inline;
 }
 
 /*Overwrite bootstrap*/

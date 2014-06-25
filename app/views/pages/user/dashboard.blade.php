@@ -43,7 +43,7 @@
               <div class="icon">
                 <div class="image"><i class="fa fa-users"></i></div>
                 <div class="info panel panel-default">
-                  <h3 class="title">Teams</h3>
+                  <h3 class="title">Player</h3>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper.
                   </p>

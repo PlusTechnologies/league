@@ -58,6 +58,15 @@
                         </div>
                         <div class="panel-body">
                             {{ Form::open(array('action' => 'PaymentController@store','id'=>'pay','method' => 'post')) }}
+
+                            @if($vault)
+                            <div class="card-details">
+                                Card: {{$vault->customer_vault->customer->cc_number}}<br>
+                                Exp: {{substr_replace($vault->customer_vault->customer->cc_exp, '/', -2, 0)}}<br>
+                                Zip: {{$vault->customer_vault->customer->postal_code}}4<br>
+                                {{Form::hidden('vault', $vault->customer_vault->customer->customer_vault_id) }}
+                            </div>
+                            @else
                             <div class="form-group">
                                 <label for="cardNumber">CARD NUMBER</label>
                                 <div class="input-group">
@@ -69,7 +78,7 @@
                                 <div class="col-xs-4 col-md-4">
                                     <div class="form-group">
                                         <label for="expityMonth">MONTH</label>
-                                            {{Form::text('month', '', array('id'=>'month','class'=>'form-control','placeholder'=>'MM','tabindex'=>'2', 'required')) }}
+                                        {{Form::text('month', '', array('id'=>'month','class'=>'form-control','placeholder'=>'MM','tabindex'=>'2', 'required')) }}
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
@@ -85,21 +94,45 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cardNumber">BILLING ZIP</label>
-                                <div class="input-group">
-                                    {{Form::text('zip', '', array('id'=>'zip','class'=>'form-control','placeholder'=>'Zipcode','tabindex'=>'5', 'required', 'autofocus')) }}
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="cardNumber">BILLING ZIP</label>
+                                        <div class="input-group">
+                                            {{Form::text('zip', '', array('id'=>'zip','class'=>'form-control','placeholder'=>'Zipcode','tabindex'=>'5', 'required', 'autofocus')) }}
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            @endif
+                            <hr>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Have a discount code?</label>
+                                        <div class="input-group">
+                                            {{Form::text('zip', '', array('id'=>'zip','class'=>'form-control','placeholder'=>'Discount code','tabindex'=>'5', 'required', 'autofocus')) }}
+                                            <span class="input-group-addon"><span class="glyphicon fa fa-tag"></span></span>
+                                        </div>
+                                    </div>
 
+                                    <button class="btn btn-info btn-sm btn-block vault">Apply</button>
+
+                                </div>
+                            </div>
+                            <hr>
+                            @if($vault)
+                            <button class="btn btn-primary btn-sm btn-block" type="submit">Make Payment</button>
+                            @else
+                            <button class="btn btn-primary btn-sm btn-block vault">Verify Payment</button>
+                            @endif
+                            {{ Form::close() }}
                         </div>
                     </div>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active">
+                    <div class="ajax-error">
 
-                        </li>
-                    </ul>
+                    </div>
                     @if(Session::has('error'))
                     <div class="row">
                         <div class="col-sm-12">
@@ -113,9 +146,7 @@
                     </div>
                     @endif
                     <br/>
-                    <button class="btn btn-primary btn-block vault" >Verify Payment</button>
-                    <button class="btn btn-primary btn-block" type="submit">Make Payment</button>
-                    {{ Form::close() }}
+
                 </div>
                 <div class="col-md-7">
                     <table class="table table-bordered">

@@ -5,7 +5,7 @@
   {{HTML::style('bootstrap/css/bootstrap.css')}}
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
-  @if(Route::currentRouteName())
+  @if(Request::is('login') || Request::is('user/*'))
     {{HTML::style('css/login-style.css')}}
   @else
     {{HTML::style('css/public-style.css')}}

@@ -26,24 +26,24 @@ $(function () {
     // Focus state for append/prepend inputs
     $('.input-group').on('focus', '.form-control', function () {
       $(this).closest('.input-group, .form-group').addClass('focus');
-    }).on('blur', '.form-control', function () {
+  }).on('blur', '.form-control', function () {
       $(this).closest('.input-group, .form-group').removeClass('focus');
-    });
-    
-    $('.button-checkbox').each(function () {
+  });
+
+  $('.button-checkbox').each(function () {
         // Settings
         var $widget = $(this),
-            $button = $widget.find('button'),
-            $checkbox = $widget.find('input:checkbox'),
-            color = $button.data('color'),
-            settings = {
-                on: {
-                    icon: 'glyphicon glyphicon-check'
-                },
-                off: {
-                    icon: 'glyphicon glyphicon-unchecked'
-                }
-            };
+        $button = $widget.find('button'),
+        $checkbox = $widget.find('input:checkbox'),
+        color = $button.data('color'),
+        settings = {
+            on: {
+                icon: 'glyphicon glyphicon-check'
+            },
+            off: {
+                icon: 'glyphicon glyphicon-unchecked'
+            }
+        };
 
         // Event Handlers
         $button.on('click', function () {
@@ -64,19 +64,19 @@ $(function () {
 
             // Set the button's icon
             $button.find('.state-icon')
-                .removeClass()
-                .addClass('state-icon ' + settings[$button.data('state')].icon);
+            .removeClass()
+            .addClass('state-icon ' + settings[$button.data('state')].icon);
 
             // Update the button's color
             if (isChecked) {
                 $button
-                    .removeClass('btn-default')
-                    .addClass('btn-' + color + ' active');
+                .removeClass('btn-default')
+                .addClass('btn-' + color + ' active');
             }
             else {
                 $button
-                    .removeClass('btn-' + color + ' active')
-                    .addClass('btn-default');
+                .removeClass('btn-' + color + ' active')
+                .addClass('btn-default');
             }
         }
 
@@ -104,16 +104,41 @@ $(document).ready(function() {
     //Ajax save payment information to vault
     $( '.vault' ).click(function(e) {
         e.preventDefault();
+        $('.vault').html("");
+        $('.vault').html("<i class='fa fa-refresh fa-spin'></i> Validating...");
         var c   = $('input[name=card]').val();
         var m   = $('input[name=month]').val();
+        var y   = $('input[name=year]').val();
         var cv  = $('input[name=cvc]').val();
         var z   = $('input[name=zip]').val();
+
+        $.post( "checkout/validate",
+        {
+            "card"  : c,
+            "month" : m,
+            "year"  : y,
+            "cv"    : cv,
+            "z"     : z
+        }, 
+        function( data ) {
+            if(data.success){
+                location.reload();
+            }else{
+                $('.vault').html("");
+                $('.vault').html("Verify Payment");
+                $('.ajax-error').html("<div class='alert alert-danger'>"+
+                    "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+
+                    data.error.responsetext+
+                    "</div>");
+            }
+        },'json'
+        );
     })
 
 
 
     // $( '#register' ).on( 'click', function() {
- 
+
     //     //.....
     //     //show some spinner etc to indicate operation in progress
     //     //.....
@@ -137,7 +162,7 @@ $(document).ready(function() {
     //             $(".alert").show('slow');
     //             $(".alert").html('');
     //             $.each(data, function(k, v) {
-                   
+
     //                 $('.alert ').append( '<li>'+v+'</li>');
     //             });
 
@@ -149,11 +174,11 @@ $(document).ready(function() {
     //         },
     //         'json'
     //     );
- 
+
     //     //.....
     //     //do anything else you might want to do
     //     //.....
- 
+
     //     //prevent the form from actually submitting in browser
     //     return false;
     // } );

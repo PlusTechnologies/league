@@ -102,12 +102,38 @@ public function create()
 	$fee = (Cart::total() / getenv("SV_FEE")) - Cart::total() ;
 	$total = $fee + Cart::total();
 
-	return View::make('pages.public.checkout')
-	->with('page_title', 'Checkout')
-	->withUser($user)
-	->with('products',Cart::contents())
-	->with('service_fee',$fee)
-	->with('cart_total',$total);
+	if(!$total){
+		return Redirect::action('HomeController@getIndex');
+	}
+	if($user->customer_id){
+		$param = array(
+			'report_type'		=> 'customer_vault',
+			'customer_vault_id'	=> $user->customer_id
+		);
+		$payment = new Payment;
+		$vault = $payment->ask($param);
+		//return $vault;
+		return View::make('pages.public.checkout')
+		->with('page_title', 'Checkout')
+		->withUser($user)
+		->with('products',Cart::contents())
+		->with('service_fee',$fee)
+		->with('cart_total',$total)
+		->with('vault', $vault);
+
+	}else{
+		$vault = false;
+		return View::make('pages.public.checkout')
+		->with('page_title', 'Checkout')
+		->withUser($user)
+		->with('products',Cart::contents())
+		->with('service_fee',$fee)
+		->with('cart_total',$total)
+		->with('vault', $vault);
+
+	}
+
+	
 }
 
 /**
@@ -121,10 +147,7 @@ public function store()
 	
 	$user =Auth::user();
 	$param = array(
-		'ccnumber'			=> Input::get('card'),
-		'ccexp'				=> Input::get('month').Input::get('year'),
-		'cvv'      			=> Input::get('cvc'),
-		'zip'				=> Input::get('zip')
+		'customer_vault_id'	=> Input::get('vault')
 	);
 
 	$payment = new Payment;
@@ -192,6 +215,53 @@ public function receipt($id)
 	->with('cart_total',$total);
 
 }
+
+
+/**
+* Validate & Save customer card data. Ajax only
+*
+* @param  int  $id
+* @return Response
+*/
+public function validate()
+{
+	$user =Auth::user();
+	//validation done prior ajax
+	$param = array(
+		'ccnumber'			=> Input::get('card'),
+		'ccexp'				=> Input::get('month').Input::get('year'),
+		'cvv'      			=> Input::get('cv'),
+		'zip'				=> Input::get('z')
+	);
+
+	$payment = new Payment;
+	$transaction = $payment->create_customer($param);
+
+	if($transaction->response == 3 || $transaction->response == 2 ){
+		$data = array(
+			'success'  	=> false,
+			'error' 	=> $transaction, 
+		);
+		return $data;
+	}else{
+		//update user customer #
+		User::where('id', $user->id)->update(array('customer_id' => $transaction->customer_vault_id ));
+		$data = array(
+			'success'  	=> true,
+		);
+		return $data;
+		//retrived data save from API - See API documentation
+		$data = array(
+			'success'  	=> true,
+			'customer' 	=> $transaction->customer_vault_id, 
+			'card'		=> substr($param['ccnumber'], -4),
+			'ccexp'		=> $param['ccexp'],
+			'zip'		=> $param['zip']
+		);
+		return $data;
+	}
+}
+
 
 /**
 * Display the specified resource.

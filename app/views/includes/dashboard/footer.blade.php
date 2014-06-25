@@ -12,6 +12,19 @@
 {{ HTML::script('js/flatui-fileinput.js')}}
 {{ HTML::script('js/jquery.mask.min.js')}}
 {{ HTML::script('js/jquery.maskMoney.min.js')}}
+{{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js')}}
+{{ HTML::script('//cdn.oesmith.co.uk/morris-0.5.1.min.js')}}
+  
+@if(Request::is('dashboard/organization/*/discount'))
+  {{ HTML::script('js/discount.js')}}
+@else
+
+@endif
+
+@if(Request::is('dashboard/organization/*'))
+{{ HTML::script('js/overview.js')}}
+@endif
+
 {{ HTML::script('js/standard.js')}}
 
 @if($user->first_login == false)

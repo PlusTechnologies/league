@@ -183,7 +183,9 @@ class UserController extends BaseController {
      */
     public function forgot_password()
     {
-        return View::make(Config::get('confide::forgot_password_form'));
+        //return View::make(Config::get('confide::forgot_password_form'));
+        $title = 'League Together - Forgot password';
+        return View::make('pages.password')->with('page_title', $title);
     }
 
     /**
@@ -213,8 +215,11 @@ class UserController extends BaseController {
      */
     public function reset_password( $token )
     {
-        return View::make(Config::get('confide::reset_password_form'))
+        $title = 'League Together - Reset password';
+        return View::make('pages.reset')->with('page_title', $title)
         ->with('token', $token);
+        // return View::make(Config::get('confide::reset_password_form'))
+        // ->with('token', $token);
     }
 
     /**

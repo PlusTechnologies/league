@@ -15,6 +15,7 @@ class ConfideSetupUsersTable extends Migration {
         {
             $table->increments('id');
             $table->string('email')->unique();
+            $table->string('customer_id')->unique();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('mobile');

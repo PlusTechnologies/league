@@ -3,7 +3,7 @@
 use Zizaco\Confide\ConfideUser;
 
 class User extends ConfideUser {
-    protected $fillable = array('firstname','lastname','email', 'mobile','avatar','password','password_confirmation');
+    protected $fillable = array('firstname','customer_id','lastname','email', 'mobile','avatar','password','password_confirmation');
 	/**
      * Validation rules
      */

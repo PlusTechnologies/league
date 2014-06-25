@@ -31,6 +31,10 @@ Route::get('elements', 							array('before' => 'auth','as' => 'elements', 'uses
 Route::group(array('before' => 'auth', 'prefix' => 'dashboard', ), function() {
 	Route::resource('organization', 'OrganizationController');
 	Route::resource('organization.event', 'EventoController');
+	Route::resource('organization.discount', 'DiscountController');
+	Route::resource('organization.teams', 'TeamController');
+	Route::resource('organization.communication', 'CommunicationController');
+	Route::get( 'organization.accounting', array('as' => 'accounting', 'uses' => 'AccountingController@index'));
 });
 
 Route::get( 'public/event/{id}',         	  	'EventoController@publico');
@@ -43,6 +47,7 @@ Route::post('cart/add',         	  			'PaymentController@addtocart');
 Route::get( 'checkout',         	  			array('before' => 'auth','as' => 'checkout', 'uses' => 'PaymentController@create'));
 Route::get( 'checkout/success',         	  	array('before' => 'auth','as' => 'checkout.success', 'uses' => 'PaymentController@success'));
 Route::post( 'checkout/store',         	  		array('before' => 'auth','as' => 'checkout.store', 'uses' => 'PaymentController@store'));
+Route::post( 'checkout/validate',         	  	array('before' => 'auth','as' => 'checkout.validate', 'uses' => 'PaymentController@validate'));
 
 
 //Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
