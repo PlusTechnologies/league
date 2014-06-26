@@ -5,7 +5,8 @@
   {{HTML::style('bootstrap/css/bootstrap.css')}}
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
-    {{HTML::style('css/morris.css')}}
+  {{HTML::style('css/morris.css')}}
+  {{HTML::style('css/font-retina.css')}}
   {{HTML::style('css/dashboard/style.css')}}
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="images/favicon.ico">

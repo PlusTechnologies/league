@@ -16,7 +16,6 @@
 						</p>
 					</div>
 					<div class="navbar-collapse collapse">
-
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">account
@@ -36,50 +35,48 @@
 												<div class="col-md-9">
 													<span>{{$user->firstname}} {{$user->lastname}}</span>
 													<p class="text-muted small">
-														{{$user->email}}</p>
-														<div class="divider">
-														</div>
-														<a href="#" class="btn btn-info btn-xs active pull-right ">Edit Settings</a>
-														<br>
+														{{$user->email}}
+													</p>
+													<div class="divider"></div>
+													<a href="#" class="btn btn-info btn-xs active pull-right ">Edit Settings
+													</a>
+													<br>
+												</div>
+											</div>
+										</div>
+										<div class="navbar-footer">
+											<div class="navbar-footer-content">
+												<div class="row">
+													<div class="col-md-6">
+														<a href="#" class="btn btn-default btn-xs">Change Passowrd</a>
+													</div>
+													<div class="col-md-6">
+														<a class="btn btn-default btn-xs pull-right" href="{{ URL::route('logout') }}">Logout</a>
 													</div>
 												</div>
 											</div>
-											<div class="navbar-footer">
-												<div class="navbar-footer-content">
-													<div class="row">
-														<div class="col-md-6">
-															<a href="#" class="btn btn-default btn-xs">Change Passowrd</a>
-														</div>
-														<div class="col-md-6">
-															<a class="btn btn-default btn-xs pull-right" href="{{ URL::route('logout') }}">Logout</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									support |
 								</a>
-
-								</li>
-							</ul>
-
-						
-						</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</nav>
-		@yield('content')
-		@include('includes.dashboard.footer')
-		@yield('script')
-	</body>
-	</html>
+		</div>
+	</nav>
+	@yield('content')
+	@include('includes.dashboard.footer')
+	@yield('script')
+</body>
+</html>
 
 

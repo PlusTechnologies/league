@@ -137,3 +137,6 @@
   </div>
 </div>
 @stop
+@section('script')
+{{ HTML::script('js/overview.js')}}
+@stop

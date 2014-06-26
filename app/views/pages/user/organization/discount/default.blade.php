@@ -226,3 +226,6 @@
   </div>
 </div>
 @stop
+@section('script')
+  {{ HTML::script('js/discount.js')}}
+@stop

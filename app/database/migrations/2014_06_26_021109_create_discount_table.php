@@ -15,11 +15,13 @@ class CreateDiscountTable extends Migration {
 		Schema::create('discount', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('organization_id')->unsigned()->index();
+			$table->foreign('organization_id')->references('id')->on('organizations');
 			$table->string('name')->unique();
 			$table->date('start');
 			$table->date('end');
 			$table->double('percent');
-			$table->integer('count');
+			$table->integer('limit');
 			$table->timestamps();
 		});
 	}

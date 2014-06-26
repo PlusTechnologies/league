@@ -6,6 +6,7 @@
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/minimal-form.css')}}
+  {{HTML::style('css/font-retina.css')}}
   {{HTML::style('css/style.css')}}
   <link rel="shortcut icon" href="images/favicon.ico">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->

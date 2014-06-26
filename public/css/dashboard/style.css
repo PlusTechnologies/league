@@ -313,6 +313,8 @@ textarea {
 }
 .navbar-default {
     background-color:#F2F4F5;
+    margin-bottom: 15px;
+    padding-top: 5px;
 }
 
 .navbar-default .navbar-nav > li > a {

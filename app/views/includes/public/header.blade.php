@@ -5,6 +5,7 @@
   {{HTML::style('bootstrap/css/bootstrap.css')}}
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
+  {{HTML::style('css/font-retina.css')}}
   @if(Request::is('login') || Request::is('user/*'))
     {{HTML::style('css/login-style.css')}}
   @else
