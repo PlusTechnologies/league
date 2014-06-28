@@ -1,6 +1,6 @@
 //Login page, agree button
 $(function () {
-
+    var spinner = $( "#spinner-05" ).spinner();
     $('#login input.login-error-top').on('focus', function(){
         $(this).removeClass('login-error-top');
     });

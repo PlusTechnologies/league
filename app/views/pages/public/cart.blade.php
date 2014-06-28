@@ -71,7 +71,12 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="text-center">{{$item->quantity}}</td>
+                                            <td class="text-center">
+                                                
+                                                <input type="text" id="spinner-05" value="{{$item->quantity}}" class="form-control input-sm spinner" />
+
+
+                                            </td>
                                             <td>{{money_format('%.2n',$item->price)  }}</td>
                                         </tr>
                                         @endforeach
