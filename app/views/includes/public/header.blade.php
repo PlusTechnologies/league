@@ -9,7 +9,7 @@
   @if(Request::is('login') || Request::is('user/*'))
     {{HTML::style('css/login-style.css')}}
   @else
-    {{HTML::style('css/public-style.css')}}
+    {{HTML::style('css/public/style.css')}}
   @endif
   <link rel="shortcut icon" href="images/favicon.ico">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->

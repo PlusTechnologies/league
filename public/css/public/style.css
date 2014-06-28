@@ -1,0 +1,160 @@
+/** Widgets **/
+.widget {
+    border: 5px solid #eaecf1;
+    border-radius: 5px;
+}
+.widget .btn-group.mbl, .widget .form-group {
+    margin-bottom: 0px !important;
+}
+.widget button.btn {
+    padding:10px 0px 10px 5px;
+}
+.space-top-1 {
+    margin-top:1em;
+}
+.space-top-2 {
+    margin-top:2em;
+}
+.space-top-3 {
+    margin-top:3em;
+}
+.space-top-4 {
+    margin-top:4em;
+}
+.space-bottom-1 {
+    margin-bottom:1em;
+}
+.space-bottom-2 {
+    margin-bottom:2em;
+}
+.space-bottom-3 {
+    margin-bottom:3em;
+}
+.space-bottom-4 {
+    margin-bottom:4em;
+}
+.bg-color.default {
+    background-color: #eaecf1;
+}
+.bg-color h1, .bg-color h2, .bg-color h3, .bg-color h4, .bg-color h5, .bg-color h6 {
+    margin:0px;
+    line-height:1.4em;
+}
+.box-padding {
+    padding:0.5em;
+}
+.bg-color.white {
+    background-color:#fff;
+    border-bottom:5px solid #eaecf1;
+}
+.widget-title {
+    padding-left: 0.6em;
+}
+.widget-title strong {
+    border: 2px solid #363b48;
+    border-radius: 100em;
+    padding: 0.125em 0.4em;
+    font-size: 17px;
+    vertical-align: top;
+}
+body .product-actions {
+    background: #eaecf1;
+    padding: 1px 15px 15px 15px;
+    border-radius: 4px;
+    margin-bottom: 2em;
+}
+.pricing > h2 {
+    margin-top: 15px;
+}
+.col-event, .col-price {
+    margin-top: 2em;
+}
+.maintitle {
+    padding: 1em 0px 2em 0px;
+    position: relative;
+    text-align: center;
+    margin-bottom: -2em;
+    margin-top: 5em;
+}
+.maintitle h4 {
+    background: white !important;
+    font-size: 24px;
+    padding: 0px 30px;
+    display: inline;
+    -webkit-text-shadow: 0px 1px 0px white;
+    -moz-text-shadow: 0px 1px 0px white;
+    -o-text-shadow: 0px 1px 0px white;
+    text-shadow: 0px 1px 0px white;
+}
+.maintitle .border {
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+    left: 0px;
+    right: 0px;
+    height: 4px;
+    border-bottom: 4px double #cecdc9;
+    z-index: -1;
+}
+.relative {
+    position: relative;
+}
+.cart {
+    font-size: 2em;
+}
+.table-bordered {
+    margin-bottom: 0em;
+}
+/** Flat UI Overrides **/
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: rgba(116, 119, 134, 0.5);
+}
+.navbar-default {
+    background-color: #363B48;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #f4f5f0;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #47c9b0;
+}
+.navbar-default .navbar-toggle:before {
+    color: #f4f5f0;
+}
+.navbar-toggle:before {
+    color: #47c9b0;
+}
+.navbar-brand-center {
+    position: absolute;
+    width: 97.5%;
+}
+.navbar-brand > .logo {
+    width: 2.75em;
+    height: 2.75em;
+    margin-top: -0.75em;
+}
+.navbar-right > li {
+    float: right;
+}
+.navbar-brand-center > .logo {
+    height: 5.75em;
+    margin: 0.4em auto;
+    width: 5.75em;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.navbar-nav > li > a {
+    padding: 0.5em 1.5em;
+}
+a.nav-btn {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 2px solid;
+    margin-left: 1em;
+    position: relative;
+    top: 5px;
+    margin-top: 0.5em;
+}
+label {
+    text-transform: uppercase;
+}

@@ -516,3 +516,14 @@ div#head-body h1{
     margin-bottom: 30px;
     font-weight: 600;
 }
+
+.navbar-brand-center {
+    position: absolute;
+    width: 100%;
+}
+
+.navbar-brand-center > .logo {
+    width: 4.75em;
+    height: 4.75em;
+    margin: 0 auto;
+}

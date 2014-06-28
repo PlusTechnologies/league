@@ -4,8 +4,8 @@ body, html {
     background-color:  #FAFAFA;
 }
 body {
-   /* font-weight: 700;*/
-    /*font-family:'Open Sans', sans-serif;*/
+ /* font-weight: 700;*/
+ /*font-family:'Open Sans', sans-serif;*/
 }
 h1, h2, h3, h4, h5, h6 {
     /*font-family:'Open Sans Condensed', sans-serif;*/
@@ -16,11 +16,11 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #34495e;
     color:#f4f4f4;
 }
- .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: rgba(116, 119, 134, 0.5);
 }
 .navbar-default {
-    background-color: rgba(54, 59, 72,0.9);
+    background-color: #363b48;
 }
 .navbar-default .navbar-nav > li > a {
     color: #f4f5f0;
@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #47c9b0;
 }
 /** / Flat UI Overrides **/
- .btn-primary-outline {
+.btn-primary-outline {
     background-color: transparent;
     border: solid 2px #1ABC9C;
 }
@@ -53,8 +53,8 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 5;
 }
 .navbar-brand > .logo {
-    width: 2.75em;
-    height: 2.75em;
+    width: 3.25em;
+    height: 3.25em;
     margin-top: -0.75em;
 }
 a.nav-btn {
@@ -116,12 +116,12 @@ hr.carved {
       left bottom,
       color-stop(0.5, rgb(221,221,221)),
       color-stop(0.5, rgb(255,255,255))
-  );
+      );
   background-image: -moz-linear-gradient(
       center top,
       rgb(221,221,221) 50%,
       rgb(255,255,255) 50%
-  );
+      );
 }
 .intro-message > h1, .intro-message > h3, .intro-message p, .intro-message strong {
     color: #FFF;
@@ -317,7 +317,7 @@ p.copyright {
     font-size: 13px;
 }
 /* Cart*/
- .cart-totals {
+.cart-totals {
     height: 100%;
     width: 100%;
 }

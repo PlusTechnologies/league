@@ -180,6 +180,12 @@ h5 > a > i {
     border: 5px solid #eaecf1;
     border-radius: 5px;
 }
+.widget .btn-group.mbl, .widget .form-group {
+    margin-bottom: 0px !important;
+}
+.widget button.btn {
+    padding:10px 0px 10px 5px;
+}
 .space-top-1 {
     margin-top:1em;
 }
@@ -218,9 +224,6 @@ h5 > a > i {
     background-color:#fff;
     border-bottom:5px solid #eaecf1;
 }
-.widget .btn-group.mbl, .widget .form-group {
-    margin-bottom: 0px !important;
-}
 .row-month {
     text-align:center;
     text-transform:uppercase;
@@ -246,9 +249,6 @@ h5 > a > i {
     width:48px;
     height:48px;
     margin:0.4em auto 0.4em auto;
-}
-.widget button.btn {
-    padding:10px 0px 10px 5px;
 }
 .conversation .media .message {
     position: relative;
@@ -527,4 +527,3 @@ box-shadow: 1 1 1 #ddd;
 .panel-primary {
     border-color:#363b48 !important;
 }
-
