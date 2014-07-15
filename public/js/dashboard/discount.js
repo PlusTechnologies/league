@@ -1,5 +1,3 @@
-//Charles Nyanzi first committ
-//this is for kicks
 var spinTarget1 = document.getElementById('graph-usage');
 var spinTarget2 = document.getElementById('graph-overview');
 // Create a function that will handle AJAX requests
