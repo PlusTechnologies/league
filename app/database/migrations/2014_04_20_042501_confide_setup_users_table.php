@@ -15,11 +15,12 @@ class ConfideSetupUsersTable extends Migration {
         {
             $table->increments('id');
             $table->string('email')->unique();
-            $table->string('customer_id')->unique();
+            $table->string('customer_id')->unique()->default(NULL);
             $table->string('firstname');
             $table->string('lastname');
             $table->string('mobile');
             $table->integer('type');
+            $table->integer('plan');
             $table->string('avatar');
             $table->string('facebook');
             $table->string('twitter');

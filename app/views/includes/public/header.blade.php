@@ -8,6 +8,7 @@
   {{HTML::style('css/font-retina.css')}}
   @if(Request::is('login') || Request::is('user/*'))
     {{HTML::style('css/login-style.css')}}
+    {{HTML::style('css/public/style.css')}}
   @else
     {{HTML::style('css/public/style.css')}}
   @endif
@@ -18,3 +19,31 @@
   <script src="js/respond.min.js"></script>
   <![endif]-->
 </head>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container relative">
+        <a class="navbar-brand-center" href="/">
+            <div class="logo" style="background-image: url(http://leaguetogether.dev/images/league-together-logo.svg)"></div>
+        </a>
+      
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/cart">
+                <i class="cart retinaicon-finance-001"></i>
+                @if(Cart::totalItems() <> 0)
+                <span class="navbar-new">{{Cart::totalItems()}}</span>
+                @endif
+              </a>
+            </li>
+          </ul>
+          @if(!Auth::check())
+          <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('signup') }}">Sign up</a>
+          <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('login') }}">Sign in</a>
+          @else
+          <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('logout') }}">Logout</a>
+          <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('dashboard') }}">Open Dashboard</a>
+          @endif
+        </div>
+    </div>
+</nav>
+

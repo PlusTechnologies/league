@@ -16,7 +16,7 @@ class CreateEventTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('type');
-			$table->string('description');
+			$table->text('description');
 			$table->string('location');
 			$table->double('fee');
 			$table->double('group_fee');

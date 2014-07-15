@@ -1,5 +1,5 @@
-Morris.Line({
-  element: 'graph-usage',
+Morris.Area({
+  element: 'graph-sales',
   data: [
   { y: '01', a: 100 },
   { y: '02', a: 75},
@@ -15,7 +15,7 @@ Morris.Line({
 });
 
 Morris.Donut({
-  element: 'graph-overview',
+  element: 'graph-sales-item',
   data: [
   {value: 70, label: 'foo'},
   {value: 15, label: 'bar'},

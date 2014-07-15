@@ -1,29 +1,12 @@
 @extends('layouts.public.default')
 @section('content')
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container relative">
-        <a class="navbar-brand-center" href="/">
-            <div class="logo" style="background-image: url(http://leaguetogether.dev/images/league-together-logo.svg)"></div>
-        </a>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="/cart"><i class="cart retinaicon-finance-001"></i><span class="navbar-new">1</span></a></li>
-        </ul>
-        @if(!Auth::check())
-        <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('signup') }}">Sign up</a>
-        <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('login') }}">Sign in</a>
-        @else
-        <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('logout') }}">Logout</a>
-        <a class="navbar-right btn btn-xs btn-primary nav-btn"href="{{ URL::route('dashboard') }}">Open Dashboard</a>
-        @endif
-    </div>
-</nav>
 <div class="container">
     <div class="maintitle">
         <h4 class="text-center">Shopping Cart</h4>
         <span class="border"></span>
     </div>
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-12">
             <div class="row">
                 <div class="col-sm-12">
                     @if(Session::has('message'))
@@ -72,10 +55,7 @@
                                                 </div>
                                             </td>
                                             <td class="text-center">
-                                                
                                                 <input type="text" id="spinner-05" value="{{$item->quantity}}" class="form-control input-sm spinner" />
-
-
                                             </td>
                                             <td>{{money_format('%.2n',$item->price)  }}</td>
                                         </tr>
@@ -85,8 +65,8 @@
                                             <td>{{money_format("%.2n",Cart::total(false))  }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" class="text-right">Service Fee</td>
-                                            <td>{{money_format("%.2n",$service_fee)}}</td>
+                                            <td colspan="2" class="text-right">Taxes and Fees</td>
+                                            <td>{{money_format("%.2n",$tax + $service_fee)}}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="text-right">Total</td>
@@ -101,8 +81,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <a class="btn btn-primary pull-right space-top-2" href="{{URL::action('PaymentController@create')}}">Check out</a>
+                <div class="col-sm-12 text-right">
+                    <a class="btn btn-sm btn-primary space-top-2" href="">Update</a>
+                    <a class="btn btn-sm btn-primary space-top-2" href="{{URL::action('PaymentController@create')}}">Check out</a>
                 </div>
             </div>
         </div>

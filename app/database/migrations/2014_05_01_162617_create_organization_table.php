@@ -18,7 +18,13 @@ class CreateOrganizationTable extends Migration {
             $table->string('name');
             $table->string('logo');
             $table->string('sport');
-            $table->string('description');
+            $table->text('description');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('processor_name');
+            $table->string('processor_user');
+            $table->text('processor_pass');
+            $table->text('processor_key');
             $table->string('add1');
             $table->string('city');
             $table->string('state');

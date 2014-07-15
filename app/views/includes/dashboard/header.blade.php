@@ -7,8 +7,12 @@
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/morris.css')}}
   {{HTML::style('css/font-retina.css')}}
+  @if(Route::currentRouteName() == "dashboard.organization.create" ||
+  Route::currentRouteName() == "dashboard.organization.event.create"
+  )
+  {{ HTML::style('css/dashboard/redactor.css')}}
+  @endif
   {{HTML::style('css/dashboard/style.css')}}
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="images/favicon.ico">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
   <!--[if lt IE 9]>

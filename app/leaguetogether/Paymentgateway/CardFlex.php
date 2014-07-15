@@ -4,27 +4,61 @@ use Redirect;
 use Cart;
 use Auth;
 use Response;
+use Discount;
+use DateTime;
+use DateTimeZone;
 
 class CardFlex{
 
 	
 	public function flex($param, $type){
+		//add item name to description as string
 		$desc = "";
 		foreach (Cart::contents() as $item) {
     		$desc .= $item->name . " ";
 		};
+		//get discount data
+		$discount = Discount::find($param['discount']);
+		//validate data and get discount value
+		if(!$discount){
+			$discount 	= 0;
+			$promo  	= null;
+		}else{
+			$promo  	= $discount->id;
+			$discount 	= $discount->percent;
+			
+		}
 
-		$fee = (Cart::total() / getenv("SV_FEE")) - Cart::total() ;
-		$total = $fee + Cart::total();
+
+		//remove discount id from param
+		unset($param['discount']);
+
 		$user =Auth::user();
+
+		$now = new DateTime;
+    	$now->setTimezone(new DateTimeZone('America/Chicago'));
+    	$now->format('M d, Y at h:i:s A');
+
+		$discount	= $discount * Cart::total();
+		$subtotal 	= Cart::total() - $discount;
+		$taxfree 	= Cart::total(false) - $discount;
+
+		$fee = ($subtotal / getenv("SV_FEE")) - $subtotal ;
+		$tax = $subtotal - $taxfree;
+		$total = $fee + $tax + $subtotal;
+		
 		$charged = array(
-					'subtotal'	=>$total-$fee, 
-					'fee'		=>$fee,
-					'total'		=>$total
+					'date'		=> $now,
+					'promo'		=> $promo,
+					'discount'	=> $discount,
+					'subtotal'	=> $subtotal,
+					'fee'		=> $fee,
+					'tax'		=> $tax, 
+					'total'		=> $total
 		);
 
 		$credentials = array(
-						'username'			=>getenv("CF_NAME"),
+						'username'			=> getenv("CF_NAME"),
 						'password'			=> getenv("CF_PASS"),
 						'amount' 			=> $total,
 						'email'				=> $user->email,

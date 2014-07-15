@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'America/Chicago',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'en_US',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -194,6 +194,7 @@ return array(
 		'Image'    	  	  => 'Intervention\Image\Facades\Image',
 		'Cart' 			  => 'Moltin\Cart\Facade',
 		'CardFlex'		  => 'leaguetogether\Facades\CardFlex',
+		'Carbon' 		  => 'Carbon\Carbon',
 	),
 
 );

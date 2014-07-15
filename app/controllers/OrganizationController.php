@@ -2,6 +2,17 @@
 
 class OrganizationController extends BaseController {
 
+
+	 /**
+     * Instantiate a new UserController instance.
+     */
+    public function __construct()
+    {
+        $this->beforeFilter('organization', ['except' => array('index','create','store')]);
+        $this->beforeFilter('csrf', ['on' => array('create','edit')]);
+    }
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -18,7 +29,6 @@ class OrganizationController extends BaseController {
 			->with('organizations', $organizationlist)
 			->withUser($user);
 	}
-
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -42,14 +52,16 @@ class OrganizationController extends BaseController {
 	{
 
 		$messages = array(
-        'name.required'     		=> 'Organization name field is required.',
+        'name.required'     		=> 'Club name is required.',
         'sport.required'     		=> 'Please select a sport',
-        'add1.required'       		=> 'Street address field is required',
-        'city.required'       		=> 'City field is required',
-        'state.required'       		=> 'State field is required',
-        'zip.required'       		=> 'Zipcode field is required',
-        'description.required'      => 'Description field is required',
+        'add1.required'       		=> 'Street address is required',
+        'city.required'       		=> 'City is required',
+        'state.required'       		=> 'State is required',
+        'zip.required'       		=> 'Zipcode is required',
+        'description.required'      => 'Description is required',
         'logo.required'       		=> 'Logo is required',
+        'phone.required'       		=> 'Contact phone is required',
+        'email.required'       		=> 'Contact email is required',
         );
 
         $validator= Validator::make(Input::all(), Organization::$rules, $messages);
@@ -59,6 +71,8 @@ class OrganizationController extends BaseController {
     		$organization = new Organization;
             $organization->name        	= Input::get( 'name' );
             $organization->sport     	= Input::get( 'sport' );
+            $organization->phone     	= Input::get( 'phone' );
+            $organization->email     	= Input::get( 'email' );
             $organization->add1   		= Input::get( 'add1' );
             $organization->city     	= Input::get( 'city' );
             $organization->state       	= Input::get( 'state' );
@@ -68,7 +82,7 @@ class OrganizationController extends BaseController {
             $logo             = input::file('logo');
             $filename = time()."-profile_pic.".$logo->getClientOriginalExtension();
             $path = public_path('images/logo/' . $filename);
-            Image::make($logo->getRealPath())->resize(null, 300,function($constraint){ $constraint->aspectRatio(); })->crop(200,200)->save($path);
+            Image::make($logo->getRealPath())->resize(null, 400,function($constraint){ $constraint->aspectRatio(); })->save($path);
             $organization->logo = "/images/logo/".$filename;
             $id = Auth::user()->id;
             User::find($id)->Organizations()->save($organization);

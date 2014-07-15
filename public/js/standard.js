@@ -1,21 +1,13 @@
 //Login page, agree button
 $(function () {
-    var spinner = $( "#spinner-05" ).spinner();
+
+    var spinner = $( ".spinner" ).spinner();
     $('#login input.login-error-top').on('focus', function(){
         $(this).removeClass('login-error-top');
     });
     $('#login input.login-error-bottom').on('focus', function(){
         $(this).removeClass('login-error-bottom');
     });
-
-    // $('#login input.login-bottom').on('focus', function(){
-    //     $('input.login-top').css('border-bottom',0);
-    // });
-
-    // $('#login input.login-bottom').on('blur', function(){
-    //     $('input.login-top').removeAttr('style')
-    // });
-
 
     //image resize function.
     $('.intro-header') .css({'height': (($(window).height()))+'px'});
@@ -25,10 +17,10 @@ $(function () {
 
     // Focus state for append/prepend inputs
     $('.input-group').on('focus', '.form-control', function () {
-      $(this).closest('.input-group, .form-group').addClass('focus');
-  }).on('blur', '.form-control', function () {
-      $(this).closest('.input-group, .form-group').removeClass('focus');
-  });
+        $(this).closest('.input-group, .form-group').addClass('focus');
+    }).on('blur', '.form-control', function () {
+        $(this).closest('.input-group, .form-group').removeClass('focus');
+    });
 
   $('.button-checkbox').each(function () {
         // Settings
@@ -79,7 +71,6 @@ $(function () {
                 .addClass('btn-default');
             }
         }
-
         // Initialization
         function init() {
 
@@ -94,14 +85,19 @@ $(function () {
     });
 });
 // Select trigget
-$("select").selectpicker({style: 'select-block btn-primary', menuStyle: 'dropdown-inverse'});
+$("select").selectpicker({style: 'select-block btn-select', menuStyle: 'dropdown-inverse'});
 
 //registration
 $(document).ready(function() {
+
     $('#mobile').mask('(000) 000-0000');
-
-
     //Ajax save payment information to vault
+
+    $( '.process' ).click(function(e) {
+        $('.process').html("");
+        $('.process').addClass("disabled");
+        $('.process').html("<i class='fa fa-refresh fa-spin'></i> Processing...");
+    });
     $( '.vault' ).click(function(e) {
         e.preventDefault();
         $('.vault').html("");
@@ -110,15 +106,30 @@ $(document).ready(function() {
         var m   = $('input[name=month]').val();
         var y   = $('input[name=year]').val();
         var cv  = $('input[name=cvc]').val();
-        var z   = $('input[name=zip]').val();
+        //Billing info
+        var fn   = $('input[name=fname]').val();
+        var ln   = $('input[name=lname]').val();
+        var em   = $('input[name=email]').val();
+        var mo   = $('input[name=mobile]').val();
+        var ad   = $('input[name=address]').val();
+        var ci   = $('input[name=city]').val();
+        var st   = $('select[name=state]').val();
+        var zi   = $('input[name=zip]').val();
 
         $.post( "checkout/validate",
         {
-            "card"  : c,
-            "month" : m,
-            "year"  : y,
-            "cv"    : cv,
-            "z"     : z
+            "card"      : c,
+            "month"     : m,
+            "year"      : y,
+            "cv"        : cv,
+            "fname"     : fn,
+            "lname"     : ln,
+            "email"     : em,
+            "mobile"    : mo,
+            "address"   : ad,
+            "city"      : ci,
+            "state"     : st,
+            "zip"       : zi,
         }, 
         function( data ) {
             if(data.success){
@@ -135,52 +146,29 @@ $(document).ready(function() {
         );
     })
 
+    $( '.code' ).click(function(e) {
+        e.preventDefault();
+        $('.code').html("");
+        $('.code').html("<i class='fa fa-refresh fa-spin'></i> Validating...");
+        var c   = $('input[name=code]').val();
 
+        $.post( "checkout/discount",
+        {
+            "code"      : c,
+        }, 
+        function( data ) {
 
-    // $( '#register' ).on( 'click', function() {
-
-    //     //.....
-    //     //show some spinner etc to indicate operation in progress
-    //     //.....
-    //     var me = $('#new_account');
-    //     $.post(
-    //         me.prop('action'),
-    //         {
-    //             "_token"        : me.find( 'input[name=_token]' ).val(),
-    //             "type"          : me.find( 'input[name=_type]' ).val(),
-    //             "firstname"     : $( '#first_name' ).val(),
-    //             "lastname"      : $( '#last_name' ).val(),
-    //             "sport"         : $( "#sport" ).val(),
-    //             "organization"  : $( '#org' ).val(),
-    //             "email"         : $( '#email' ).val(),
-    //             "password"      : $( '#password' ).val(),
-    //             "password_confirmation": $( '#password_confirmation' ).val(),
-    //             "agreement"         : $('#t_and_c:checked').val()
-    //         },
-    //         function(data) {
-    //             $('.alert ').removeClass('hidden');
-    //             $(".alert").show('slow');
-    //             $(".alert").html('');
-    //             $.each(data, function(k, v) {
-
-    //                 $('.alert ').append( '<li>'+v+'</li>');
-    //             });
-
-    //             setTimeout(function() {
-    //                 $(".alert").hide('slow');
-    //             }, 4000);
-
-    //             //do something with data/response returned by server
-    //         },
-    //         'json'
-    //     );
-
-    //     //.....
-    //     //do anything else you might want to do
-    //     //.....
-
-    //     //prevent the form from actually submitting in browser
-    //     return false;
-    // } );
-
+            if(data.success){
+                location.reload();
+            }else{
+                $('.code').html("");
+                $('.code').html("Apply");
+                $('.ajax-error').html("<div class='alert alert-danger'>"+
+                    "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+
+                    data.error+
+                    "</div>");
+            }
+        },'json'
+        );
+    })
 })

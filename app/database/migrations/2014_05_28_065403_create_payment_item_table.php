@@ -19,7 +19,7 @@ class CreatePaymentItemTable extends Migration {
 			$table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
 			$table->integer('item');
 			$table->integer('type');
-			$table->string('description');
+			$table->text('description');
 			$table->integer('quantity');
 			$table->double('price',15, 2);
 			$table->double('fee',15, 2);

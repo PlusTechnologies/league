@@ -22,7 +22,12 @@ class Evento extends Eloquent {
     {
         return $this->belongsTo('organization');
     }
-
+    public function Participants()
+    {
+         return $this->hasMany('participant', 'event')
+            ->join('users', 'event_participant.user', '=', 'users.id')
+            ->select('*');
+    }
     // public function Users()
     // {
     //     return $this->hasMany('item');
@@ -35,9 +40,56 @@ class Evento extends Eloquent {
         ->select('*');
     }
 
-    // public function Participants()
-    // {
-    //     return $this->hasMany('participant');
-    // }
+    public static function validate($id) {
+
+        $now = new DateTime;
+        $now->setTimezone(new DateTimeZone('America/Chicago'));
+        $e = Evento::find($id);
+
+        if($e->open <= $now->format('Y-m-d') && $now->format('Y-m-d') <= $e->close){
+            return true;
+        }
+        return false;
+
+    }
+
+    public function camps($org)
+    {
+        $now = new DateTime;
+        $now->setTimezone(new DateTimeZone('America/Chicago'));
+        $stats  = DB::table('events AS e')
+
+                ->where('e.organization_id', '=', $org)
+                ->where('e.type','=',1)
+                ->orderBy('e.created_at', 'ASC')
+                ->get();
+    
+        return $stats;
+
+    }
+
+    public function tryouts($org)
+    {
+        $now = new DateTime;
+        $now->setTimezone(new DateTimeZone('America/Chicago'));
+        $stats  = DB::table('events AS e')
+                ->leftjoin('event_participant AS ep', 'e.id', '=', 'ep.event')
+                ->leftjoin('payments AS p', 'ep.payment', '=', 'p.id')
+                ->where('e.organization_id', '=', $org)
+                ->where('e.type','=',2)
+                ->orderBy('e.created_at', 'ASC')
+                ->get([
+                    DB::raw('SUM(p.subtotal) as sales'),
+                    DB::raw('e.*')
+                ]);
+    
+        return $stats;
+    }
+
+
+
+
+
+    
 }
 

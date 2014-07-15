@@ -2,14 +2,16 @@
 
 class Organization extends Eloquent{
 
-	protected $fillable = array('name','logo','sport','description','add1','city','state','zip');
+	protected $fillable = array('name','email','phone', 'logo','sport','description','add1','city','state','zip');
 	public static $rules = array(
 			'name'=>'required|min:3',
-			'sport'=>'required',
+			'phone'=>'required',
+			'email'=>'required',
 			'add1'=>'required | min:2',
 			'city'=>'required | min:2',
 			'state'=>'required | min:2|max:2',
 			'zip'=>' required | digits:5',
+			'sport'=>'required',
 			'description'=>'required',
 			'logo'=>'required | image|mimes:jpg,jpeg,png,gif'
 		);
@@ -20,5 +22,9 @@ class Organization extends Eloquent{
     public function Events()
     {
         return $this->hasMany('evento');
+    }
+    public function Discounts()
+    {
+        return $this->hasMany('discount');
     }
 }

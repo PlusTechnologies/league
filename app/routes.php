@@ -10,6 +10,13 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+
+
+// Event::listen('illuminate.query', function($query)
+// {
+//     var_dump($query);
+// });
+
 Route::get('/', array('as'=>'home', 'uses'=>'HomeController@getIndex'));
 
 // Confide routes
@@ -28,13 +35,17 @@ Route::get( 'logout',							array('as' => 'logout', 'uses' => 'UserController@lo
 Route::get('dashboard', 						array('before' => 'auth','as' => 'dashboard', 'uses' => 'DashboardController@show'));
 Route::get('elements', 							array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
 
-Route::group(array('before' => 'auth', 'prefix' => 'dashboard', ), function() {
+Route::group(array('before' =>'auth', 'prefix' => 'dashboard'), function() {
 	Route::resource('organization', 'OrganizationController');
 	Route::resource('organization.event', 'EventoController');
 	Route::resource('organization.discount', 'DiscountController');
 	Route::resource('organization.teams', 'TeamController');
 	Route::resource('organization.communication', 'CommunicationController');
 	Route::get( 'organization.accounting', array('as' => 'accounting', 'uses' => 'AccountingController@index'));
+	Route::get( 'organization.roster', array('as' => 'roster', 'uses' => 'RosterController@index'));
+
+	Route::get( 'player', array('as' => 'player', 'uses' => 'PlayerController@index'));
+
 });
 
 Route::get( 'public/event/{id}',         	  	'EventoController@publico');
@@ -48,7 +59,9 @@ Route::get( 'checkout',         	  			array('before' => 'auth','as' => 'checkout
 Route::get( 'checkout/success',         	  	array('before' => 'auth','as' => 'checkout.success', 'uses' => 'PaymentController@success'));
 Route::post( 'checkout/store',         	  		array('before' => 'auth','as' => 'checkout.store', 'uses' => 'PaymentController@store'));
 Route::post( 'checkout/validate',         	  	array('before' => 'auth','as' => 'checkout.validate', 'uses' => 'PaymentController@validate'));
+Route::post( 'checkout/discount',         	  	array('before' => 'auth','as' => 'checkout.discount', 'uses' => 'DiscountController@validate'));
 
+Route::get('api/graph/discount', 		'GraphController@discount');
 
 //Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
 
@@ -76,6 +89,14 @@ Route::get('/password/reset', function()
     return View::make('emails.receipt.default');
 });
 
+
+//** smart link macro **//
+HTML::macro('smart_link', function($route) 
+{	
+    if(Route::is($route) OR Request::is($route))
+    { $active = "active";} else { $active = '';}
+    return $active;
+});
 
 	
 

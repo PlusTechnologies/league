@@ -78,3 +78,20 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Route::filter('organization', function($route) {
+ 	$param = Request::segment(3);
+	$user =Auth::user();
+	//validate that organization belongs to current user
+	$organization = $user->Organizations()->whereOrganization_id($param)->first();
+	if($organization){
+		return ;
+	}else{
+		return Redirect::to('/dashboard');
+	}
+
+    
+});
+
+

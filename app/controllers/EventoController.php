@@ -2,14 +2,31 @@
 
 class EventoController extends BaseController {
 
+	 public function __construct()
+    {
+        $this->beforeFilter('organization', ['except'=>'publico']);
+        $this->beforeFilter('csrf', ['on' => array('create','edit')]);
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		//
+	public function index($id)
+	{	
+
+		setlocale(LC_MONETARY,"en_US");
+		$user= Auth::user();
+		$organization= Organization::find($id);
+		$e = new Evento;
+		$title = 'League Together - '.$organization->name.' Event';
+		return View::make('pages.user.organization.event.default')
+		->with('page_title', $title)
+		->with('organization', $organization)
+		->withCamps($e->camps($id))
+		->withTryouts($e->tryouts($id))
+		->withUser($user);
 	}
 
 	/**
@@ -88,7 +105,7 @@ class EventoController extends BaseController {
 
 		$organization = User::with('organizations')->whereid($user->id)->firstOrFail();
 		$e = Evento::with('organization')->whereId($event)->firstOrFail();
-		$participant = Evento::with('users')->whereId($event)->firstOrFail();
+		$participant = Evento::with('participants')->whereId($event)->firstOrFail();
 		// $participant = DB::table('event_participant')
 		// ->join('payments', 'event_participant.payment', '=', 'payments.id')
 		// ->join('users','event_participant.user', '=', 'users.id')
@@ -130,12 +147,14 @@ class EventoController extends BaseController {
 	 * @return Response
 	 */
 	public function publico($id)
-	{
+	{	
 		$e = Evento::with('organization')->whereId($id)->firstOrFail();
+		$eval = Evento::validate($id);
 		$title = 'League Together - '.$e->name.' Event';
 		return View::make('pages.public.event')
 					->with('page_title', $title)
 					->withEvent($e)
+					->with('valid',$eval)
 					->with('message', 'message flash here');
 	}
 
@@ -151,7 +170,9 @@ class EventoController extends BaseController {
 
 		$event = Evento::whereId($eve)->where('organization_id', '=', $org)->firstOrFail();
 		$user =Auth::user();
-		$organization = Organization::with('events')->whereId($eve)->firstOrFail();
+		$organization = Organization::find($org);
+
+		return $organization;
 		$title = 'League Together - '.$organization ->name.' Event';
 		return View::make('pages.user.organization.event.edit')
 		->with('page_title', $title)

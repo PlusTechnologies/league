@@ -13,8 +13,15 @@
 {{ HTML::script('js/jquery.mask.min.js')}}
 {{ HTML::script('js/jquery.maskMoney.min.js')}}
 {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js')}}
+{{ HTML::script('//rawgithub.com/timrwood/moment/2.1.0/min/moment.min.js')}}
+{{ HTML::script('//rawgithub.com/gf3/moment-range/master/lib/moment-range.js')}}
 {{ HTML::script('//cdn.oesmith.co.uk/morris-0.5.1.min.js')}}
-{{ HTML::script('js/standard.js')}}
+@if(Route::currentRouteName() == "dashboard.organization.create" ||
+Route::currentRouteName() == "dashboard.organization.event.create"
+)
+{{ HTML::script('js/dashboard/redactor.js')}}
+@endif
+{{ HTML::script('js/dashboard/application.js')}}
 
 @if($user->first_login == false)
 <!-- Modal -->

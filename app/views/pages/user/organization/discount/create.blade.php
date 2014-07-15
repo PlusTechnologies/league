@@ -2,10 +2,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <hr>
-            <h3 class="">New Discount</h3>
-            <div class="col-sm-5 clearfix">
+        <div class="col-sm-10 col-sm-offset-1">
+            <h3 class="">Create discount codes—you have full control over discounts.</h3>
+            <br>
+            <div class="col-sm-8 clearfix">
                 <div class="row">
                     @if($errors->has())
                     <div class="row">
@@ -25,36 +25,37 @@
                     </div>
                     @endif
                     {{ Form::open(array('action' => array('DiscountController@store',$organization->id ),'id'=>'new_discount','method' => 'post')) }}
-
+                    <h3 class="">Discount details</h3>
+                    <hr>
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <small class="help-block">Discount Code </small>
-                            <div class="input-group input-group-sm">
-                                {{Form::text('name', '', array('id'=>'name','class'=>'form-control','placeholder'=>'','tabindex'=>'1')) }}
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <small class="help-block">Discount code </small>
+                            <div class="input-group">
+                                {{Form::text('name', '', array('id'=>'name','class'=>'form-control promo-code','placeholder'=>'Code name','tabindex'=>'1')) }}
                                 <span class="input-group-addon"><i class="fa fa-tag"></i></span>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-3 col-md-3">
-                            <small class="help-block">Discount %</small>
-                            <div class="input-group input-group-sm">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <small class="help-block">Discount % off</small>
+                            <div class="input-group">
                                     
-                                    {{Form::text('percent', '', array('id'=>'percent','class'=>'form-control','placeholder'=>'','tabindex'=>'6')) }}
+                                    {{Form::text('percent', '', array('id'=>'percent','class'=>'form-control','placeholder'=>'Percent','tabindex'=>'6')) }}
                                     <span class="input-group-addon">%</span>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
                             <small class="help-block">Limit</small>
-                            <div class="input-group input-group-sm">
-                                    {{Form::text('limit', '', array('id'=>'limit','class'=>'form-control','placeholder'=>'','tabindex'=>'6')) }}
+                            <div class="input-group">
+                                    {{Form::text('limit', '', array('id'=>'limit','class'=>'form-control','placeholder'=>'Max Limit','tabindex'=>'6')) }}
                                     <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
                             <small class="help-block">Valid from:</small>
-                            <div class="form-group input-group-sm">
-                                <div class="input-group input-group-sm">
+                            <div class="form-group">
+                                <div class="input-group">
                                     <span class="input-group-btn">
                                         <button class="btn" type="button"><span class="fui-calendar"></span></button>
                                     </span>
@@ -62,10 +63,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
                             <small class="help-block">to: </small>
                             <div class="form-group">
-                                <div class="input-group input-group-sm">
+                                <div class="input-group">
                                     <span class="input-group-btn">
                                         <button class="btn" type="button"><span class="fui-calendar"></span></button>
                                     </span>
@@ -76,25 +77,45 @@
                     </div>
                     <br class="colorgraph">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <button class="btn btn-primary btn-sm" id="add-discount">Create</button>
-                            <a href="{{ URL::action('DiscountController@index', $organization->id) }}" class="btn btn-info btn-sm" >Cancel</a>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary btn-sm btn-block" id="add-discount">Create</button>
                         </div>
+                        <div class="col-md-4">
+                            <a href="{{ URL::action('DiscountController@index', $organization->id) }}" class="btn btn-info btn-sm btn-block" >Cancel</a>
+                        </div>
+                        
                     </div>
                     {{ Form::close() }}
                 </div>
             </div>
         </div>
         <div class="col-sm-10 col-sm-offset-1">
-            <hr>
+            <br>
         </div>
     </div>
-</div>
 </div>
 @stop
 @section('script')
 <script type="text/javascript">
+$(window).load(function() {
 
+    var p = $('#percent').val();
+    $('#percent').val(p);
+    if(p == 0){$('#percent').val(''); }
+    $('#percent').mask('00.00', {reverse: true});
+
+    $('.hasDatepicker').each(function() { 
+
+        var dateFormat = $(this).val();
+        if(dateFormat){
+            var date = new Date(dateFormat); 
+            date.setDate(date.getDate() + 1); 
+            var dateFormat = $.datepicker.formatDate('MM dd, yy',date);
+            $(this).val(dateFormat);
+        }
+        
+    });
+});
 $(function() {
     $('#add-discount').click(function(event){
         event.preventDefault();
@@ -103,7 +124,7 @@ $(function() {
         $('#start').val($.datepicker.formatDate('yy-mm-dd', dateTypeVar_start));
         var dateTypeVar_end = $('#end').datepicker('getDate');
         $('#end').val($.datepicker.formatDate('yy-mm-dd', dateTypeVar_end));
-        $('#percent').val($('#percent').cleanVal()/100);
+        $('#percent').val($('#percent').cleanVal());
         $('#limit').val($('#limit').cleanVal());
         //submit form
         $( "#new_discount" ).submit()

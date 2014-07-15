@@ -12,7 +12,7 @@ class CreateDiscountTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('discount', function(Blueprint $table)
+		Schema::create('discounts', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('organization_id')->unsigned()->index();
@@ -34,7 +34,7 @@ class CreateDiscountTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('discount');
+		Schema::drop('discounts');
 	}
 
 }

@@ -1,17 +1,5 @@
 @extends('layouts.public.default')
 @section('content')
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <p class="brand-text text-center" href="#page-top">
-                    league <span>together</span>
-                </p>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">

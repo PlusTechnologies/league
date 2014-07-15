@@ -46,13 +46,15 @@ class UserController extends BaseController {
                 $user->firstname    = Input::get( 'firstname' );
                 $user->lastname     = Input::get( 'lastname' );
                 $user->mobile       = Input::get( 'mobile' );
+                $user->type         = Input::get( 'type' );
+                $user->plan         = 1;
                 $user->password_confirmation = Input::get( 'password_confirmation' );
 
                 $avatar             = input::file('avatar');
                 $filename = time()."-profile_pic.".$avatar->getClientOriginalExtension();
                 $path = public_path('images/avatar/' . $filename);
                 $img = Image::make($avatar->getRealPath());
-                $img->resize(null, 300, function($constraint){ $constraint->aspectRatio(); })->crop(200,200)->save($path);
+                $img->resize(null, 300, function($constraint){ $constraint->aspectRatio(); })->save($path);
                 $user->avatar = "/images/avatar/".$filename;
                 $user->save();
 

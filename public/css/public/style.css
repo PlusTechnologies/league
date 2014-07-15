@@ -1,3 +1,61 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    background-color:  #FAFAFA;
+}
+body {
+   padding-top: 60px;
+    /*font-family:'Open Sans', sans-serif;*/
+}
+
+/*Typography*/
+p {
+    font-size: 13px;
+    line-height: 18px;
+}
+h3{
+    margin-top: 0;
+    color: #162633;
+    font-weight: 300;
+    font-size: 24px;
+}
+hr{
+    margin-top: 10px;
+    border-color: #cfd4d7;
+}
+/** Flat Ui resets **/
+.form-control {
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    color: #333;
+    font-weight: normal;
+    font-size: 13px;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+label {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1;
+}
+.btn-select{
+    background-color: #fff;
+    border: 1px solid #bdc3c7;
+    font-size: 13px;
+    color: #b2bcc5;
+}
+.btn-select .caret{
+    border-bottom-color: #bdc3c7;
+    border-top-color: #bdc3c7;
+}
+.btn-select:focus, .btn-select:hover{
+    color: #162633;
+}
+.btn-group.open .btn-select {
+    box-shadow: none;
+    color: rgba(0, 0, 0, 0.75);
+}
 /** Widgets **/
 .widget {
     border: 5px solid #eaecf1;
@@ -43,31 +101,41 @@
 .box-padding {
     padding:0.5em;
 }
+.box-padding .table{
+    font-size: 13px;
+}
 .bg-color.white {
     background-color:#fff;
     border-bottom:5px solid #eaecf1;
 }
 .widget-title {
-    padding-left: 0.6em;
+    padding: 0.8em;
+    font-size: 14px;
 }
 .widget-title strong {
     border: 2px solid #363b48;
     border-radius: 100em;
     padding: 0.125em 0.4em;
-    font-size: 17px;
+    font-size: 14px;
     vertical-align: top;
+    margin-right: 5px;
 }
 body .product-actions {
     background: #eaecf1;
-    padding: 1px 15px 15px 15px;
+    padding: 15px 15px 15px 15px;
     border-radius: 4px;
     margin-bottom: 2em;
 }
 .pricing > h2 {
     margin-top: 15px;
 }
-.col-event, .col-price {
+.col-event, .col-price, .col-desc  {
     margin-top: 2em;
+}
+.col-price h4{
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #e74c3c;
 }
 .maintitle {
     padding: 1em 0px 2em 0px;
@@ -75,9 +143,20 @@ body .product-actions {
     text-align: center;
     margin-bottom: -2em;
     margin-top: 5em;
+    z-index: 1;
 }
 .maintitle h4 {
-    background: white !important;
+    background-color: #fafafa !important;
+    font-size: 24px;
+    padding: 0px 30px;
+    display: inline;
+    -webkit-text-shadow: 0px 1px 0px white;
+    -moz-text-shadow: 0px 1px 0px white;
+    -o-text-shadow: 0px 1px 0px white;
+    text-shadow: 0px 1px 0px white;
+}
+.maintitle-receipt h4 {
+    background-color: white !important;
     font-size: 24px;
     padding: 0px 30px;
     display: inline;
@@ -155,6 +234,26 @@ a.nav-btn {
     top: 5px;
     margin-top: 0.5em;
 }
-label {
-    text-transform: uppercase;
+
+.fa-spin{
+    margin-right: 5px;
+}
+.sum-total{
+    font-size: 18px;
+    font-weight: 800;
+}
+.receipt-bg{
+    background-color: #fff;
+    bottom: 0;
+    top: 0;
+}
+.receipt-body{
+    background-color: #EAEDF2;
+}
+.receipt-app{
+}
+
+/*content wrap*/
+.content-wrap{
+    padding-top:60px;
 }

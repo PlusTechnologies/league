@@ -1,12 +1,5 @@
 @extends('layouts.public.default')
 @section('content')
-<nav class="navbar navbar-default navbar-fixed-top">
-        <a class="navbar-brand-center" href="#page-top">
-          <div class="logo" style="background-image: url(http://leaguetogether.dev/images/league-together-logo.svg)"></div>
-        </a> 
-</nav>
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
