@@ -1,3 +1,4 @@
+//Charles Nyanzi first committ
 var spinTarget1 = document.getElementById('graph-usage');
 var spinTarget2 = document.getElementById('graph-overview');
 // Create a function that will handle AJAX requests
