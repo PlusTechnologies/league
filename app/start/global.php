@@ -64,7 +64,9 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::make("Be right back!", 503);
+	$title = 'League Together - Maintenance';
+	$response = View::make('maintenance.mode');
+	return $response->with('page_title', $title);
 });
 
 /*

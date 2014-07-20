@@ -43,6 +43,9 @@
             <li class="page-scroll">
               <a href="#accounting">Accounting</a>
             </li>
+            <li class="page-scroll">
+              <a href="#works">How it works</a>
+            </li>
           </ul>
         </div>
       </div>

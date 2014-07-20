@@ -95,31 +95,6 @@ Route::get('/php/info', function()
     return View::make('php.info');
 });
 
-Route::post('/us/lacrosse', function()
-{
-		$merge = array(
-						'lname' => urlencode('brooks'),
-						'fname' => urlencode('daniel'),
-						'dbo' => urlencode('12/13/1997'),
-						'zip' => urlencode('47754')
-				);
-		$params = http_build_query($merge) . "\n";
-		$uri = "https://usl.ebiz.uapps.net/personifyebusiness/MemberSearch/tabid/266/";
-		$ch = curl_init($uri);
-		curl_setopt_array($ch, array(
-			CURLOPT_POST => 1,
-			CURLOPT_RETURNTRANSFER  =>true,
-			CURLOPT_POSTFIELDS =>$params
-		));
-		$out = curl_exec($ch) or die(curl_error());
-		parse_str($out, $output);
-		curl_close($ch);
-		//$response = array_merge_recursive($output,$charged);
-
-    return $out;
-});
-
-
 //** smart link macro **//
 HTML::macro('smart_link', function($route) 
 {	
