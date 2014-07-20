@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"  >
-@include('includes.public.header')
-@if(Request::is('checkout/success'))
-<body class="receipt-body">
-@else
-<body>
-@endif
-    @yield('content')
-    @include('includes.public.footer')
-    @yield('script')
-</body>
-</html>
 <head>
   <meta charset="utf-8">
-  <title>{{ $page_title }}</title>
+  <title>Maintenance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{HTML::style('bootstrap/css/bootstrap.css')}}
   {{HTML::style('css/flat-ui.css')}}
