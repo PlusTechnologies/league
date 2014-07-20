@@ -9,10 +9,10 @@ class Driver extends \Intervention\Image\AbstractDriver
     /**
      * Creates new instance of driver
      *
-     * @param Intervention\Image\Gd\Source  $source
-     * @param Intervention\Image\Gd\Encoder $encoder
+     * @param Decoder $decoder
+     * @param Encoder $encoder
      */
-    public function __construct(Source $source = null, Encoder $encoder = null)
+    public function __construct(Decoder $decoder = null, Encoder $encoder = null)
     {
         if ( ! $this->coreAvailable()) {
             throw new \Intervention\Image\Exception\NotSupportedException(
@@ -20,7 +20,7 @@ class Driver extends \Intervention\Image\AbstractDriver
             );
         }
 
-        $this->source = $source ? $source : new Source;
+        $this->decoder = $decoder ? $decoder : new Decoder;
         $this->encoder = $encoder ? $encoder : new Encoder;
     }
 
@@ -36,8 +36,7 @@ class Driver extends \Intervention\Image\AbstractDriver
     {
         // create empty resource
         $core = imagecreatetruecolor($width, $height);
-        $size = new Size($width, $height);
-        $image = new \Intervention\Image\Image(new self, $core, $size);
+        $image = new \Intervention\Image\Image(new self, $core);
 
         // set background color
         $background = new Color($background);

@@ -33,29 +33,37 @@ class CartServiceProvider extends ServiceProvider
 {
     public function getStorageService()
     {
-        switch(Config::get('moltincart.storage', 'session'))
-        {
-            case 'cache':
-                return new CacheStore;
-                break;
-            default:
+        $class = $this->app['config']->get('laravel-cart::moltincart.storage', 'session');
+        switch ($class) {
             case 'session':
                 return new SessionStore;
-                break;
+            break;
+
+            case 'cache':
+                return new CacheStore;
+            break;
+
+            default:
+                return $this->app->make($class);
+            break;
         }
     }
 
     public function getIdentifierService()
     {
-        switch(Config::get('moltincart.identifier', 'cookie'))
-        {
+        $class = $this->app['config']->get('laravel-cart::moltincart.identifier', 'cookie');
+        switch ($class) {
             case 'requestcookie':
                 return new CookieRequestIdentifier;
-                break;
-            default:
+            break;
+
             case 'cookie':
                 return new CookieIdentifier;
-                break;
+            break;
+
+            default:
+                return $this->app->make($class);
+            break;
         }
     }
 
@@ -66,5 +74,14 @@ class CartServiceProvider extends ServiceProvider
         $this->app->singleton('cart', function() use ($that) {
             return new Cart($that->getStorageService(), $that->getIdentifierService());
         });
+    }
+
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot() {
+        $this->package('moltin/laravel-cart');
     }
 }

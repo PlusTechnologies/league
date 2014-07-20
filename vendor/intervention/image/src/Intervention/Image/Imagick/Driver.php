@@ -9,10 +9,10 @@ class Driver extends \Intervention\Image\AbstractDriver
     /**
      * Creates new instance of driver
      *
-     * @param Intervention\Image\Imagick\Source  $source
-     * @param Intervention\Image\Imagick\Encoder $encoder
+     * @param Decoder $decoder
+     * @param Encoder $encoder
      */
-    public function __construct(Source $source = null, Encoder $encoder = null)
+    public function __construct(Decoder $decoder = null, Encoder $encoder = null)
     {
         if ( ! $this->coreAvailable()) {
             throw new \Intervention\Image\Exception\NotSupportedException(
@@ -20,7 +20,7 @@ class Driver extends \Intervention\Image\AbstractDriver
             );
         }
 
-        $this->source = $source ? $source : new Source;
+        $this->decoder = $decoder ? $decoder : new Decoder;
         $this->encoder = $encoder ? $encoder : new Encoder;
     }
 
@@ -44,10 +44,8 @@ class Driver extends \Intervention\Image\AbstractDriver
         $core->setColorspace(\Imagick::COLORSPACE_UNDEFINED);
         $core->setImageColorspace(\Imagick::COLORSPACE_UNDEFINED);
 
-        $size = new Size($width, $height);
-
         // build image
-        $image = new \Intervention\Image\Image(new self, $core, $size);
+        $image = new \Intervention\Image\Image(new self, $core);
 
         return $image;
     }

@@ -46,6 +46,14 @@ abstract class Ardent extends Model {
     public static $customMessages = array();
 
     /**
+     * The validator object in case you need it externally (say, for a form builder).
+     *
+     * @see getValidator()
+     * @var \Illuminate\Validation\Validator
+     */
+    protected $validator;
+
+    /**
      * The message bag instance containing validation error messages
      *
      * @var \Illuminate\Support\MessageBag
@@ -525,8 +533,8 @@ abstract class Ardent extends Model {
 			$data = $this->getAttributes(); // the data under validation
 
 			// perform validation
-			$validator = static::makeValidator($data, $rules, $customMessages);
-			$success   = $validator->passes();
+			$this->validator = static::makeValidator($data, $rules, $customMessages);
+			$success   = $this->validator->passes();
 
 			if ($success) {
 				// if the model is valid, unset old errors
@@ -535,7 +543,7 @@ abstract class Ardent extends Model {
 				}
 			} else {
 				// otherwise set the new ones
-				$this->validationErrors = $validator->messages();
+				$this->validationErrors = $this->validator->messages();
 
 				// stash the input to the current session
 				if (!self::$externalValidator && Input::hasSession()) {
@@ -779,7 +787,8 @@ abstract class Ardent extends Model {
 
             foreach ($ruleset as &$rule) {
               if (strpos($rule, 'unique') === 0) {
-                $params = explode(',', $rule);
+                // Stop splitting at 4 so final param will hold optional where clause
+                $params = explode(',', $rule, 4); 
 
                 $uniqueRules = array();
                 
@@ -798,7 +807,9 @@ abstract class Ardent extends Model {
 
                 if (isset($this->primaryKey)) {
                   $uniqueRules[3] = $this->{$this->primaryKey};
-                  $uniqueRules[4] = $this->primaryKey;
+                  
+                  // If optional where rules are passed, append them otherwise use primary key
+                  $uniqueRules[4] = isset($params[3]) ? $params[3] : $this->primaryKey;
                 }
                 else {
                   $uniqueRules[3] = $this->id;
@@ -889,4 +900,12 @@ abstract class Ardent extends Model {
 
 		return $builder;
 	}
+
+    /**
+     * Returns the validator object created after {@link validate()}.
+     * @return \Illuminate\Validation\Validator
+     */
+    public function getValidator() {
+        return $this->validator;
+    }
 }

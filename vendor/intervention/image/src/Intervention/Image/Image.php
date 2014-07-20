@@ -7,7 +7,7 @@ class Image extends File
     /**
      * Instance of current image driver
      *
-     * @var Intervention\Image\AbstractDriver
+     * @var AbstractDriver
      */
     protected $driver;
 
@@ -21,7 +21,7 @@ class Image extends File
     /**
      * Image resource backup of current image processor
      *
-     * @var mixded
+     * @var mixed
      */
     protected $backup;
 
@@ -35,10 +35,10 @@ class Image extends File
     /**
      * Creates a new Image instance
      *
-     * @param Driver $driver
+     * @param AbstractDriver $driver
      * @param mixed  $core
      */
-    public function __construct($driver = null, $core = null)
+    public function __construct(AbstractDriver $driver = null, $core = null)
     {
         $this->driver = $driver;
         $this->core = $core;
