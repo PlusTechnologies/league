@@ -24,7 +24,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container relative">
         <a class="navbar-brand-center" href="/">
-            <div class="logo" style="background-image: url(https://leaguetogether.dev/images/league-together-logo.svg)"></div>
+            <div class="logo" style="background-image: url(/images/league-together-logo.svg)"></div>
         </a>
       
         <div class="collapse navbar-collapse" id="navbar-collapse-01">
