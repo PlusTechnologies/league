@@ -1,10 +1,9 @@
 body, html {
-    height: 100%;
     width: 100%;
     background-color:  #FAFAFA;
 }
 body {
-   padding-top: 60px;
+   padding-top: 55px;
     /*font-family:'Open Sans', sans-serif;*/
 }
 
@@ -145,6 +144,12 @@ body .product-actions {
     margin-top: 5em;
     z-index: 1;
 }
+.maintitle-receipt{
+    padding-top: 3em;
+}
+.receipt-icon i{
+   font-size: 40px;
+}
 .maintitle h4 {
     background-color: #fafafa !important;
     font-size: 24px;
@@ -159,7 +164,6 @@ body .product-actions {
     background-color: white !important;
     font-size: 24px;
     padding: 0px 30px;
-    display: inline;
     -webkit-text-shadow: 0px 1px 0px white;
     -moz-text-shadow: 0px 1px 0px white;
     -o-text-shadow: 0px 1px 0px white;
@@ -256,4 +260,20 @@ a.nav-btn {
 /*content wrap*/
 .content-wrap{
     padding-top:60px;
+}
+
+/** sign up page **/
+.signup-icon{
+    width: 130px;
+    border: 1px solid #16a085;
+    height: 130px;
+    margin-bottom: 20px;
+    margin: 10px auto;
+    display: table;
+    border-radius: 100px;
+}
+.middle-icon{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 55px;
 }

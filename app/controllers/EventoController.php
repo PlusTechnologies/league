@@ -21,6 +21,8 @@ class EventoController extends BaseController {
 		$organization= Organization::find($id);
 		$e = new Evento;
 		$title = 'League Together - '.$organization->name.' Event';
+
+		// return $e->tryouts($id);
 		return View::make('pages.user.organization.event.default')
 		->with('page_title', $title)
 		->with('organization', $organization)
@@ -111,32 +113,16 @@ class EventoController extends BaseController {
 		// ->join('users','event_participant.user', '=', 'users.id')
 		// ->where('event', '=', $e->id)->get();
 		
-		return $participant;
 		$title = 'League Together - '.$e->name.' Event';
 
-		if($organization->organizations->contains($organizationid)){
-
-			if ($e->id == $event && $e->organization->id == $organizationid )
-			{	
-				return View::make('pages.user.organization.event.default')
-					->with('page_title', $title)
-					->withEvent($e)
-					->withUser($user)
-					->with('message', 'message flash here')
-					->with('participants', $participant);
-			}else
-			{
-				return View::action('OrganizationController@show')
-				->with('message', 'no event found');
-
-			}
-		}else{
-
-			return View::action('OrganizationController@show')
-				->with('message', 'permission denied');
-
-		}
-		
+		//return $participant;
+		return View::make('pages.user.organization.event.show')
+		->with('page_title', $title)
+		->withEvent($e)
+		->withUser($user)
+		->with('message', 'message flash here')
+		->with('organization', $organization)
+		->with('participants', $participant->participants);		
 		
 	}
 

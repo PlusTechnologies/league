@@ -26,6 +26,7 @@ class Evento extends Eloquent {
     {
          return $this->hasMany('participant', 'event')
             ->join('users', 'event_participant.user', '=', 'users.id')
+            ->join('payments', 'event_participant.payment', '=', 'payments.id')
             ->select('*');
     }
     // public function Users()
@@ -57,13 +58,17 @@ class Evento extends Eloquent {
     {
         $now = new DateTime;
         $now->setTimezone(new DateTimeZone('America/Chicago'));
+        $now = $now->format('Y/m/d');
         $stats  = DB::table('events AS e')
-
+                ->leftJoin('payment_item as pi', 'e.id', '=', 'pi.item')
                 ->where('e.organization_id', '=', $org)
                 ->where('e.type','=',1)
                 ->orderBy('e.created_at', 'ASC')
-                ->get();
-    
+                ->get([
+                    DB::raw('e.*'),
+                    DB::raw('SUM(pi.price) as total'),
+                    DB::raw("if(e.close >= '$now' ,'Open','Close') as status")
+                ]);
         return $stats;
 
     }
@@ -72,17 +77,17 @@ class Evento extends Eloquent {
     {
         $now = new DateTime;
         $now->setTimezone(new DateTimeZone('America/Chicago'));
+        $now = $now->format('Y-m-d');
         $stats  = DB::table('events AS e')
-                ->leftjoin('event_participant AS ep', 'e.id', '=', 'ep.event')
-                ->leftjoin('payments AS p', 'ep.payment', '=', 'p.id')
+                ->leftJoin('payment_item as pi', 'e.id', '=', 'pi.item')
                 ->where('e.organization_id', '=', $org)
                 ->where('e.type','=',2)
                 ->orderBy('e.created_at', 'ASC')
                 ->get([
-                    DB::raw('SUM(p.subtotal) as sales'),
-                    DB::raw('e.*')
+                    DB::raw('e.*'),
+                    DB::raw('SUM(pi.price) as total'),
+                    DB::raw("if(e.close >= '$now' AND e.end >='$now' ,'Open','Close') as status")
                 ]);
-    
         return $stats;
     }
 

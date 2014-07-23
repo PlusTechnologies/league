@@ -21,15 +21,21 @@ Route::get('/', array('as'=>'home', 'uses'=>'HomeController@getIndex'));
 
 // Confide routes
 Route::get('signup', 							array('as' => 'signup', 'uses' => 'UserController@create_user'));
-Route::post('account',                        	'UserController@store');
+Route::get('signup/welcome', 					array('as' => 'signup.welcome', 'uses' => 'UserController@welcome'));
+Route::get('signup/family', 					array('as' => 'signup.family', 'uses' => 'UserController@family'));
+Route::get('signup/player', 					array('as' => 'signup.player', 'uses' => 'UserController@player'));
+Route::get('signup/organization', 				array('as' => 'signup.organization', 'uses' => 'UserController@organization'));
+Route::get( 'logout',							array('as' => 'logout', 'uses' => 'UserController@logout'));
 Route::get('login', 							array('as' => 'login', 'uses' => 'UserController@login'));
-Route::post('user/login',                  		'UserController@do_login');
+
 Route::get( 'user/confirm/{code}',         	  	'UserController@confirm');
 Route::get( 'user/forgot_password',			  	'UserController@forgot_password');
-Route::post('user/forgot_password',			  	'UserController@do_forgot_password');
 Route::get( 'user/reset_password/{token}', 	  	'UserController@reset_password');
 Route::post('user/reset_password',         	  	'UserController@do_reset_password');
-Route::get( 'logout',							array('as' => 'logout', 'uses' => 'UserController@logout'));
+Route::post('account',                        	'UserController@store');
+Route::post('user/login',                  		'UserController@do_login');
+Route::post('user/forgot_password',			  	'UserController@do_forgot_password');
+
 
 // Dasboard routes
 Route::get('dashboard', 						array('before' => 'auth','as' => 'dashboard', 'uses' => 'DashboardController@show'));

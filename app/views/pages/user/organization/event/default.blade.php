@@ -5,7 +5,7 @@
     <div class="col-sm-12 app-frame">
       <div class="row ">
         <div class="col-sm-12 app-title">
-          <div class="image"><i class="retinaicon-essentials-092"></i></div>
+          <div class="image"><i class="retinaicon-essentials-126"></i></div>
           <h2 class="text-center">Events</h2>
           <p class="text-center"><small >Create events and keep track of registration.</small> </p>
           <a class="btn btn-primary btn-sm" href="{{ URL::action('EventoController@create', $organization->id) }}"> Create new event</a>
@@ -45,28 +45,23 @@
                 <tbody>
                   @foreach($camps as $event)
                   <tr>
-                    <td class="">
-                      {{ date("m/d",strtotime($event->start)) }} to {{date('m/d',strtotime($event->end))}} 
+                    <td class="col-md-2">
+                      {{ date("M/d",strtotime($event->start)) }} to {{date('M/d',strtotime($event->end))}} 
+                    </td>
+                    <td class="col-md-3">
+                      <a href="/public/event/{{$event->id}}">{{$event->name}}</a>
                     </td>
                     <td class="">
-                      {{$event->name}}
+                     {{$event->status}}
                     </td>
                     <td class="">
-                      Open
-                    </td>
-                    <td class="">
-                      
+                      {{money_format('%.2n',$event->total)  }}
                     </td>
                     <td class="text-right" >
                       <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@show',array($organization->id,$event->id)) }}" role="button">
                         Open
                       </a>
-                       <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@edit',array($organization->id,$event->id)) }}" role="button">
-                        Edit
-                      </a>
-                      <a class="btn btn-xs btn-primary" href="/public/event/{{$event->id}}" role="button">
-                        Public link
-                      </a>
+                      <button class="btn btn-xs btn-info " type="submit"><i class="fa fa-files-o"></i></button>
                       <button class="btn btn-xs btn-danger " type="submit"><i class="fa fa-trash-o"></i></button>
                     </td>
                   </tr>
@@ -110,28 +105,23 @@
                 <tbody>
                   @foreach($tryouts as $event)
                   <tr>
-                    <td class="">
-                      {{ date("m/d",strtotime($event->start)) }} to {{date('m/d',strtotime($event->end))}} 
+                    <td class="col-md-2">
+                      {{ date("M/d",strtotime($event->start)) }} to {{date('M/d',strtotime($event->end))}} 
+                    </td>
+                    <td class="col-md-3">
+                      <a href="/public/event/{{$event->id}}">{{$event->name}}</a>
                     </td>
                     <td class="">
-                      {{$event->name}}
+                      {{$event->status}}
                     </td>
                     <td class="">
-                      Open
-                    </td>
-                    <td class="">
-                      
+                      {{money_format('%.2n',$event->total)  }}
                     </td>
                     <td class="text-right" >
                       <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@show',array($organization->id,$event->id)) }}" role="button">
                         Open
                       </a>
-                       <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@edit',array($organization->id,$event->id)) }}" role="button">
-                        Edit
-                      </a>
-                      <a class="btn btn-xs btn-primary" href="/public/event/{{$event->id}}" role="button">
-                        Public link
-                      </a>
+                      <button class="btn btn-xs btn-info " type="submit"><i class="fa fa-files-o"></i></button>
                       <button class="btn btn-xs btn-danger " type="submit"><i class="fa fa-trash-o"></i></button>
                     </td>
                   </tr>

@@ -8,8 +8,8 @@
         <span class="border"></span>
       </div>
       <div class="row">
-        <div class="col-sm-4 col-md-offset-4 text-center">
-          <h3><span class="retinaicon-finance-028"></span></h3>
+        <div class="col-sm-4 col-md-offset-4 text-center receipt-icon">
+          <h3><i class="retinaicon-finance-028"></i></h3>
           Thank you
         </div>
       </div>

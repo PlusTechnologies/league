@@ -18,7 +18,31 @@ class UserController extends BaseController {
     public function create_user()
     {
         $title = 'League Together - New Account';
-        return View::make('pages.signup')->with('page_title', $title);
+        return View::make('pages.signup.default')->with('page_title', $title);
+        // return View::make(Config::get('confide::signup_form'));
+    }
+    public function welcome()
+    {
+        $title = 'League Together - New Account';
+        return View::make('pages.signup.welcome')->with('page_title', $title);
+        // return View::make(Config::get('confide::signup_form'));
+    }
+    public function family()
+    {
+        $title = 'League Together - New Account';
+        return View::make('pages.signup.family')->with('page_title', $title);
+        // return View::make(Config::get('confide::signup_form'));
+    }
+    public function player()
+    {
+        $title = 'League Together - New Account';
+        return View::make('pages.signup.player')->with('page_title', $title);
+        // return View::make(Config::get('confide::signup_form'));
+    }
+    public function organization()
+    {
+        $title = 'League Together - New Account';
+        return View::make('pages.signup.default')->with('page_title', $title);
         // return View::make(Config::get('confide::signup_form'));
     }
 
