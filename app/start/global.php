@@ -65,7 +65,7 @@ App::error(function(Exception $exception, $code)
 App::down(function()
 {
 	$title = 'League Together - Maintenance';
-	$response = Response::view('maintenance.mode', array(), 200);
+	$response = Response::view('maintenance.mode', array(), 503);
 	return $response;
 });
 
