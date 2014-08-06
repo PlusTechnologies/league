@@ -6,11 +6,13 @@
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/font-retina.css')}}
+  {{HTML::style('css/croppic.css')}}
   @if(Request::is('login') || Request::is('user/*'))
     {{HTML::style('css/login-style.css')}}
     {{HTML::style('css/public/style.css')}}
   @else
     {{HTML::style('css/public/style.css')}}
+
   @endif
   <link rel="shortcut icon" href="images/favicon.ico">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
@@ -22,7 +24,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container relative">
         <a class="navbar-brand-center" href="/">
-            <div class="logo" style="background-image: url(https://leaguetogether.dev/images/league-together-logo.svg)"></div>
+            <div class="logo" style="background-image: url(/images/league-together-logo.svg)"></div>
         </a>
       
         <div class="collapse navbar-collapse" id="navbar-collapse-01">

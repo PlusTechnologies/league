@@ -20,8 +20,7 @@
 Route::get('/', array('as'=>'home', 'uses'=>'HomeController@getIndex'));
 
 // Confide routes
-Route::get('signup', 							array('as' => 'signup', 'uses' => 'UserController@create_user'));
-Route::get('signup/welcome', 					array('as' => 'signup.welcome', 'uses' => 'UserController@welcome'));
+Route::get('signup', 							array('as' => 'signup', 'uses' => 'UserController@welcome'));
 Route::get('signup/family', 					array('as' => 'signup.family', 'uses' => 'UserController@family'));
 Route::get('signup/player', 					array('as' => 'signup.player', 'uses' => 'UserController@player'));
 Route::get('signup/organization', 				array('as' => 'signup.organization', 'uses' => 'UserController@organization'));
@@ -67,7 +66,11 @@ Route::post( 'checkout/store',         	  		array('before' => 'auth','as' => 'ch
 Route::post( 'checkout/validate',         	  	array('before' => 'auth','as' => 'checkout.validate', 'uses' => 'PaymentController@validate'));
 Route::post( 'checkout/discount',         	  	array('before' => 'auth','as' => 'checkout.discount', 'uses' => 'DiscountController@validate'));
 
+//API
 Route::get('api/graph/discount', 		'GraphController@discount');
+Route::post('api/image/upload', 		'ImageController@upload');
+Route::post('api/image/crop', 			'ImageController@crop');
+Route::get('api/signup/addplayer', 		'PlayerController@addplayerform');
 
 //Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
 

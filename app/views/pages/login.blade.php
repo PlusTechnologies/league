@@ -6,7 +6,7 @@
       <div class="login-container">
         <div id="login-title">welcome</div>
         <div class="form-box">
-          {{ Form::open(array('url' => 'user/login','id'=>'login','method' => 'post')) }}
+          {{Form::open(array('url' => 'user/login','id'=>'login','method' => 'post')) }}
           @if(Session::has('error'))
           {{Form::text('email', '', array('id'=>'email','class'=>'login-error-top','placeholder'=>'Email address', 'tabindex'=>'1'))}}
           {{Form::password('password', array('id'=>'password','class'=>'login-error-bottom','placeholder'=>'Password', 'tabindex'=>'2')) }}
@@ -20,30 +20,24 @@
               Password help?
             </a>
           </p>
-          {{ Form::close() }}
+          {{Form::close()}}
         </div>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div id="login-help">
         <div class="text-center">
-
          Don’t have an account? 
          <a href="{{ URL::route('signup') }}">
            Sign up 
          </a>today.
-
        </div>
      </div>
    </div>
  </div>
 </div>
-
-
-
 <!-- <div class="container">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
@@ -96,7 +90,6 @@
                     
                 </div>
             </div>
-
             <div id="login-help" class="col-sm-6 col-sm-offset-3">
                 <div class="col-sm-6">
                     <label for="remember" class="checkbox">{{{ Lang::get('confide::confide.login.remember') }}}

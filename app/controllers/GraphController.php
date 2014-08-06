@@ -21,7 +21,6 @@ class GraphController extends \BaseController {
                 DB::raw('Date(p.created_at) as date'),
                 DB::raw('SUM(p.discount) as value')
                 ]);
-
         return $stats;
 		}else{
 			$range 	= Carbon::now()->subDays($days);

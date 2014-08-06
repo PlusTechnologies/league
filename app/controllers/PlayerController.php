@@ -83,4 +83,12 @@ class PlayerController extends \BaseController {
 		//
 	}
 
+
+
+	public function addplayerform()
+	{
+		return View::make('pages.signup.addplayer');
+	}
+
+
 }

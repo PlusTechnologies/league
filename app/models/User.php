@@ -3,7 +3,7 @@
 use Zizaco\Confide\ConfideUser;
 
 class User extends ConfideUser {
-    protected $fillable = array('firstname','customer_id','lastname','email', 'mobile','type', 'plan','avatar','password','password_confirmation');
+    protected $fillable = array('firstname','customer_id','lastname','email', 'mobile','type', 'plan','avatar','password');
 	/**
      * Validation rules
      */
@@ -15,8 +15,7 @@ class User extends ConfideUser {
         'mobile'        => 'required',
         'type'          => 'required',
         'avatar'        => 'required',
-        'password' 		=> 'required|between:8,20|confirmed',
-        'password_confirmation' => 'required|between:8,20'
+        'password' 		=> 'required|between:8,20',
     );
 
     public function Organizations() {

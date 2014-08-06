@@ -1,6 +1,6 @@
 @extends('layouts.public.default')
 @section('content')
-<div class="container">
+<div class="container wrapper">
     <div class="row">
         <div class="content-wrap">
             <div class="col-sm-10 col-sm-offset-1">
@@ -25,20 +25,16 @@
                             </div>
                         </div>
                         @endif
-                        <h3>Let's get started</h3>
-                        <hr>
-                        <br>
                         <h3>What is your role?</h3>
+                        <hr>
                         <div class="row text-center">
-
                             <div class="col-xs-12 col-sm-4 col-md-4">
-
                                 <div class="form-group">
                                     <a href="{{URL::action('UserController@family')}}">
                                         <div class="signup-icon"><i class="retinaicon-communication-006 middle-icon"></i></div>
                                         <label>Parent/Family or Legal Guardian</label>
                                     </a>
-                                    <p>Parent accounts allows you to manage players, pay for events, and team fees in their behalf and get annoucements from the team administrator.</p>
+                                    <p>Parent accounts allows you to manage players, pay for events, team fees and get annoucements from the team administrator.</p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4">
@@ -71,6 +67,7 @@
             </div>
         </div>
     </div>
+    <div class="push"></div>
 </div>
 </div>
 @stop

@@ -19,21 +19,16 @@
                                             <li>{{$error}}</li>
                                             @endforeach
                                         </ul>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                         @endif
-
                         {{ Form::open(array('url' => 'account','id'=>'new_account','method' => 'post', 'files'=>true)) }}
-
                         <h3>Let's get started</h3>
                         <hr>
                         <div class="row">
-
                             <div class="col-xs-12 col-sm-4 col-md-4">
-
                                 <div class="form-group">
                                     <label>First Name</label>
                                     {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control','placeholder'=>'First Name','tabindex'=>'2')) }}
@@ -52,7 +47,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-xs-12 col-sm-8 col-md-8">
                                 <div class="form-group">
@@ -67,10 +61,7 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
-
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label>Confirm Password</label>
