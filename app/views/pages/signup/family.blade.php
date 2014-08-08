@@ -161,6 +161,10 @@ $(document).ready(function() {
     
 
     $('#rootwizard').bootstrapWizard({
+        onTabClick: function(tab, navigation, index) {
+            return false;
+        },
+
         onTabShow: function(tab, navigation, index) {
             $(".bs-wizard").removeClass('nav-pills');
             $(".bs-wizard").removeClass('nav');
