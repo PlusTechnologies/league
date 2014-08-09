@@ -42,18 +42,6 @@
                                             <a href="#" class="bs-wizard-dot"></a>
                                             <div class="bs-wizard-info text-center"></div>
                                         </li>
-                                        <li class="col-xs-3 bs-wizard-step ">
-                                            <a class="text-center bs-wizard-stepnum" href="#tab3" data-toggle="tab" >Step 3</a>
-                                            <div class="progress"><div class="progress-bar"></div></div>
-                                            <a href="#" class="bs-wizard-dot"></a>
-                                            <div class="bs-wizard-info text-center"></div>
-                                        </li>
-                                        <li class="col-xs-3 bs-wizard-step ">
-                                            <a class="text-center bs-wizard-stepnum" href="#tab4" data-toggle="tab" >Step 4</a>
-                                            <div class="progress"><div class="progress-bar"></div></div>
-                                            <a href="#" class="bs-wizard-dot"></a>
-                                            <div class="bs-wizard-info text-center"></div>
-                                        </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane" id="tab1">
@@ -61,64 +49,73 @@
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                                     <div class="form-group">
-                                                        <label>Email</label>
-                                                        {{Form::email('email', '', array('id'=>'email','class'=>'form-control','placeholder'=>'Email Address', 'tabindex'=>'4')) }}
+                                                        <label>First Name</label>
+                                                        {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control','placeholder'=>'First Name','tabindex'=>'1')) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                                     <div class="form-group">
-                                                        <label>Password</label>
-                                                        {{Form::password('password', array('id'=>'password','class'=>'form-control','placeholder'=>'Password', 'tabindex'=>'6')) }}
+                                                        <label>Last Name</label>
+                                                        {{Form::text('lastname', '', array('id'=>'lastname','class'=>'form-control','placeholder'=>'Last Name','tabindex'=>'2')) }}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                                     <div class="form-group">
-                                                        <label>Full Name</label>
-                                                        {{Form::text('firstname', '', array('id'=>'firstname','class'=>'form-control','placeholder'=>'First Name','tabindex'=>'2')) }}
+                                                        <label>Email</label>
+                                                        {{Form::email('email', '', array('id'=>'email','class'=>'form-control','placeholder'=>'Email Address', 'tabindex'=>'3')) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-6">
-                                                 <div class="form-group">
-                                                    <label>mobile</label>
-                                                    {{Form::text('mobile', '', array('id'=>'mobile','class'=>'form-control','placeholder'=>'Mobile #', 'tabindex'=>'5')) }}                                
+                                                    <div class="form-group">
+                                                        <label>mobile</label>
+                                                        {{Form::text('mobile', '', array('id'=>'mobile','class'=>'form-control','placeholder'=>'Mobile #', 'tabindex'=>'4')) }}                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        {{Form::password('password', array('id'=>'password','class'=>'form-control','placeholder'=>'Password', 'tabindex'=>'5')) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Confirm Password</label>
+                                                        {{Form::password('confirm_password', array('id'=>'password','class'=>'form-control','placeholder'=>'Confirm Password', 'tabindex'=>'6')) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Profile picture.</label>
+                                                        <a href="" data-toggle="modal" data-target="#imagecrop" tabindex='7'> <img src="/images/default-avatar.png" class="thumbnail user-pic" width="65"></a>
+                                                        <input type="hidden" id="croppic">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <label>Profile picture.</label>
-                                                    <a href="" data-toggle="modal" data-target="#imagecrop"> <img src="/images/default-avatar.png" class="thumbnail user-pic" width="65"></a>
-                                                    <input type="hidden" id="croppic">
-                                                </div>
-                                            </div>
+                                        <div class="tab-pane" id="tab2">
+                                            <p>Add your players Information 
+                                                <a href="#" class="pull-right addplayer">Add New Player</a>
+                                            </p>
+                                            <div class="player-data"></div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab2">
-                                        <p>Add your players Information 
-                                            <a href="#" class="pull-right addplayer">Add New Player</a>
-                                        </p>
-                                        <div class="player-data"></div>
-                                    </div>
-                                    <div class="tab-pane" id="tab3">
-                                        3
-                                    </div>
-                                    <div class="tab-pane" id="tab4">
-                                        4
-                                    </div>
+                                    <ul class="pagination pagination-success wizard">
+                                        <li href="#" class="btn btn-success btn-xs previous first" style="display:none;"> <i class="fui-arrow-left"></i>
+                                        </li>
+                                        <li href="#" class="btn btn-success btn-xs previous"> <i class="fui-arrow-left"></i>
+                                        </li>
+                                        <li href="#" class="btn btn-success btn-xs next"><i class="fui-arrow-right"></i>
+                                        </li>
+                                        <li href="#" class="btn btn-success btn-xs next finish" style="display:none;">Create Account</li>
+                                    </ul>
+                                    {{ Form::close() }}
                                 </div>
-                                <ul class="pagination pagination-success wizard">
-                                    <li href="#" class="btn btn-success btn-xs previous first" style="display:none;"> <i class="fui-arrow-left"></i>
-                                    </li>
-                                    <li href="#" class="btn btn-success btn-xs previous"> <i class="fui-arrow-left"></i>
-                                    </li>
-                                    <li href="#" class="btn btn-success btn-xs next"><i class="fui-arrow-right"></i>
-                                    </li>
-                                    <li href="#" class="btn btn-success btn-xs next finish" style="display:none;">Create Account</li>
-                                </ul>
-                                {{ Form::close() }}
                             </div>
                         </div>
                     </div>
@@ -126,7 +123,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <div class="modal fade" id="imagecrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">

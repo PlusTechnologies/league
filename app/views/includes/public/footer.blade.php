@@ -10,7 +10,6 @@
 </footer>
 </div>
 
-
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
 {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
 {{ HTML::script('js/jquery.ui.touch-punch.min.js')}}
@@ -25,5 +24,8 @@
 {{ HTML::script('js/jquery.mask.min.js')}}
 {{ HTML::script('js/jquery.maskMoney.min.js')}}
 {{ HTML::script('js/jquery.bootstrap.wizard.min.js')}}
+{{ HTML::script('js/jquery.validate.min.js')}}
+{{ HTML::script('js/jquery.validate.rules.js')}}
+{{ HTML::script('js/jquery.validate.additional-methods.min.js')}}
 {{ HTML::script('js/standard.js')}}
 {{ HTML::script('js/croppic.js')}}
