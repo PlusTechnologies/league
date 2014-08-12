@@ -3,10 +3,14 @@
   <title>{{ $page_title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{HTML::style('bootstrap/css/bootstrap.css')}}
+  {{HTML::style('css/select2.css')}}
+  {{HTML::style('css/select2-bootstrap.css')}}
   {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/font-retina.css')}}
   {{HTML::style('css/croppic.css')}}
+  {{HTML::style('css/datepicker.css')}}
+  {{ HTML::style('css/dashboard/redactor.css')}}
   @if(Request::is('login') || Request::is('user/*'))
     {{HTML::style('css/login-style.css')}}
     {{HTML::style('css/public/style.css')}}

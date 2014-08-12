@@ -496,6 +496,19 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertTransparentPosition($img, 6, 2);
     }
 
+    public function testFitImageWithConstraintUpsize()
+    {
+        $img = $this->manager()->make('tests/images/trim.png');
+        $img->fit(300, 150, function ($constraint) {$constraint->upsize();});
+        $this->assertInternalType('int', $img->getWidth());
+        $this->assertInternalType('int', $img->getHeight());
+        $this->assertEquals(50, $img->getWidth());
+        $this->assertEquals(25, $img->getHeight());
+        $this->assertColorAtPosition('#00aef0', $img, 0, 0);
+        $this->assertColorAtPosition('#afa94c', $img, 17, 0);
+        $this->assertColorAtPosition('#ffa601', $img, 24, 0);
+    }
+
     public function testFlipImageHorizontal()
     {
         $img = $this->manager()->make('tests/images/tile.png');
@@ -1012,6 +1025,14 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $img = $this->manager()->canvas(16, 16, 'ffffff');
         $img->circle(12, 8, 8, function ($draw) { $draw->background('#ff0000'); $draw->border(1, '#0000ff'); });
         $this->assertEquals('c214f58de03d171f7f278a7b957bab50', $img->checksum());
+    }
+
+    public function testPolygonImage()
+    {
+        $img = $this->manager()->canvas(16, 16, 'ffffff');
+        $points = array(3, 3, 11, 11, 7, 13);
+        $img->polygon($points, function ($draw) { $draw->background('#ff0000'); $draw->border(1, '#0000ff'); });
+        $this->assertEquals('e534ff90c8026f9317b99071fda01ed4', $img->checksum());
     }
 
     public function testResetImage()

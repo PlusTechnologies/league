@@ -15,14 +15,17 @@ class FitCommand extends ResizeCommand
      */
     public function execute($image)
     {
-        $width = $this->argument(0)->type('integer')->required()->value();
-        $height = $this->argument(1)->type('integer')->value($width);
+        $width = $this->argument(0)->type('digit')->required()->value();
+        $height = $this->argument(1)->type('digit')->value($width);
+        $constraints = $this->argument(2)->type('closure')->value();
 
         // calculate size
-        $fitted = $image->getSize()->fit(new Size($width, $height));
+        $cropped = $image->getSize()->fit(new Size($width, $height));
+        $resized = clone $cropped;
+        $resized = $resized->resize($width, $height, $constraints);
 
         // modify image
-        $this->modify($image, 0, 0, $fitted->pivot->x, $fitted->pivot->y, $width, $height, $fitted->getWidth(), $fitted->getHeight());
+        $this->modify($image, 0, 0, $cropped->pivot->x, $cropped->pivot->y, $resized->getWidth(), $resized->getHeight(), $cropped->getWidth(), $cropped->getHeight());
 
         return true;
     }

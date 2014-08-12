@@ -1,4 +1,4 @@
-<form method="POST" action="{{{ (Confide::checkAction('UserController@store')) ?: URL::to('user')  }}}" accept-charset="UTF-8">
+<form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
         <div class="form-group">
@@ -18,15 +18,15 @@
             <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
         </div>
 
-        @if ( Session::get('error') )
+        @if (Session::get('error'))
             <div class="alert alert-error alert-danger">
-                @if ( is_array(Session::get('error')) )
+                @if (is_array(Session::get('error')))
                     {{ head(Session::get('error')) }}
                 @endif
             </div>
         @endif
 
-        @if ( Session::get('notice') )
+        @if (Session::get('notice'))
             <div class="alert">{{ Session::get('notice') }}</div>
         @endif
 

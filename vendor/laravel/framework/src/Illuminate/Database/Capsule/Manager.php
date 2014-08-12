@@ -60,7 +60,10 @@ class Manager {
 	{
 		$this->container = $container ?: new Container;
 
-		$this->container->instance('config', new Fluent);
+		if ( ! $this->container->bound('config'))
+		{
+			$this->container->instance('config', new Fluent);
+		}
 	}
 
 	/**
@@ -170,7 +173,7 @@ class Manager {
 	 * Set the fetch mode for the database connections.
 	 *
 	 * @param  int  $fetchMode
-	 * @return \Illuminate\Database\Capsule\Manager
+	 * @return $this
 	 */
 	public function setFetchMode($fetchMode)
 	{

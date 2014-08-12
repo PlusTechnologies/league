@@ -291,7 +291,7 @@ class Filesystem {
 	 * @param  bool    $force
 	 * @return bool
 	 */
-	public function makeDirectory($path, $mode = 0777, $recursive = false, $force = false)
+	public function makeDirectory($path, $mode = 0755, $recursive = false, $force = false)
 	{
 		if ($force)
 		{
@@ -371,7 +371,7 @@ class Filesystem {
 		foreach ($items as $item)
 		{
 			// If the item is a directory, we can just recurse into the function and
-			// delete that sub-director, otherwise we'll just delete the file and
+			// delete that sub-directory otherwise we'll just delete the file and
 			// keep iterating through each file until the directory is cleaned.
 			if ($item->isDir())
 			{

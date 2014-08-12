@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Zizaco\\Confide' => array($vendorDir . '/zizaco/confide/src'),
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
     'Way\\Generators' => array($vendorDir . '/way/generators/src'),
     'System' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
@@ -31,9 +30,8 @@ return array(
     'PHPParser' => array($vendorDir . '/nikic/php-parser/lib'),
     'Normalizer' => array($vendorDir . '/patchwork/utf8/class'),
     'Net' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Moltin' => array($vendorDir . '/moltin/tax/src', $vendorDir . '/moltin/cart/src', $vendorDir . '/moltin/currency/src', $vendorDir . '/moltin/laravel-cart/src'),
+    'Moltin' => array($vendorDir . '/moltin/currency/src', $vendorDir . '/moltin/tax/src', $vendorDir . '/moltin/cart/src', $vendorDir . '/moltin/laravel-cart/src'),
     'Math' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'LaravelBook\\Ardent' => array($vendorDir . '/laravelbook/ardent/src'),
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),

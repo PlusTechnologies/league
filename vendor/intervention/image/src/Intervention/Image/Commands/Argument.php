@@ -113,9 +113,19 @@ class Argument
                 $message = sprintf('%s accepts only string values as argument %d.', $this->getCommandName(), $this->key + 1);
                 break;
 
+            case 'array':
+                $fail =  ! is_array($value);
+                $message = sprintf('%s accepts only array as argument %d.', $this->getCommandName(), $this->key + 1);
+                break;
+
             case 'closure':
                 $fail =  ! is_a($value, '\Closure');
                 $message = sprintf('%s accepts only Closure as argument %d.', $this->getCommandName(), $this->key + 1);
+                break;
+
+            case 'digit':
+                $fail = ! $this->isDigit($value);
+                $message = sprintf('%s accepts only integer values as argument %d.', $this->getCommandName(), $this->key + 1);
                 break;
         }
 
@@ -198,5 +208,16 @@ class Argument
         }
 
         return $this;
+    }
+
+    /**
+     * Checks if value is "PHP" integer (120 but also 120.0)
+     *
+     * @param  mixed $value
+     * @return boolean
+     */
+    private function isDigit($value)
+    {
+        return is_numeric($value) ? intval($value) == $value : false;
     }
 }

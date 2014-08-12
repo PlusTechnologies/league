@@ -9,7 +9,7 @@ class OrganizationController extends BaseController {
     public function __construct()
     {
         $this->beforeFilter('organization', ['except' => array('index','create','store')]);
-        $this->beforeFilter('csrf', ['on' => array('create','edit')]);
+        $this->beforeFilter('csrf', ['on' => array('create','edit','store')]);
     }
 
 
@@ -69,24 +69,18 @@ class OrganizationController extends BaseController {
         if($validator->passes()){
 
     		$organization = new Organization;
-            $organization->name        	= Input::get( 'name' );
-            $organization->sport     	= Input::get( 'sport' );
-            $organization->phone     	= Input::get( 'phone' );
-            $organization->email     	= Input::get( 'email' );
-            $organization->add1   		= Input::get( 'add1' );
-            $organization->city     	= Input::get( 'city' );
+            $organization->name      		= Input::get( 'name' );
+            $organization->sport     		= Input::get( 'sport' );
+            $organization->phone     		= Input::get( 'phone' );
+            $organization->email     		= Input::get( 'email' );
+            $organization->add1   			= Input::get( 'add1' );
+            $organization->city     		= Input::get( 'city' );
             $organization->state       	= Input::get( 'state' );
             $organization->description 	= Input::get( 'description' );
-            $organization->zip       	= Input::get( 'zip' );
-
-            $logo             = input::file('logo');
-            $filename = time()."-profile_pic.".$logo->getClientOriginalExtension();
-            $path = public_path('images/logo/' . $filename);
-            Image::make($logo->getRealPath())->resize(null, 400,function($constraint){ $constraint->aspectRatio(); })->save($path);
-            $organization->logo = "/images/logo/".$filename;
+            $organization->zip       		= Input::get( 'zip' );
+            $organization->logo 				= Input::get('logo');
             $id = Auth::user()->id;
             User::find($id)->Organizations()->save($organization);
-
 
             if ( $organization->id )
             {
@@ -94,7 +88,7 @@ class OrganizationController extends BaseController {
                 // $alert = Lang::get('confide::confide.alerts.account_created');
                 // $message =array("message" => $alert);
                 // return Response::json($message);
-                return Redirect::action('DashboardController@show')
+                return Redirect::back()
                 ->with( 'messages', 'Orgazation created successfully');
             }
 
@@ -102,7 +96,7 @@ class OrganizationController extends BaseController {
         }
         // Get validation errors (see Ardent package)
         $error = $validator->errors()->all(':message');
-        return Redirect::action('OrganizationController@create')
+        return Redirect::back()
         ->withErrors($validator)
         ->withInput();
 
@@ -162,5 +156,30 @@ class OrganizationController extends BaseController {
 	{
 		//
 	}
+
+	public function follow()
+  {
+  	$user = Auth::user();
+  	$organization = Organization::all();
+  	$playerlist = $user->players;
+
+  	return $organization;
+
+    $title = 'League Together - Follow';
+    return View::make('pages.signup.follow')
+    ->withPlayers($playerlist)
+    ->with('page_title', $title);
+  }
+  public function createorganization()
+  {
+  	$user = Auth::user();
+  	$organizations = $user->organizations;
+    $title = 'League Together - Add Organization';
+    return View::make('pages.signup.createorganization')
+    ->withOrganizations($organizations)
+    ->with('page_title', $title);
+  }
+
+  
 
 }

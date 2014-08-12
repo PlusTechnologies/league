@@ -174,7 +174,6 @@
                             <a href="{{ URL::action('DashboardController@show') }}" class="btn btn-info btn-block" >Cancel</a>
                         </div>                            
                     </div>
-
                     {{ Form::close() }}
                 </div>
             </div>

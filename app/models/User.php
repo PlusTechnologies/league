@@ -1,23 +1,32 @@
 <?php
 
 use Zizaco\Confide\ConfideUser;
+use Zizaco\Confide\ConfideUserInterface;
 
-class User extends ConfideUser {
+class User extends Eloquent implements ConfideUserInterface
+{
+    use ConfideUser;
     protected $fillable = array('firstname','customer_id','lastname','email', 'mobile','type', 'plan','avatar','password');
-	/**
+    /**
      * Validation rules
      */
     public static $rules = array(
-
-        'firstname' 	=> 'required|alpha|min:3',
-        'lastname' 	    => 'required|alpha|min:5',
-        'email' 		=> 'required|email|unique:users,email',
+        'email'         => 'required|email|unique:users,email',
+        'password'      => 'required|between:8,20',
+        'firstname'     => 'required|alpha|min:3',
+        'lastname'      => 'required|alpha|min:5',
         'mobile'        => 'required',
         'type'          => 'required',
         'avatar'        => 'required',
-        'password' 		=> 'required|between:8,20',
     );
+    //protected $guarded = array('password','confirmation_code');
+    public $hidden = array('password');
 
+    public function players() {
+        return $this->belongsToMany('Player', 'player_user', 'user_id', 'player_id')
+        ->withPivot('relation')
+        ->withTimestamps();  
+    }
     public function Organizations() {
         return $this->belongsToMany('Organization');    
     }

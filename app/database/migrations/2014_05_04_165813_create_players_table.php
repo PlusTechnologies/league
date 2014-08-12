@@ -14,10 +14,14 @@ class CreatePlayersTable extends Migration {
 	{
 		Schema::create('players', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('firstname');
+      $table->string('lastname');
+      $table->string('avatar');
 			$table->date('dob');
+			$table->string('position');
 			$table->string('gender');
-			$table->string('class');
-			$table->string('lx_id');
+			$table->string('year');
+			$table->string('laxid');
 			$table->timestamps();
 		});
 	}

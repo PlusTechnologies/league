@@ -1,22 +1,35 @@
 html {
-position: relative;
-min-height: 100%;
+    min-height: 100%;
+    position: relative;
+    
 }
 body {
-/* Margin bottom by footer height */
-margin-bottom: 60px;
-margin-top: 55px;
+    margin-bottom: 60px;
+    background-color:  #FAFAFA;
 }
-
 .footer {
     background-color: #363b48;
     bottom: 0;
     height: 60px;
     position: absolute;
     width: 100%;
-    padding: 15px 0;
 }
-
+body > .container {
+    padding: 125px 15px 100px;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+.footer > .container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.datepicker{z-index:1151 !important;}
+.datepicker.dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  width: auto;
+}
 /*Typography*/
 p {
     font-size: 13px;
@@ -37,6 +50,7 @@ hr{
     height: auto !important;
     height: 100%;
     margin: 0 auto -4em;
+    position: relative;
 }
 /** Flat Ui resets **/
 .modal-title{
@@ -328,7 +342,6 @@ a.nav-btn {
 .wizard{
 }
 #rootwizard .pagination{
-    padding: 20px 20px 5px;
     height: 100px;
 }
 #rootwizard{
@@ -357,16 +370,32 @@ a.nav-btn {
 }
 .tab-content{
  border: none;
+ padding: 0;
 }
-
+.roster-player{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #1E4477;
+    color: #FFF;
+}
 /*** image upload crop ***/
 
-#upimage{
+#upimage {
     width: 200px;
     height: 200px;
     position:relative; /* or fixed or absolute */
     background: #ccc url("/images/default-avatar.png") no-repeat center;
     background-size: 200px 200px;
+    margin: 0 auto;
+}
+
+
+#upimageplayer, #editimageplayer,#upimageorganization{
+    width: 180px;
+    height: 180px;
+    position:relative; /* or fixed or absolute */
+    background: #ccc url("/images/default-avatar.png") no-repeat center;
+    background-size: 100%;
     margin: 0 auto;
 }
 .cropControls i {

@@ -64,12 +64,12 @@ class EventoController extends BaseController {
 
 			$event = new Evento;
 			$event->name        = Input::get( 'name' );
-			$event->type     	= Input::get( 'type' );
+			$event->type     		= Input::get( 'type' );
 			$event->description = Input::get( 'description' );
-			$event->location 	= Input::get( 'location' );
+			$event->location 		= Input::get( 'location' );
 			$event->fee       	= Input::get( 'fee' );
-			$event->group_fee	= Input::get('fee_group');
-			$event->start 		= Input::get( 'start' );
+			$event->group_fee		= Input::get('fee_group');
+			$event->start 			= Input::get( 'start' );
 			$event->end       	= Input::get( 'end' );
 			$event->open       	= Input::get( 'open' );
 			$event->close       = Input::get( 'close' );

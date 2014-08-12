@@ -1,11 +1,18 @@
 <?php namespace Zizaco\Confide;
 
-use Illuminate\Console\Command;
+use Zizaco\Confide\Support\GenerateCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
-class ControllerCommand extends Command {
-
+/**
+ * This command renders the package view generator.contoller and also
+ * generator.repository into a file within the application directory
+ * in order to save some time.
+ *
+ * @license MIT
+ * @package  Zizaco\Confide
+ */
+class ControllerCommand extends GenerateCommand
+{
     /**
      * The console command name.
      *
@@ -21,91 +28,79 @@ class ControllerCommand extends Command {
     protected $description = 'Creates a controller template that uses Confide.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $app = app();
-        $app['view']->addNamespace('confide',substr(__DIR__,0,-8).'views');
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $name = $this->prepareName($this->option('name'));
-        $restful = $this->option('restful');
-
-        $this->line('');
-        $this->info( "Controller name: $name".(($restful) ? "\nRESTful: Yes" : '') );
-        $message = "An authentication ".(($restful) ? 'RESTful ' : '')."controller template with the name $name.php".
-        " will be created in app/controllers directory and will NOT overwrite any ".
-        " file.";
-
-        $this->comment( $message );
-        $this->line('');
-
-        if ( $this->confirm("Proceed with the controller creation? [Yes|no]") )
-        {
-            $this->line('');
-
-            $this->info( "Creating $name..." );
-            if( $this->createController( $name, $restful ) )
-            {
-                $this->info( "$name.php Successfully created!" );
-            }
-            else{
-                $this->error( 
-                    "Coudn't create app/controllers/$name.php.\nCheck the".
-                    " write permissions within the controllers directory".
-                    " or if $name.php already exists. (This command will".
-                    " not overwrite any file. delete the existing $name.php".
-                    " if you wish to continue)."
-                );
-            }
-
-            $this->line('');
-
-        }
-    }
-
-    /**
      * Get the console command options.
      *
      * @return array
      */
     protected function getOptions()
     {
-        $app = app();
-
         return array(
-            array('name', null, InputOption::VALUE_OPTIONAL, 'Name of the controller.', $app['config']->get('auth.model')),
-            array('--restful', '-r', InputOption::VALUE_NONE, 'Generate RESTful controller.'),
+            array('name', null, InputOption::VALUE_OPTIONAL, 'Name of the controller.', 'Users'),
+            array('--restful', '-r', InputOption::VALUE_NONE, 'Generate RESTful controller.')
         );
     }
 
     /**
-     * Prepare the controller name
-     *
-     * @param string  $name
-     * @return string
+     * Execute the console command.
      */
-    protected function prepareName($name = '')
+    public function fire()
     {
-        $name = ( $name != '') ? ucfirst($name) : 'User';
-        
-        if( substr($name,-10) == 'controller' )
-        {
-            $name = substr($name, 0, -10).'Controller';
+        // Prepare variables
+        $class = $this->getControllerName($this->option('name'));
+        $namespace = $this->getNamespace($this->option('name'));
+        $model = $this->app['config']->get('auth.model');
+        $restful = $this->option('restful');
+
+        $viewVars = compact(
+            'class',
+            'namespace',
+            'model',
+            'restful'
+        );
+
+        // Prompt
+        $this->line('');
+        $this->info("Controller name: $class".(($restful) ? "\nRESTful: Yes" : ''));
+        $this->comment(
+            "An authentication ".(($restful) ? 'RESTful ' : '')."controller template with the name ".
+            ($namespace ? $namespace.'\\' : '')."$class.php"." will be created in app/controllers directory"
+        );
+        $this->line('');
+
+        if ($this->confirm("Proceed with the controller creation? [Yes|no]")) {
+            $this->info("Creating $class...");
+            // Generate
+            $filename = 'controllers/'.($namespace ? str_replace('\\', '/', $namespace).'/' : '').$class.'.php';
+            $this->generateFile($filename, 'generators.controller', $viewVars);
+            $this->info("$class.php Successfully created!");
+
+            // Generate repository
+            $filename = 'models/'.str_replace('\\', '/', $model).'Repository.php';
+            $this->generateFile($filename, 'generators.repository', $viewVars);
+            $this->info($model.'Repository.php Successfully created!');
         }
-        else
-        {
+    }
+
+    /**
+     * Returns the name of the controller class that will handle a
+     * resource with the given name.
+     *
+     * @param string $name Resource name.
+     *
+     * @return string Controller class name.
+     */
+    protected function getControllerName($name)
+    {
+        if (strstr($name, '\\')) {
+            $name = explode('\\', $name);
+            $name = array_pop($name);
+        }
+
+        $name = ( $name != '') ? ucfirst($name) : 'Users';
+
+        if (substr(strtolower($name), -10) == 'controller') {
+            $name = substr($name, 0, -10).'Controller';
+        } else {
             $name .= 'Controller';
         }
 
@@ -113,39 +108,22 @@ class ControllerCommand extends Command {
     }
 
     /**
-     * Create the controller
+     * Returns the namespace of the given class name.
      *
-     * @param  string $name
-     * @return bool
+     * @param string $name Class name.
+     *
+     * @return string Namespace.
      */
-    protected function createController( $name = '', $restful = false )
+    protected function getNamespace($name)
     {
-        $app = app();
-
-        $controller_file = $this->laravel->path."/controllers/$name.php";
-        $output = $app['view']->make('confide::generators.controller')
-            ->with('name', $name)
-            ->with('restful', $restful)
-            ->render();
-
-        if( ! file_exists( $controller_file ) )
-        {
-            $fs = fopen($controller_file, 'x');
-            if ( $fs )
-            {
-                fwrite($fs, $output);
-                fclose($fs);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        if (strstr($name, '\\')) {
+            $name = explode('\\', $name);
+            array_pop($name);
+            $name = implode('\\', $name);
+        } else {
+            $name = '';
         }
-        else
-        {
-            return false;
-        }
+
+        return $name;
     }
-
 }

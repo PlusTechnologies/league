@@ -11,66 +11,63 @@
 |
 */
 
+Route::get('/', 										array('as' =>'home', 									'uses' => 'HomeController@getIndex'));
+Route::get('signup', 								array('as' => 'signup', 							'uses' => 'UsersController@welcome'));
+Route::get('login', 								array('as' => 'login', 								'uses' => 'UsersController@getLogin'));
+Route::get('logout', 								array('as' => 'logout', 							'uses' => 'UsersController@getLogout'));
+Route::get('signup/family', 				array('as' => 'signup.family', 				'uses' => 'UsersController@family'));
+Route::get('signup/family/player', 	array('before' => 'auth', 'as' => 'signup.family.player', 'uses' 	=> 'PlayerController@createplayer'));
+Route::get('signup/family/follow', 	array('before' => 'auth', 'as' => 'signup.family.follow', 'uses' 		=> 'OrganizationController@follow'));
+Route::get('signup/player', 				array('as' => 'signup.player', 				'uses' => 'UsersController@player'));
+Route::get('signup/organization', 	array('as' => 'signup.organization', 	'uses' => 'UsersController@organization'));
+Route::get('signup/organization/create', 	array('as' => 'signup.organization.create', 	'uses' => 'OrganizationController@createorganization'));
 
-// Event::listen('illuminate.query', function($query)
-// {
-//     var_dump($query);
-// });
 
-Route::get('/', array('as'=>'home', 'uses'=>'HomeController@getIndex'));
 
-// Confide routes
-Route::get('signup', 							array('as' => 'signup', 'uses' => 'UserController@welcome'));
-Route::get('signup/family', 					array('as' => 'signup.family', 'uses' => 'UserController@family'));
-Route::get('signup/player', 					array('as' => 'signup.player', 'uses' => 'UserController@player'));
-Route::get('signup/organization', 				array('as' => 'signup.organization', 'uses' => 'UserController@organization'));
-Route::get( 'logout',							array('as' => 'logout', 'uses' => 'UserController@logout'));
-Route::get('login', 							array('as' => 'login', 'uses' => 'UserController@login'));
-
-Route::get( 'user/confirm/{code}',         	  	'UserController@confirm');
-Route::get( 'user/forgot_password',			  	'UserController@forgot_password');
-Route::get( 'user/reset_password/{token}', 	  	'UserController@reset_password');
-Route::post('user/reset_password',         	  	'UserController@do_reset_password');
-Route::post('account',                        	'UserController@store');
-Route::post('user/login',                  		'UserController@do_login');
-Route::post('user/forgot_password',			  	'UserController@do_forgot_password');
-
+// Confide RESTful route
+Route::get('users/confirm/{code}', 'UsersController@getConfirm');
+Route::get('users/reset_password/{token}', 'UsersController@getReset');
+Route::get('users/reset_password', 'UsersController@postReset');
+Route::controller( 'users', 'UsersController');
+Route::resource( 'players', 'PlayerController');
+//Custome Confide RESTfull
+Route::post('users',                        	'UsersController@create');
+Route::post('signup/family/player', 					'PlayerController@store');
 
 // Dasboard routes
-Route::get('dashboard', 						array('before' => 'auth','as' => 'dashboard', 'uses' => 'DashboardController@show'));
-Route::get('elements', 							array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
+Route::get('dashboard', 		array('before' => 'auth','as' => 'dashboard', 'uses' => 'DashboardController@show'));
+Route::get('elements', 			array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
 
-Route::group(array('before' =>'auth', 'prefix' => 'dashboard'), function() {
+Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function() {
 	Route::resource('organization', 'OrganizationController');
 	Route::resource('organization.event', 'EventoController');
 	Route::resource('organization.discount', 'DiscountController');
 	Route::resource('organization.teams', 'TeamController');
 	Route::resource('organization.communication', 'CommunicationController');
-	Route::get( 'organization.accounting', array('as' => 'accounting', 'uses' => 'AccountingController@index'));
-	Route::get( 'organization.roster', array('as' => 'roster', 'uses' => 'RosterController@index'));
-
-	Route::get( 'player', array('as' => 'player', 'uses' => 'PlayerController@index'));
+	Route::get( 'organization.accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
+	Route::get( 'organization.roster', 			array('as' => 'roster', 'uses' => 'RosterController@index'));
+	Route::get( 'player', 									array('as' => 'player', 'uses' => 'PlayerController@index'));
 
 });
 
-Route::get( 'public/event/{id}',         	  	'EventoController@publico');
+Route::get( 'public/event/{id}','EventoController@publico');
 
 //Payment Process routes
-Route::get('cart',         	  					'PaymentController@index');
-Route::get('cart/remove/{id}',         	  		'PaymentController@removefromcart');
-Route::post('cart/add',         	  			'PaymentController@addtocart');
+Route::get('cart','PaymentController@index');
+Route::get('cart/remove/{id}','PaymentController@removefromcart');
+Route::post('cart/add','PaymentController@addtocart');
 
-Route::get( 'checkout',         	  			array('before' => 'auth','as' => 'checkout', 'uses' => 'PaymentController@create'));
-Route::get( 'checkout/success',         	  	array('before' => 'auth','as' => 'checkout.success', 'uses' => 'PaymentController@success'));
-Route::post( 'checkout/store',         	  		array('before' => 'auth','as' => 'checkout.store', 'uses' => 'PaymentController@store'));
-Route::post( 'checkout/validate',         	  	array('before' => 'auth','as' => 'checkout.validate', 'uses' => 'PaymentController@validate'));
-Route::post( 'checkout/discount',         	  	array('before' => 'auth','as' => 'checkout.discount', 'uses' => 'DiscountController@validate'));
+Route::get( 'checkout',         	 array('before' => 'auth','as' => 'checkout', 'uses' => 'PaymentController@create'));
+Route::get( 'checkout/success',    array('before' => 'auth','as' => 'checkout.success', 'uses' => 'PaymentController@success'));
+Route::post( 'checkout/store',     array('before' => 'auth','as' => 'checkout.store', 'uses' => 'PaymentController@store'));
+Route::post( 'checkout/validate',  array('before' => 'auth','as' => 'checkout.validate', 'uses' => 'PaymentController@validate'));
+Route::post( 'checkout/discount',  array('before' => 'auth','as' => 'checkout.discount', 'uses' => 'DiscountController@validate'));
 
 //API
 Route::get('api/graph/discount', 		'GraphController@discount');
 Route::post('api/image/upload', 		'ImageController@upload');
 Route::post('api/image/crop', 			'ImageController@crop');
-Route::get('api/signup/addplayer', 		'PlayerController@addplayerform');
+Route::get('api/player/{id}', 			'PlayerController@show');
 
 //Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
 
@@ -111,13 +108,3 @@ HTML::macro('smart_link', function($route)
     { $active = "active";} else { $active = '';}
     return $active;
 });
-
-	
-
-
-
-
-	
-
-
-

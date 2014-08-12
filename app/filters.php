@@ -35,7 +35,17 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest())
+	{
+		if (Request::ajax())
+		{
+			return Response::make('Unauthorized', 401);
+		}
+		else
+		{
+			return Redirect::guest('login');
+		}
+	}
 });
 
 
@@ -78,20 +88,3 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
-
-
-Route::filter('organization', function($route) {
- 	$param = Request::segment(3);
-	$user =Auth::user();
-	//validate that organization belongs to current user
-	$organization = $user->Organizations()->whereOrganization_id($param)->first();
-	if($organization){
-		return ;
-	}else{
-		return Redirect::to('/dashboard');
-	}
-
-    
-});
-
-

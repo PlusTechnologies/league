@@ -13,11 +13,11 @@ class Organization extends Eloquent{
 			'zip'=>' required | digits:5',
 			'sport'=>'required',
 			'description'=>'required',
-			'logo'=>'required | image|mimes:jpg,jpeg,png,gif'
+			'logo'=>'required'
 		);
 	public function Users() {
         return $this->belongsToMany('User');    
-    }
+  }
 
     public function Events()
     {

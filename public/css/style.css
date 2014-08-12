@@ -132,7 +132,8 @@ hr.carved {
     /*text-shadow: 0px 1px 0px rgba(244, 245, 240, 0.6);*/
 }
 .intro-message > h1 {
-    font-size: 34px;
+    font-size: 40px;
+    font-weight: 700;
 }
 .intro-message > h3 {
     font-size: 20px;

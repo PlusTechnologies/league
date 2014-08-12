@@ -65,11 +65,11 @@ class DiscountController extends BaseController {
 		// attempt validation
 		if ($discount->validate($input,$ignored))
 		{
-		    $discount->name 	= strtoupper(Input::get( 'name' ));
-			$discount->start 	= Input::get( 'start' );
-			$discount->end 		= Input::get( 'end' );
+		  $discount->name 		= strtoupper(Input::get( 'name' ));
+			$discount->start 		= Input::get( 'start' );
+			$discount->end 			= Input::get( 'end' );
 			$discount->percent 	= Input::get( 'percent' )/100;
-			$discount->limit 	= Input::get( 'limit' );
+			$discount->limit 		= Input::get( 'limit' );
 
 			Organization::find($id)->Discounts()->save($discount);
 

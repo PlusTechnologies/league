@@ -14,7 +14,7 @@ class ImageController extends BaseController {
 		$avatar             = Input::file('img');
 		if($avatar){
 			$filename = time()."-profile_pic.".$avatar->getClientOriginalExtension();
-      $path = public_path('images/avatar/' . $filename);
+      		$path = public_path('images/avatar/' . $filename);
 			$img = Image::make($avatar->getRealPath());
 			$img->save($path);
 
@@ -63,16 +63,19 @@ class ImageController extends BaseController {
 		//return $cropW.' '.$cropH.' '.$imgX1.' '.$imgY1;
 
 		$filename = time()."-profile_pic.jpg";
-    $path = public_path('images/avatar/' . $filename);
+    	$path = public_path('images/avatar/' . $filename);
 
 		$img = Image::make($url.$imgUrl);
 		$img->resize($imgW, $imgH)->crop($cropW, $cropH, $imgX1, $imgY1)->save($path,100);
 		$img->destroy();
+		File::delete(public_path().$imgUrl);
 		// crop image
 
 		$response = array(
 			"status" => 'success',
 			"url" => "/images/avatar/".$filename, 
+			"file" =>File::exists(public_path().$imgUrl),
+			"origin"=>$imgUrl
 		  );
 	 
 	 return json_encode($response);

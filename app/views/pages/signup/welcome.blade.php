@@ -30,7 +30,7 @@
                         <div class="row text-center">
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <a href="{{URL::action('UserController@family')}}">
+                                    <a href="{{URL::action('UsersController@family')}}">
                                         <div class="signup-icon"><i class="retinaicon-communication-006 middle-icon"></i></div>
                                         <label>Parent/Family or Legal Guardian</label>
                                     </a>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <a href="{{URL::action('UserController@player')}}">
+                                    <a href="{{URL::action('UsersController@player')}}">
                                         <div class="signup-icon"><i class="retinaicon-essentials-114 middle-icon"></i></div>
                                         <label>Team Player</label>
                                     </a>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                     <a href="{{URL::action('UserController@organization')}}">
+                                     <a href="{{URL::action('UsersController@organization')}}">
                                         <div class="signup-icon"><i class="retinaicon-business-012 middle-icon"></i></div>
                                         <label>Team/Club Administrator</label>
                                     </a>

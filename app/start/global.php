@@ -64,9 +64,7 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	$title = 'League Together - Maintenance';
-	$response = Response::view('maintenance.mode', array(), 503);
-	return $response;
+	return Response::make("Be right back!", 503);
 });
 
 /*
@@ -81,3 +79,13 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Custom User Validation
+|--------------------------------------------------------------------------
+|
+| Custom rules to create user
+|
+*/
+App::bind('confide.user_validator', 'UserValidation');
