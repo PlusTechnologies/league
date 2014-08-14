@@ -59,7 +59,9 @@ class Evento extends Eloquent {
         $now = new DateTime;
         $now->setTimezone(new DateTimeZone('America/Chicago'));
         $now = $now->format('Y/m/d');
-        $stats  = DB::table('events AS e')
+        $events = Evento::where('club_id','=',$org)->first();
+        if($events){
+            $stats  = DB::table('events AS e')
                 ->leftJoin('payment_item as pi', 'e.id', '=', 'pi.item')
                 ->where('e.club_id', '=', $org)
                 ->where('e.type','=',1)
@@ -69,7 +71,10 @@ class Evento extends Eloquent {
                     DB::raw('SUM(pi.price) as total'),
                     DB::raw("if(e.close >= '$now' ,'Open','Close') as status")
                 ]);
-        return $stats;
+            return $stats;
+        }
+        return;
+        
 
     }
 
@@ -78,6 +83,8 @@ class Evento extends Eloquent {
         $now = new DateTime;
         $now->setTimezone(new DateTimeZone('America/Chicago'));
         $now = $now->format('Y-m-d');
+        $events = Evento::where('club_id','=',$org)->first();
+        if($events){
         $stats  = DB::table('events AS e')
                 ->leftJoin('payment_item as pi', 'e.id', '=', 'pi.item')
                 ->where('e.club_id', '=', $org)
@@ -89,6 +96,8 @@ class Evento extends Eloquent {
                     DB::raw("if(e.close >= '$now' AND e.end >='$now' ,'Open','Close') as status")
                 ]);
         return $stats;
+        }
+        return;
     }
 
 

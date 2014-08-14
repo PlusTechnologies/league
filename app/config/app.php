@@ -198,6 +198,7 @@ return array(
 		'Cart' 							=> 'Moltin\Cart\Facade',
     'Image' 						=> 'Intervention\Image\Facades\Image',
     'CardFlex'		  		=> 'leaguetogether\Facades\CardFlex',
+    'Carbon' 						=> 'Carbon\Carbon'
 
 	),
 

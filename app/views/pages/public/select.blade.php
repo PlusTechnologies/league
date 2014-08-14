@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="maintitle">
-        <h4 class="text-center">Shopping Cart</h4>
+        <h4 class="text-center">Select the participant player</h4>
         <span class="border"></span>
     </div>
     <div class="row">
@@ -41,37 +41,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($products as $item)
-                                        <tr>
-                                            <td class="details">
-                                                <div class="clearfix">
-                                                    <a class="delete btn pull-right btn-danger btn-xs" href="{{URL::action('PaymentController@removefromcart', array($item->identifier))}}"><i class="fa fa-trash-o"></i>
-                                                    </a>
-                                                    <div class="pull-left no-float-xs">
-                                                        <a class="title" href="{{URL::action('EventoController@publico', array($item->event))}}">{{$item->name}}
+                                        @foreach( $products as $key=>$item)
+
+                                            @for ($i = 1; $i <= $item->quantity; $i++)
+                                            <tr>
+                                                <td class="details">
+                                                    <div class="clearfix">
+                                                        <a class="delete btn pull-right btn-danger btn-xs" href="{{URL::action('PaymentController@removefromcart', array($item->identifier))}}"><i class="fa fa-trash-o"></i>
                                                         </a>
-                                                        {{ Cart::has($item->id)}}
+                                                        <div class="pull-left no-float-xs">
+                                                            <a class="title" href="{{URL::action('EventoController@publico', array($item->event))}}">{{$item->name}} {{$key}}
+                                                            </a>
+                                                            {{ $item->id}}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <input type="text" id="spinner-05" value="{{$item->quantity}}" class="form-control input-sm spinner" />
-                                            </td>
-                                            <td>{{money_format('%.2n',$item->price)  }}</td>
-                                        </tr>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="text" id="spinner-05" value="{{$item->quantity}}" class="form-control input-sm spinner" />
+                                                </td>
+                                                <td>{{money_format('%.2n',$item->price)  }}</td>
+                                            </tr>
+                                            @endfor
+                                        
                                         @endforeach
-                                        <tr>
-                                            <td colspan="2" class="text-right">Subtotal</td>
-                                            <td>{{money_format("%.2n",Cart::total(false))  }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="text-right">Taxes and Fees</td>
-                                            <td>{{money_format("%.2n",$tax + $service_fee)}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="text-right">Total</td>
-                                            <td>{{money_format('%.2n',$cart_total)  }}</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                                 <!-- /Cart Contents -->

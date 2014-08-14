@@ -1,5 +1,4 @@
 <?php
-
 class EventoController extends BaseController {
 
 	 public function __construct()
@@ -7,6 +6,8 @@ class EventoController extends BaseController {
         $this->beforeFilter('club', ['except'=>'publico']);
         $this->beforeFilter('csrf', ['on' => array('create','edit')]);
     }
+
+   
 
 	/**
 	 * Display a listing of the resource.
@@ -18,11 +19,10 @@ class EventoController extends BaseController {
 
 		setlocale(LC_MONETARY,"en_US");
 		$user= Auth::user();
-		$club= Club::find($id);
+		$club= Club::find($id)->with('events')->first();
 		$e = new Evento;
 		$title = 'League Together - '.$club->name.' Event';
 
-		// return $e->tryouts($id);
 		return View::make('pages.user.club.event.default')
 		->with('page_title', $title)
 		->with('club', $club)

@@ -43,6 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @if($camps)
                   @foreach($camps as $event)
                   <tr>
                     <td class="col-md-2">
@@ -66,6 +67,7 @@
                     </td>
                   </tr>
                   @endforeach
+                  @endif
                 </tbody>
               </table>
             </div>
@@ -103,6 +105,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @if($tryouts)
                   @foreach($tryouts as $event)
                   <tr>
                     <td class="col-md-2">
@@ -126,6 +129,7 @@
                     </td>
                   </tr>
                   @endforeach
+                  @endif
                 </tbody>
               </table>
             </div>
