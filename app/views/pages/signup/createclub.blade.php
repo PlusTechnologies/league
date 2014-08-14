@@ -306,7 +306,6 @@ $(document).ready(function() {
   $(".edit-club").click(function(){
     $.get( "/api/club/"+ $(this).data("id"))
       .done(function( data ) {
-
       return;
       $("#firstname-edit").val(data.firstname);
       $("#lastname-edit").val(data.lastname);

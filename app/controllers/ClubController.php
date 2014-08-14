@@ -207,7 +207,8 @@ class ClubController extends BaseController {
 
   public function clubshow($id)
   {
-  	return $id;
+  	$club = Club::find($id);
+  	return $club;
   }
   
 

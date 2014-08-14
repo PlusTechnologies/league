@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFollowersTable extends Migration {
+class CreateTeamsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,15 @@ class CreateFollowersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('followers', function(Blueprint $table)
+		Schema::create('teams', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned()->index();
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->string('name');
+			$table->text('description');
 			$table->integer('club_id')->unsigned()->index();
 			$table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
-			$table->unique( array('user_id','club_id'));
+			$table->double('fee');
+			$table->double('early_fee');
 			$table->timestamps();
 		});
 	}
@@ -32,7 +33,7 @@ class CreateFollowersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('followers');
+		Schema::drop('teams');
 	}
 
 }

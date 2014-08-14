@@ -70,7 +70,7 @@ Route::get('api/graph/discount', 		'GraphController@discount');
 Route::post('api/image/upload', 		'ImageController@upload');
 Route::post('api/image/crop', 			'ImageController@crop');
 Route::get('api/player/{id}', 			'PlayerController@show');
-Route::get('api/club/{id}', 'ClubController@clubshow');
+Route::get('api/club/{id}', 				'ClubController@clubshow');
 
 //Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
 

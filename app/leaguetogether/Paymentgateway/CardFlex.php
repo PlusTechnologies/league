@@ -58,8 +58,8 @@ class CardFlex{
 		);
 
 		$credentials = array(
-						'username'			=> getenv("CF_NAME"),
-						'password'			=> getenv("CF_PASS"),
+						'username'		=> getenv("CF_NAME"),
+						'password'		=> getenv("CF_PASS"),
 						'amount' 			=> $total,
 						'email'				=> $user->email,
 						'phone'				=> $user->mobile,

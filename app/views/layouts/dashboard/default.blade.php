@@ -32,10 +32,7 @@
              	 <i class="retinaicon-essentials-020"></i> Overview
             	</a>
 	            <a href="#">
-	              <i class="retinaicon-communication-006"></i> Roster
-	            </a>
-	            <a href="#">
-	              <i class="retinaicon-business-042"></i> Teams
+	              <i class="retinaicon-communication-006"></i> Teams
 	            </a>
 	            <a href="{{URL::action('EventoController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.event.index')}}">
 	              <i class="retinaicon-essentials-092"></i> Events
