@@ -13,7 +13,7 @@ class GraphController extends \BaseController {
         	$stats 	= DB::table('payments AS p')
         		->join('discounts AS d', 'p.promo', '=', 'd.id')
                 ->where('p.created_at', '>=', $range)
-                ->where('d.organization_id', '=', $org)
+                ->where('d.club_id', '=', $org)
                 ->groupBy('date')
                 ->groupBy('p.promo')
                 ->orderBy('date', 'ASC')
@@ -27,7 +27,7 @@ class GraphController extends \BaseController {
         	$stats 	= DB::table('payments AS p')
         		->join('discounts AS d', 'p.promo', '=', 'd.id')
                 ->where('p.created_at', '>=', $range)
-                ->where('d.organization_id', '=', $org)
+                ->where('d.club_id', '=', $org)
                 ->groupBy('p.promo')
                 ->orderBy('p.created_at', 'ASC')
                 ->get([

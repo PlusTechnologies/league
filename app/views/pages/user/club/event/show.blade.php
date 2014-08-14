@@ -39,7 +39,7 @@
               <h3 class="panel-title ">
                 <div class="row">
                   <div class = "col-md-12">Player
-                    <a class="pull-right" href="{{ URL::action('EventoController@create', $organization->id) }}">
+                    <a class="pull-right" href="{{ URL::action('EventoController@create', $club->id) }}">
                       <i class="fa fa-plus"></i> Add New
                     </a>
                   </div>

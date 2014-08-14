@@ -56,7 +56,7 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="intro-message">
             <h1>All-in-one Sport Platform</h1>
-            <h3>Built in the cloud for your organization.</h3>
+            <h3>Built in the cloud for your club.</h3>
             <!-- <p><small>Enjoy the game more and</small> <strong>we’ll handle the rest!</strong></p> -->
             <hr class="intro-divider">
 <!-- <ul class="list-inline intro-social-buttons">

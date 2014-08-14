@@ -8,7 +8,7 @@
           <div class="image"><i class="retinaicon-essentials-126"></i></div>
           <h2 class="text-center">Events</h2>
           <p class="text-center"><small >Create events and keep track of registration.</small> </p>
-          <a class="btn btn-primary btn-sm" href="{{ URL::action('EventoController@create', $organization->id) }}"> Create new event</a>
+          <a class="btn btn-primary btn-sm" href="{{ URL::action('EventoController@create', $club->id) }}"> Create new event</a>
           <h2 class="home-title">Overview</h2>
         </div>
       </div>
@@ -19,7 +19,7 @@
               <h3 class="panel-title ">
                 <div class="row">
                   <div class = "col-md-12">Camps
-                    <a class="pull-right" href="{{ URL::action('EventoController@create', $organization->id) }}">
+                    <a class="pull-right" href="{{ URL::action('EventoController@create', $club->id) }}">
                       <i class="fa fa-plus"></i> Create New
                     </a>
                   </div>
@@ -58,7 +58,7 @@
                       {{money_format('%.2n',$event->total)  }}
                     </td>
                     <td class="text-right" >
-                      <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@show',array($organization->id,$event->id)) }}" role="button">
+                      <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@show',array($club->id,$event->id)) }}" role="button">
                         Open
                       </a>
                       <button class="btn btn-xs btn-info " type="submit"><i class="fa fa-files-o"></i></button>
@@ -79,7 +79,7 @@
               <h3 class="panel-title ">
                 <div class="row">
                   <div class = "col-md-12">Tryouts
-                    <a class="pull-right" href="{{ URL::action('EventoController@create', $organization->id) }}">
+                    <a class="pull-right" href="{{ URL::action('EventoController@create', $club->id) }}">
                       <i class="fa fa-plus"></i> Create New
                     </a>
                   </div>
@@ -118,7 +118,7 @@
                       {{money_format('%.2n',$event->total)  }}
                     </td>
                     <td class="text-right" >
-                      <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@show',array($organization->id,$event->id)) }}" role="button">
+                      <a class="btn btn-xs btn-primary" href="{{ URL::action('EventoController@show',array($club->id,$event->id)) }}" role="button">
                         Open
                       </a>
                       <button class="btn btn-xs btn-info " type="submit"><i class="fa fa-files-o"></i></button>

@@ -33,7 +33,7 @@ class Payment extends Eloquent {
 
     }
 
-    public function receipt($param, $organization){
+    public function receipt($param, $club){
         setlocale(LC_MONETARY,"en_US");
         $user = Auth::user();
 
@@ -48,20 +48,20 @@ class Payment extends Eloquent {
         //convert object to array
         $data = json_decode(json_encode($param),false);
         //clean duplicates from array
-        $organization = array_unique($organization);
+        $club = array_unique($club);
         //cart content
         $items = Cart::contents();
 
         $data = array('data'=>$data,'vault'=>$vault,'products'=>$items);
 
-        Mail::send('emails.receipt.default', $data, function($message) use ($user, $organization)
+        Mail::send('emails.receipt.default', $data, function($message) use ($user, $club)
         {
             $message->to($user->email, $user->firstname.' '.$user->lastname)
                     ->subject('Purchased Receipt');
 
-            foreach($organization as $org){
-                $organization = Organization::find($org);
-                $message->to($organization->email, $organization->name)
+            foreach($club as $org){
+                $club = Club::find($org);
+                $message->to($club->email, $club->name)
                     ->subject('Purchased Receipt - Copy');
             }
         });

@@ -20,13 +20,13 @@
               <div class="icon">
                 <div class="image"><i class="fa fa-sitemap"></i></div>
                 <div class="info panel panel-default">
-                  <h3 class="title">Organizations</h3>
+                  <h3 class="title">Clubs</h3>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper.
                   </p>
 
                   <div class="more">
-                    <a href="dashboard/organization" title="Title Link" class="btn">
+                    <a href="dashboard/club" title="Title Link" class="btn">
                       View All <i class="fa fa-angle-double-right"></i>
                     </a>
                   </div>
@@ -46,7 +46,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper.
                   </p>
                   <div class="more">
-                    <a href="dashbard/organization" title="Title Link" class="btn">
+                    <a href="dashbard/club" title="Title Link" class="btn">
                         View All <i class="fa fa-angle-double-right"></i>
                     </a>
                   </div>

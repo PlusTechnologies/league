@@ -25,7 +25,7 @@
                     </div>
                     @endif
 
-                    {{ Form::open(array('action' => array('EventoController@show', $organization->id),'id'=>'new_event','method' => 'post')) }}
+                    {{ Form::open(array('action' => array('EventoController@show', $club->id),'id'=>'new_event','method' => 'post')) }}
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -110,7 +110,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <button class="btn btn-primary btn-embossed" id="add-event">Create</button>
-                            <a href="{{ URL::action('OrganizationController@show', $organization->id) }}" class="btn btn-info btn-embossed" >Cancel</a>
+                            <a href="{{ URL::action('ClubController@show', $club->id) }}" class="btn btn-info btn-embossed" >Cancel</a>
                         </div>
                     </div>
                     {{ Form::close() }}

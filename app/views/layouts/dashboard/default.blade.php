@@ -16,19 +16,19 @@
 		</div>
 			<h3>Main</h3>
 
-			<a href="/dashboard/organization" class="{{ HTML::smart_link('dashboard/organization') }}">
+			<a href="/dashboard/club" class="{{ HTML::smart_link('dashboard/club') }}">
 				<i class="retinaicon-essentials-006"></i> Dashboard
 			</a>
 
 			<a href="/dashboard/settings">
 				<i class="retinaicon-essentials-008"></i> Account Settings
 			</a>
-			{{Route::is('dashboard.organization.index')}}
-			@if(Route::is('dashboard.organization.show') || 
-				Route::is('dashboard.organization.discount.index')|| 
-				Route::is('dashboard.organization.event.index')
+			{{Route::is('dashboard.club.index')}}
+			@if(Route::is('dashboard.club.show') || 
+				Route::is('dashboard.club.discount.index')|| 
+				Route::is('dashboard.club.event.index')
 			)
-				<a href="{{URL::action('OrganizationController@show', $organization->id)}}" class="{{HTML::smart_link('dashboard.organization.show') }}">
+				<a href="{{URL::action('ClubController@show', $club->id)}}" class="{{HTML::smart_link('dashboard.club.show') }}">
              	 <i class="retinaicon-essentials-020"></i> Overview
             	</a>
 	            <a href="#">
@@ -37,7 +37,7 @@
 	            <a href="#">
 	              <i class="retinaicon-business-042"></i> Teams
 	            </a>
-	            <a href="{{URL::action('EventoController@index', $organization->id)}}" class="{{ HTML::smart_link('dashboard.organization.event.index')}}">
+	            <a href="{{URL::action('EventoController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.event.index')}}">
 	              <i class="retinaicon-essentials-092"></i> Events
 	            </a>
 	            <a href="#">
@@ -46,7 +46,7 @@
 	            <a href="#">
 	              <i class="retinaicon-design-078"></i> Accounting
 	            </a>
-	        	<a href="{{URL::action('DiscountController@index', $organization->id)}}" class="{{ HTML::smart_link('dashboard.organization.discount.index')}}">
+	        	<a href="{{URL::action('DiscountController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.discount.index')}}">
 		          	<i class="retinaicon-essentials-116"></i> Discounts
 	        	</a>
         

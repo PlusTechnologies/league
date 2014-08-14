@@ -113,7 +113,7 @@
                     <div class="col-sm-6">
                       <div class="panel panel-default">
                         <div class="panel-heading">
-                          <h3 class="panel-title">My Organizations</h3>
+                          <h3 class="panel-title">My Clubs</h3>
                         </div>
                         <div class="panel-body">
                           <div class="list-group">
@@ -122,7 +122,7 @@
                         </div>
                       </div>
                       <br>
-                      <a class="btn btn-embossed btn-primary" href="{{ URL::route('dashboard.organization.create') }}">New Organization</a>
+                      <a class="btn btn-embossed btn-primary" href="{{ URL::route('dashboard.club.create') }}">New Club</a>
                     </div>
                   </div>
                 </div>
@@ -134,7 +134,7 @@
                       Affiliations
                       <br>
                       <br>
-                      <a class="btn btn-embossed btn-primary" href="{{ URL::route('dashboard.organization.create') }}">Join Organization</a>
+                      <a class="btn btn-embossed btn-primary" href="{{ URL::route('dashboard.club.create') }}">Join Club</a>
                     </div>
                   </div>
                 </div>
@@ -169,11 +169,11 @@
                   </div>
                 </div>
                 <div class="org-name pull-left dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h2 class="">Organization Name 1<span class="caret"></span></h2></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h2 class="">Club Name 1<span class="caret"></span></h2></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Organization Name 2</a></li>
-                    <li><a href="#">Organization Name 3</a></li>
-                    <li><a href="#">Organization Name 4</a></li>
+                    <li><a href="#">Club Name 2</a></li>
+                    <li><a href="#">Club Name 3</a></li>
+                    <li><a href="#">Club Name 4</a></li>
                   </ul>
                 </div>
               </div>
@@ -581,7 +581,7 @@
             <div class="row dashboard-background" style="background-image: url({{ URL::asset('images/landing-background-1.jpg'); }})">
               <div class="col-sm-12">
                 <div class="org-name pull-left dropdown">
-                  <h2 class="">Organization Management</h2>
+                  <h2 class="">Club Management</h2>
                 </div>
               </div>
             </div>

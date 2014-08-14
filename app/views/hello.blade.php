@@ -11,7 +11,7 @@
                             Sign up
                         </div>
                         <div class="col-sm-4">
-                            <a class="btn btn-lg btn-block btn-primary" href="#fakelink">Organization</a>
+                            <a class="btn btn-lg btn-block btn-primary" href="#fakelink">Club</a>
                         </div>
                         <div class="col-sm-4">
                             <a class="btn btn-lg btn-block btn-primary" href="#fakelink">Player</a>

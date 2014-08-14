@@ -24,8 +24,8 @@ class CreateEventTable extends Migration {
 			$table->date('end');
 			$table->date('open');
 			$table->date('close');
-			$table->integer('organization_id')->unsigned()->index();
-			$table->foreign('organization_id')->references('id')->on('organizations');
+			$table->integer('club_id')->unsigned()->index();
+			$table->foreign('club_id')->references('id')->on('clubs');
 			$table->timestamps();
 		});
 	}

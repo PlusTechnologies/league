@@ -4,7 +4,7 @@ class DiscountController extends BaseController {
 
     public function __construct()
     {
-        $this->beforeFilter('organization', ['except' => array('validate')]);
+        $this->beforeFilter('club', ['except' => array('validate')]);
         $this->beforeFilter('csrf', ['on' => array('create','edit')]);
     }
 
@@ -18,12 +18,12 @@ class DiscountController extends BaseController {
 	{
 		setlocale(LC_MONETARY,"en_US");
 		$user =Auth::user();
-		$organization = Organization::find($id);
+		$club = Club::find($id);
 		$discounts = new Discount;
 		$title = 'League Together - Discount';
-		return View::make('pages.user.organization.discount.default')
+		return View::make('pages.user.club.discount.default')
 			->with('page_title', $title)
-			->with('organization', $organization)
+			->with('club', $club)
 			->with('discounts_available',$discounts->available($id))
 			->with('discounts_expired',$discounts->expired($id))
 			->withUser($user);
@@ -39,11 +39,11 @@ class DiscountController extends BaseController {
 	public function create($id)
 	{	
 		$user =Auth::user();
-		$organization = Organization::find($id);
+		$club = Club::find($id);
 		$title = 'League Together - Create Discount';
-		return View::make('pages.user.organization.discount.create')
+		return View::make('pages.user.club.discount.create')
 			->with('page_title', $title)
-			->with('organization', $organization)
+			->with('club', $club)
 			->withUser($user);
 	}
 
@@ -55,8 +55,8 @@ class DiscountController extends BaseController {
 	 */
 	public function store($id)
 	{
-		//get current organization
-		$organization = Organization::find($id);
+		//get current club
+		$club = Club::find($id);
 		// get the POST data
 		$input = Input::all();
 		// create a new model instance
@@ -71,12 +71,12 @@ class DiscountController extends BaseController {
 			$discount->percent 	= Input::get( 'percent' )/100;
 			$discount->limit 		= Input::get( 'limit' );
 
-			Organization::find($id)->Discounts()->save($discount);
+			Club::find($id)->Discounts()->save($discount);
 
 			if ( $discount->id )
 			{
                 // Redirect with success message.
-				return Redirect::action('DiscountController@index', $organization->id)
+				return Redirect::action('DiscountController@index', $club->id)
 				->with( 'messages', 'Discount created successfully');
 			}
 		}
@@ -84,7 +84,7 @@ class DiscountController extends BaseController {
 		{
 		    // failure, get errors
 		    $errors = $discount->errors();
-		    return Redirect::action('DiscountController@create',$organization->id )
+		    return Redirect::action('DiscountController@create',$club->id )
         	->withErrors($errors)
         	->withInput();
 		}
@@ -112,19 +112,19 @@ class DiscountController extends BaseController {
 		// 	$discount->percent 	= Input::get( 'percent' )/100;
 		// 	$discount->limit 	= Input::get( 'limit' );
 
-		// 	Organization::find($id)->Discounts()->save($discount);
+		// 	Club::find($id)->Discounts()->save($discount);
 
 		// 	if ( $discount->id )
 		// 	{
 		// 		// Redirect with success message.
-		// 		return Redirect::action('DiscountController@index', $organization->id)
+		// 		return Redirect::action('DiscountController@index', $club->id)
 		// 		->with( 'messages', 'Discount created successfully');
 		// 	}
 
 		// }
 		// // Get validation errors (see Ardent package)
 		// $error = $validator->errors()->all(':message');
-		// return Redirect::action('DiscountController@create',$organization->id )
+		// return Redirect::action('DiscountController@create',$club->id )
 		// ->withErrors($validator)
 		// ->withInput();
 	}
@@ -176,19 +176,19 @@ class DiscountController extends BaseController {
 	public function edit($org, $id)
 	{
 		$user =Auth::user();
-		//validate that organization belongs to current user
-		$organization = $user->Organizations()->with('discounts')->whereOrganization_id($org)->firstOrFail();
+		//validate that club belongs to current user
+		$club = $user->Clubs()->with('discounts')->whereClub_id($org)->firstOrFail();
 
-		if(!$organization){
-			return Redirect::action('OrganizationController@index');
+		if(!$club){
+			return Redirect::action('ClubController@index');
 		}
 
 		//get discount information
-		$discount = Discount::where('organization_id','=',$organization->id)->whereId($id)->firstOrFail();
+		$discount = Discount::where('club_id','=',$club->id)->whereId($id)->firstOrFail();
 		$title = 'League Together - Edit discount';
-		return View::make('pages.user.organization.discount.edit')
+		return View::make('pages.user.club.discount.edit')
 		->with('page_title', $title)
-		->with('organization', $organization)
+		->with('club', $club)
 		->with('discount',$discount)
 		->withUser($user);
 
@@ -205,8 +205,8 @@ class DiscountController extends BaseController {
 	 */
 	public function update($org, $id)
 	{
-		//get current organization
-		$organization = Organization::find($org);
+		//get current club
+		$club = Club::find($org);
 		// get the POST data
 		$input = Input::all();
 		// create a new model instance
@@ -224,7 +224,7 @@ class DiscountController extends BaseController {
 			if ( $discount->id )
 			{
                 // Redirect with success message.
-				return Redirect::action('DiscountController@index', $organization->id)
+				return Redirect::action('DiscountController@index', $club->id)
 				->with( 'messages', 'Discount created successfully');
 			}
 		}
@@ -232,7 +232,7 @@ class DiscountController extends BaseController {
 		{
 		    // failure, get errors
 		    $errors = $discount->errors();
-		    return Redirect::action('DiscountController@update',$organization->id )
+		    return Redirect::action('DiscountController@update',$club->id )
         	->withErrors($errors)
         	->withInput();
 		}
@@ -245,16 +245,16 @@ class DiscountController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($organization,$id)
+	public function destroy($club,$id)
 	{
 
 		$discount = Discount::find($id);
 		$status = $discount->delete();
 		if($status){
-			return Redirect::action('DiscountController@index', $organization);
+			return Redirect::action('DiscountController@index', $club);
 		}
 
-		return Redirect::action('DiscountController@index', $organization)->withErrors($status);
+		return Redirect::action('DiscountController@index', $club)->withErrors($status);
 
 		
 	}

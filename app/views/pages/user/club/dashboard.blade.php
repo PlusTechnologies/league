@@ -6,9 +6,9 @@
       <div class="row ">
         <div class="col-sm-12 app-title">
           <div class="image"><i class="retinaicon-essentials-006"></i></div>
-          <h2 class="text-center">Organization Management</h2>
+          <h2 class="text-center">Club Management</h2>
           <p class="text-center"><small >Take your first step by exploring all the option in our system.</small> </p>
-          <a class="btn btn-primary btn-sm" href="/dashboard/organization/create"> Create new organization</a>
+          <a class="btn btn-primary btn-sm" href="/dashboard/club/create"> Create new club</a>
         </div>
       </div>
       <br>
@@ -16,7 +16,7 @@
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title">Organization</h4>
+              <h4 class="panel-title">Club</h4>
             </div>
             <div class="table-responsive">
               <table class="table table-org">
@@ -32,16 +32,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($organizations as $organization)
+                  @foreach($clubs as $club)
                   <tr>
-                    <td class="col-sm-1"><img class="org-logo" src="{{$organization->logo}}"></td>
-                    <td class="col-sm-4">{{$organization->name}}</td>
+                    <td class="col-sm-1"><img class="org-logo" src="{{$club->logo}}"></td>
+                    <td class="col-sm-4">{{$club->name}}</td>
                     <td class="col-sm-1 hidden-sm hidden-xs">8</td>
                     <td class="col-sm-1 hidden-sm hidden-xs">125</td>
                     <td class="col-sm-1 hidden-sm hidden-xs">125</td>
                     <td class="col-sm-2">$923,629</td>
                     <td class="col-sm-2" class="text-right" >
-                      <a href="{{URL::action('OrganizationController@show', $organization->id)}}" class="btn btn-xs btn-primary active" role="button">View
+                      <a href="{{URL::action('ClubController@show', $club->id)}}" class="btn btn-xs btn-primary active" role="button">View
                       </a>
                       <a class="btn btn-danger btn-xs" href="#">
                         <i class="fa fa-trash-o"></i>

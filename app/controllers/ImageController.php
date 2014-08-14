@@ -57,12 +57,12 @@ class ImageController extends BaseController {
 		$cropW = 		intval(Input::get('cropW'));
 		$cropH = 		intval(Input::get('cropH'));
 		$url = 			Input::get('url');
-
+		$path_parts = pathinfo($imgUrl);
 		//return $url.$imgUrl;
 
 		//return $cropW.' '.$cropH.' '.$imgX1.' '.$imgY1;
 
-		$filename = time()."-profile_pic.jpg";
+		$filename = time()."-profile_pic.".$path_parts['extension'] ;
     	$path = public_path('images/avatar/' . $filename);
 
 		$img = Image::make($url.$imgUrl);

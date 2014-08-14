@@ -7,8 +7,8 @@
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/morris.css')}}
   {{HTML::style('css/font-retina.css')}}
-  @if(Route::currentRouteName() == "dashboard.organization.create" ||
-  Route::currentRouteName() == "dashboard.organization.event.create"
+  @if(Route::currentRouteName() == "dashboard.club.create" ||
+  Route::currentRouteName() == "dashboard.club.event.create"
   )
   {{ HTML::style('css/dashboard/redactor.css')}}
   @endif

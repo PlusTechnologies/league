@@ -18,7 +18,7 @@ class DashboardController extends BaseController {
 		// 	->with('page_title', $title)
 		// 	->withUser($user);
 		if($user->type <> 2 ){
-			return Redirect::action('OrganizationController@index');
+			return Redirect::action('ClubController@index');
 		}
 
 		return Redirect::action('PlayerController@index');
@@ -27,12 +27,12 @@ class DashboardController extends BaseController {
 	public function element()
 	{
 		$user =Auth::user();
-		$organizationlist = $user->organizations;
-		//return $organizationlist;
+		$clublist = $user->clubs;
+		//return $clublist;
 		$title = 'League Together - Dashboard';
 		return View::make('pages.user.elements')
 			->with('page_title', $title)
-			->with('organizations', $organizationlist)
+			->with('clubs', $clublist)
 			->withUser($user);
 	}
 

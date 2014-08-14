@@ -18,9 +18,9 @@ class Evento extends Eloquent {
 		'close'			=>'required|date|after:open'
 	);
 
-	public function Organization()
+	public function Club()
     {
-        return $this->belongsTo('organization');
+        return $this->belongsTo('club');
     }
     public function Participants()
     {
@@ -61,7 +61,7 @@ class Evento extends Eloquent {
         $now = $now->format('Y/m/d');
         $stats  = DB::table('events AS e')
                 ->leftJoin('payment_item as pi', 'e.id', '=', 'pi.item')
-                ->where('e.organization_id', '=', $org)
+                ->where('e.club_id', '=', $org)
                 ->where('e.type','=',1)
                 ->orderBy('e.created_at', 'ASC')
                 ->get([
@@ -80,7 +80,7 @@ class Evento extends Eloquent {
         $now = $now->format('Y-m-d');
         $stats  = DB::table('events AS e')
                 ->leftJoin('payment_item as pi', 'e.id', '=', 'pi.item')
-                ->where('e.organization_id', '=', $org)
+                ->where('e.club_id', '=', $org)
                 ->where('e.type','=',2)
                 ->orderBy('e.created_at', 'ASC')
                 ->get([

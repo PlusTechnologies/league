@@ -5,7 +5,7 @@
       <a class="footer-brand"><div class="logo" style="background-image: url({{ URL::asset('images/league-together-logo.svg'); }})"></div></a>
       <div class="col-md-10 col-md-offset-1">
         <h1 class="text-center">Join Today, It's Free!</h1>
-<p class="text-center">League Together is a team management services build in the cloud centered around: organizations, players and parents. Now you can enjoy the game more and we will handle the rest.</p>
+<p class="text-center">League Together is a team management services build in the cloud centered around: clubs, players and parents. Now you can enjoy the game more and we will handle the rest.</p>
 </div>
 </div>
 <div class="row">

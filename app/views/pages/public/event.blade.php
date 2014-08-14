@@ -47,8 +47,8 @@
         </div>
       </div>
       <div class="col-sm-4 col-event text-center">
-        {{HTML::image($event->organization->logo, $event->organization->name, array('class'=>'','width'=>200));}}
-        <h3>{{$event->organization->name}}</h3>
+        {{HTML::image($event->club->logo, $event->club->name, array('class'=>'','width'=>200));}}
+        <h3>{{$event->club->name}}</h3>
         <p>Open registration date: {{ date("M d, Y",strtotime($event->open)) }}</p>
       </div>
       <div class="col-sm-4 col-price">
@@ -81,8 +81,8 @@
             <strong>Date: </strong> {{ date("M d",strtotime($event->start)) }} - {{ date("M d",strtotime($event->end)) }}
           </p>
           <p>For more information<br>
-            <strong><span class="retinaicon-communication-002"></span> &nbsp; Call:</strong> &nbsp; {{$event->organization->phone}} <br>
-            <strong><span class="retinaicon-essentials-156"></span>  &nbsp; Email:</strong> &nbsp; {{$event->organization->email}}
+            <strong><span class="retinaicon-communication-002"></span> &nbsp; Call:</strong> &nbsp; {{$event->club->phone}} <br>
+            <strong><span class="retinaicon-essentials-156"></span>  &nbsp; Email:</strong> &nbsp; {{$event->club->email}}
           </p>
         </div>
       </div>

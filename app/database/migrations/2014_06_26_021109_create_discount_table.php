@@ -15,8 +15,8 @@ class CreateDiscountTable extends Migration {
 		Schema::create('discounts', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('organization_id')->unsigned()->index();
-			$table->foreign('organization_id')->references('id')->on('organizations');
+			$table->integer('club_id')->unsigned()->index();
+			$table->foreign('club_id')->references('id')->on('clubs');
 			$table->string('name')->unique();
 			$table->date('start');
 			$table->date('end');

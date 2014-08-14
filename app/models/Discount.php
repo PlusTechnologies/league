@@ -62,20 +62,20 @@ class Discount extends Eloquent {
     //http://daylerees.com/trick-validation-within-models
     //***************************************************
 
-	public function Organization()
+	public function Club()
     {
-        return $this->belongsTo('organization');
+        return $this->belongsTo('club');
     }
 
     public function expired($org)
     {
     	$now = new DateTime;
     	$now->setTimezone(new DateTimeZone('America/Chicago'));
-        $discounts = Discount::where('organization_id','=',$org)->where('end','<',$now)->get();
+        $discounts = Discount::where('club_id','=',$org)->where('end','<',$now)->get();
 
         $stats  = DB::table('discounts AS d')
                 ->leftjoin('payments AS p', 'd.id', '=', 'p.promo')
-                ->where('d.organization_id', '=', $org)
+                ->where('d.club_id', '=', $org)
                 ->where('d.end','<',$now)
                 ->groupBy('d.name')
                 ->orderBy('p.created_at', 'ASC')
@@ -96,7 +96,7 @@ class Discount extends Eloquent {
 
          $stats  = DB::table('discounts AS d')
                 ->leftjoin('payments AS p', 'd.id', '=', 'p.promo')
-                ->where('d.organization_id', '=', $org)
+                ->where('d.club_id', '=', $org)
                 ->where('d.end','>',$now)
                 ->groupBy('d.name')
                 ->orderBy('p.created_at', 'ASC')

@@ -80,7 +80,7 @@
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <label>Account Type</label>
-                                    {{Form::select('type', array('1' => 'Organization', '2' => 'Player'), '1', array('class'=>'select-block','tabindex'=>'1') ) }}
+                                    {{Form::select('type', array('1' => 'Club', '2' => 'Player'), '1', array('class'=>'select-block','tabindex'=>'1') ) }}
                                 </div>
                             </div>
                         </div>

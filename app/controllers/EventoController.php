@@ -4,7 +4,7 @@ class EventoController extends BaseController {
 
 	 public function __construct()
     {
-        $this->beforeFilter('organization', ['except'=>'publico']);
+        $this->beforeFilter('club', ['except'=>'publico']);
         $this->beforeFilter('csrf', ['on' => array('create','edit')]);
     }
 
@@ -18,14 +18,14 @@ class EventoController extends BaseController {
 
 		setlocale(LC_MONETARY,"en_US");
 		$user= Auth::user();
-		$organization= Organization::find($id);
+		$club= Club::find($id);
 		$e = new Evento;
-		$title = 'League Together - '.$organization->name.' Event';
+		$title = 'League Together - '.$club->name.' Event';
 
 		// return $e->tryouts($id);
-		return View::make('pages.user.organization.event.default')
+		return View::make('pages.user.club.event.default')
 		->with('page_title', $title)
-		->with('organization', $organization)
+		->with('club', $club)
 		->withCamps($e->camps($id))
 		->withTryouts($e->tryouts($id))
 		->withUser($user);
@@ -39,11 +39,11 @@ class EventoController extends BaseController {
 	public function create($id)
 	{
 		$user =Auth::user();
-		$organization = Organization::find($id);
-		$title = 'League Together - '.$organization ->name.' Event';
-		return View::make('pages.user.organization.event.create')
+		$club = Club::find($id);
+		$title = 'League Together - '.$club ->name.' Event';
+		return View::make('pages.user.club.event.create')
 		->with('page_title', $title)
-		->with('organization', $organization)
+		->with('club', $club)
 		->withUser($user);
 
 	}
@@ -56,7 +56,7 @@ class EventoController extends BaseController {
 	public function store($id)
 	{
 		
-		$organization = Organization::find($id);	
+		$club = Club::find($id);	
 
 		$validator= Validator::make(Input::all(), Evento::$rules);
 
@@ -74,13 +74,13 @@ class EventoController extends BaseController {
 			$event->open       	= Input::get( 'open' );
 			$event->close       = Input::get( 'close' );
 
-			Organization::find($id)->Events()->save($event);
+			Club::find($id)->Events()->save($event);
 
 			if ( $event->id )
 			{
                 // Redirect with success message.
        
-				return Redirect::action('OrganizationController@show')
+				return Redirect::action('ClubController@show')
 				->with( 'messages', 'Event created successfully');
 			}
 
@@ -88,7 +88,7 @@ class EventoController extends BaseController {
 		}
         // Get validation errors (see Ardent package)
 		$error = $validator->errors()->all(':message');
-		return Redirect::action('EventoController@create',$organization->id )
+		return Redirect::action('EventoController@create',$club->id )
 		->withErrors($validator)
 		->withInput();
 	}
@@ -99,14 +99,14 @@ class EventoController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($organizationid,$event)
+	public function show($clubid,$event)
 	{
 
 		setlocale(LC_MONETARY,"en_US");
 		$user= Auth::user();
 
-		$organization = User::with('organizations')->whereid($user->id)->firstOrFail();
-		$e = Evento::with('organization')->whereId($event)->firstOrFail();
+		$club = User::with('clubs')->whereid($user->id)->firstOrFail();
+		$e = Evento::with('club')->whereId($event)->firstOrFail();
 		$participant = Evento::with('participants')->whereId($event)->firstOrFail();
 		// $participant = DB::table('event_participant')
 		// ->join('payments', 'event_participant.payment', '=', 'payments.id')
@@ -116,12 +116,12 @@ class EventoController extends BaseController {
 		$title = 'League Together - '.$e->name.' Event';
 
 		//return $participant;
-		return View::make('pages.user.organization.event.show')
+		return View::make('pages.user.club.event.show')
 		->with('page_title', $title)
 		->withEvent($e)
 		->withUser($user)
 		->with('message', 'message flash here')
-		->with('organization', $organization)
+		->with('club', $club)
 		->with('participants', $participant->participants);		
 		
 	}
@@ -134,7 +134,7 @@ class EventoController extends BaseController {
 	 */
 	public function publico($id)
 	{	
-		$e = Evento::with('organization')->whereId($id)->firstOrFail();
+		$e = Evento::with('club')->whereId($id)->firstOrFail();
 		$eval = Evento::validate($id);
 		$title = 'League Together - '.$e->name.' Event';
 		return View::make('pages.public.event')
@@ -154,15 +154,15 @@ class EventoController extends BaseController {
 	public function edit($org, $eve)
 	{
 
-		$event = Evento::whereId($eve)->where('organization_id', '=', $org)->firstOrFail();
+		$event = Evento::whereId($eve)->where('club_id', '=', $org)->firstOrFail();
 		$user =Auth::user();
-		$organization = Organization::find($org);
+		$club = Club::find($org);
 
-		return $organization;
-		$title = 'League Together - '.$organization ->name.' Event';
-		return View::make('pages.user.organization.event.edit')
+		return $club;
+		$title = 'League Together - '.$club ->name.' Event';
+		return View::make('pages.user.club.event.edit')
 		->with('page_title', $title)
-		->with('organization', $organization)
+		->with('club', $club)
 		->with('event', $event)
 		->withUser($user);
 	}

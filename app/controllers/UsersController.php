@@ -222,7 +222,7 @@ class UsersController extends Controller
     return View::make('pages.signup.player')->with('page_title', $title);
   // return View::make(Config::get('confide::signup_form'));
   }
-  public function organization()
+  public function club()
   {
     $title = 'League Together - New Account';
     return View::make('pages.signup.default')->with('page_title', $title);

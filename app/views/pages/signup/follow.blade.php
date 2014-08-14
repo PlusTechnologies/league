@@ -26,16 +26,16 @@
           <hr>
           <p>Follow your favorite club and get access to announcements, events, and special promotions</p>
           <hr>
-            {{ Form::open(array('action' => 'OrganizationController@followsave', 'method' => 'post')) }}
+            {{ Form::open(array('action' => 'ClubController@followsave', 'method' => 'post')) }}
             <div class="row">
               <div class="col-sm-8">
                 <div class="form-group">
                   <select class="form-control select-block" id="follow-list" name="club">
                     <option></option>
-                    @if($organizations)
-                      @foreach ($organizations as $organization) 
-                        <option value="{{$organization->id}}">
-                          {{$organization->name}} - {{$organization->city}}, {{$organization->state}}
+                    @if($clubs)
+                      @foreach ($clubs as $club) 
+                        <option value="{{$club->id}}">
+                          {{$club->name}} - {{$club->city}}, {{$club->state}}
                         </option>
                       @endforeach
                     @endif
@@ -67,7 +67,7 @@
                       <b>Contact:</b> {{$follower->email}}
                     </p>
                     <p>
-                    {{ Form::open(array('action' => array('OrganizationController@unfollow', $follower->id), 'method' => 'DELETE', 'id'=>'p-delete')) }}
+                    {{ Form::open(array('action' => array('ClubController@unfollow', $follower->id), 'method' => 'DELETE', 'id'=>'p-delete')) }}
                     <div class="btn-group btn-group-xs">
                         <button type="submit" class="btn btn-danger">Unfollow</button>
                     </div>

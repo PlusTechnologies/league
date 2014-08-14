@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                     <a href="{{URL::action('UsersController@organization')}}">
+                                     <a href="{{URL::action('UsersController@club')}}">
                                         <div class="signup-icon"><i class="retinaicon-business-012 middle-icon"></i></div>
                                         <label>Team/Club Administrator</label>
                                     </a>

@@ -17,9 +17,9 @@ class CreateFollowersTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->integer ('organization_id')->unsigned();
-			$table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
-			$table->unique( array('user_id','organization_id') );
+			$table->integer ('club_id')->unsigned();
+			$table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
+			$table->unique( array('user_id','club_id') );
 			$table->timestamps();
 		});
 	}

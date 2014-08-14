@@ -27,8 +27,8 @@ class User extends Eloquent implements ConfideUserInterface
         ->withPivot('relation')
         ->withTimestamps();  
     }
-    public function Organizations() {
-        return $this->belongsToMany('Organization');    
+    public function Clubs() {
+        return $this->belongsToMany('Club');    
     }
 
     public function Events() {
@@ -37,8 +37,8 @@ class User extends Eloquent implements ConfideUserInterface
     }
     public function Followers() {
         return $this->hasMany('Follower')
-        ->join('organizations', 'followers.organization_id', '=', 'organizations.id')
-        ->select('followers.id', 'organizations.name', 'organizations.logo', 'organizations.email', 'organizations.city','organizations.state');
+        ->join('clubs', 'followers.club_id', '=', 'clubs.id')
+        ->select('followers.id', 'clubs.name', 'clubs.logo', 'clubs.email', 'clubs.city','clubs.state');
     }
 
 }

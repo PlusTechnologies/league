@@ -17,10 +17,10 @@ Route::get('login', 								array('as' => 'login', 								'uses' => 'UsersContr
 Route::get('logout', 								array('as' => 'logout', 							'uses' => 'UsersController@getLogout'));
 Route::get('signup/family', 				array('as' => 'signup.family', 				'uses' => 'UsersController@family'));
 Route::get('signup/family/player', 	array('before' => 'auth', 'as' => 'signup.family.player', 'uses' 	=> 'PlayerController@createplayer'));
-Route::get('signup/family/follow', 	array('before' => 'auth', 'as' => 'signup.family.follow', 'uses' 		=> 'OrganizationController@follow'));
+Route::get('signup/family/follow', 	array('before' => 'auth', 'as' => 'signup.family.follow', 'uses' 		=> 'ClubController@follow'));
 Route::get('signup/player', 				array('as' => 'signup.player', 				'uses' => 'UsersController@player'));
-Route::get('signup/organization', 	array('as' => 'signup.organization', 	'uses' => 'UsersController@organization'));
-Route::get('signup/organization/create', 	array('as' => 'signup.organization.create', 	'uses' => 'OrganizationController@createorganization'));
+Route::get('signup/club', 	array('as' => 'signup.club', 	'uses' => 'UsersController@club'));
+Route::get('signup/club/create', 	array('as' => 'signup.club.create', 	'uses' => 'ClubController@createclub'));
 
 
 
@@ -33,21 +33,21 @@ Route::resource( 'players', 'PlayerController');
 //Custome Confide RESTfull
 Route::post('users',                      'UsersController@create');
 Route::post('signup/family/player', 			'PlayerController@store');
-Route::post('signup/family/follow', 			'OrganizationController@followsave');
-Route::delete('signup/family/follow/{id}', 		'OrganizationController@unfollow');
+Route::post('signup/family/follow', 			'ClubController@followsave');
+Route::delete('signup/family/follow/{id}', 		'ClubController@unfollow');
 
 // Dasboard routes
 Route::get('dashboard', 		array('before' => 'auth','as' => 'dashboard', 'uses' => 'DashboardController@show'));
 Route::get('elements', 			array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
 
 Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function() {
-	Route::resource('organization', 'OrganizationController');
-	Route::resource('organization.event', 'EventoController');
-	Route::resource('organization.discount', 'DiscountController');
-	Route::resource('organization.teams', 'TeamController');
-	Route::resource('organization.communication', 'CommunicationController');
-	Route::get( 'organization.accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
-	Route::get( 'organization.roster', 			array('as' => 'roster', 'uses' => 'RosterController@index'));
+	Route::resource('club', 'ClubController');
+	Route::resource('club.event', 'EventoController');
+	Route::resource('club.discount', 'DiscountController');
+	Route::resource('club.teams', 'TeamController');
+	Route::resource('club.communication', 'CommunicationController');
+	Route::get( 'club.accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
+	Route::get( 'club.roster', 			array('as' => 'roster', 'uses' => 'RosterController@index'));
 	Route::get( 'player', 									array('as' => 'player', 'uses' => 'PlayerController@index'));
 
 });
@@ -70,7 +70,7 @@ Route::get('api/graph/discount', 		'GraphController@discount');
 Route::post('api/image/upload', 		'ImageController@upload');
 Route::post('api/image/crop', 			'ImageController@crop');
 Route::get('api/player/{id}', 			'PlayerController@show');
-Route::get('api/organization/{id}', 'OrganizationController@organizationshow');
+Route::get('api/club/{id}', 'ClubController@clubshow');
 
 //Route::get( '/email/receipt/{id}',         		array('before' => 'auth','as' => 'email.receipt', 'uses' => 'PaymentController@receipt'));
 

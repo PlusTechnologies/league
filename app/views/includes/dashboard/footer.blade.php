@@ -16,8 +16,8 @@
 {{ HTML::script('//rawgithub.com/timrwood/moment/2.1.0/min/moment.min.js')}}
 {{ HTML::script('//rawgithub.com/gf3/moment-range/master/lib/moment-range.js')}}
 {{ HTML::script('//cdn.oesmith.co.uk/morris-0.5.1.min.js')}}
-@if(Route::currentRouteName() == "dashboard.organization.create" ||
-Route::currentRouteName() == "dashboard.organization.event.create"
+@if(Route::currentRouteName() == "dashboard.club.create" ||
+Route::currentRouteName() == "dashboard.club.event.create"
 )
 {{ HTML::script('js/dashboard/redactor.js')}}
 @endif

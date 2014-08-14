@@ -60,7 +60,7 @@ class UserRepository
             );
             switch ($user->type){
               case 1:
-                return Redirect::action('OrganizationController@createorganization')
+                return Redirect::action('ClubController@createclub')
                 ->with('user', $user->id)
                 ->with('notice', Lang::get('confide::confide.alerts.account_created') );
                 break;

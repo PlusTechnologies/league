@@ -12,12 +12,12 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="org-thumb">
-                        {{HTML::image($organization->logo, $organization->name, array('class'=>'','width'=>100));}}
+                        {{HTML::image($club->logo, $club->name, array('class'=>'','width'=>100));}}
                       </div>
                     </div>
                   </div>
                 </div>
-                <h3 class="org-name">{{$organization->name}}</h3>
+                <h3 class="org-name">{{$club->name}}</h3>
                 <h2 class="home-title">Overview</h2>
               </div>
             </div>
@@ -47,7 +47,7 @@
                   <h3 class="panel-title ">
                     <div class="row">
                       <div class = "col-md-12">Events
-                        <a class="pull-right" href="{{ URL::action('EventoController@index', $organization->id) }}">
+                        <a class="pull-right" href="{{ URL::action('EventoController@index', $club->id) }}">
                           View All
                         </a>
                       </div>

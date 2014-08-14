@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     @endif
-                    {{ Form::open(array('action' => array('DiscountController@update',$organization->id, $discount->id ),'id'=>'update_discount','method' => 'PUT')) }}
+                    {{ Form::open(array('action' => array('DiscountController@update',$club->id, $discount->id ),'id'=>'update_discount','method' => 'PUT')) }}
                     <h3 class="">Discount details: {{$discount->name}}</h3>
                     <hr>
                     <div class="row">
@@ -74,7 +74,7 @@
                             <button class="btn btn-primary btn-sm btn-block" id="update-discount" type="submit" >Update discount</button>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ URL::action('DiscountController@index', $organization->id) }}" class="btn btn-info btn-sm btn-block" >Cancel</a>
+                            <a href="{{ URL::action('DiscountController@index', $club->id) }}" class="btn btn-info btn-sm btn-block" >Cancel</a>
                         </div>
                     </div>
                     {{ Form::close() }}

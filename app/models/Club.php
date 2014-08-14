@@ -1,6 +1,6 @@
 <?php
 
-class Organization extends Eloquent{
+class Club extends Eloquent{
 
 	protected $fillable = array('name','email','phone', 'logo','sport','description','add1','city','state','zip');
 	public static $rules = array(

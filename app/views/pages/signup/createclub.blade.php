@@ -22,29 +22,29 @@
       @endif
       <div class="row">
         <div class="col-md-12">
-          <h3>Create your Club Organization</h3>
+          <h3>Create your Club</h3>
           <hr>
           <p><b>Instructions: </b> Please add your club information. The information provided here will be used all through out the app.</p>
           <hr>
-          @if($organizations)
+          @if($clubs)
           <div class="row">
-              @foreach ($organizations as $organization) 
+              @foreach ($clubs as $club) 
               <div class="col-sm-12">
                 <div class="row">
                 <div class="col-xs-12 col-sm-3">
                     <figure>
-                        <img width="100" class="img img-responsive" alt="" src="{{$organization->logo}}">
+                        <img width="100" class="img img-responsive" alt="" src="{{$club->logo}}">
                     </figure>
                 </div>
                 <div class="col-xs-12 col-sm-9">
-                    <h3>{{$organization->name}}</h3>
-                    <p><strong>Registared: </strong>{{date('M d, Y',strtotime($organization->created_at));}} <br>
+                    <h3>{{$club->name}}</h3>
+                    <p><strong>Registared: </strong>{{date('M d, Y',strtotime($club->created_at));}} <br>
                       
                     </p>
                     <p>
-                    {{ Form::open(array('action' => array('OrganizationController@destroy', $organization->id), 'method' => 'DELETE', 'id'=>'p-delete')) }}
+                    {{ Form::open(array('action' => array('ClubController@destroy', $club->id), 'method' => 'DELETE', 'id'=>'p-delete')) }}
                     <div class="btn-group btn-group-xs">
-                        <button type="button" class="btn btn-primary edit-organization" data-id="{{$organization->id}}">Edit</button>
+                        <button type="button" class="btn btn-primary edit-club" data-id="{{$club->id}}">Edit</button>
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </div>
                     {{ Form::close() }}
@@ -80,11 +80,11 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h3 class="modal-title" id="myModalLabel">Add players</h3>
       </div>
-      {{ Form::open(array('route' => 'dashboard.organization.store','id'=>'new_organization','method' => 'post', 'files'=>true)) }}
+      {{ Form::open(array('route' => 'dashboard.club.store','id'=>'new_club','method' => 'post', 'files'=>true)) }}
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4">
-            <div id="upimageorganization"></div>
+            <div id="upimageclub"></div>
             <input type="hidden" id="croppic" name="logo" value="/images/default-avatar.png">
           </div>
           <div class="col-md-8">
@@ -218,7 +218,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h3 class="modal-title" id="myModalLabel">Edit players</h3>
       </div>
-      {{ Form::open(array('url' => '/organizations/','id'=>'edit_player','method' => 'PUT', 'files'=>true)) }}
+      {{ Form::open(array('url' => '/clubs/','id'=>'edit_player','method' => 'PUT', 'files'=>true)) }}
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4">
@@ -303,8 +303,8 @@
 $(document).ready(function() {
   $('#description').redactor();
 
-  $(".edit-organization").click(function(){
-    $.get( "/api/organization/"+ $(this).data("id"))
+  $(".edit-club").click(function(){
+    $.get( "/api/club/"+ $(this).data("id"))
       .done(function( data ) {
 
       return;
@@ -364,8 +364,8 @@ $(document).ready(function() {
       "url": window.location.origin,
     }
   }
-  var cropperHeader = new Croppic('upimageorganization', cropperOptions);
-  var cropperHeader = new Croppic('editimageorganization', cropperOptions2);
+  var cropperHeader = new Croppic('upimageclub', cropperOptions);
+  var cropperHeader = new Croppic('editimageclub', cropperOptions2);
 });
   </script>
   @stop

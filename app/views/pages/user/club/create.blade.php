@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-            <h3 class="">Add your organization—depending on your payment plan you can manage one or organizations.</h3>
+            <h3 class="">Add your club—depending on your payment plan you can manage one or clubs.</h3>
             <br>
             <div class="col-sm-8 clearfix">
                 <div class="row">
@@ -24,8 +24,8 @@
                         </div>
                     </div>
                     @endif
-                    {{ Form::open(array('route' => 'dashboard.organization.store','id'=>'new_organization','method' => 'post', 'files'=>true)) }}
-                    <h3 class="">Organization details</h3>
+                    {{ Form::open(array('route' => 'dashboard.club.store','id'=>'new_club','method' => 'post', 'files'=>true)) }}
+                    <h3 class="">Club details</h3>
                     <hr>
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4">
@@ -168,7 +168,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4">
-                            <button class="btn btn-primary btn-block" id="register">Create Organization</button>
+                            <button class="btn btn-primary btn-block" id="register">Create Club</button>
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <a href="{{ URL::action('DashboardController@show') }}" class="btn btn-info btn-block" >Cancel</a>

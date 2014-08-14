@@ -36,7 +36,7 @@ public function addtocart()
 		$group 	= Input::get('team');
 		$id 	= Input::get('event');
 		$qty	= Input::get('qty');
-		$e = Evento::with('organization')->whereId(Input::get('event'))->firstOrFail();
+		$e = Evento::with('club')->whereId(Input::get('event'))->firstOrFail();
 
 		if(!$group == 1){
 
@@ -46,8 +46,8 @@ public function addtocart()
 				'price'			=> $e->fee,
 				'quantity'		=> $qty,
 				'tax'      		=> 0,
-				'org_name' 		=> $e->organization->name,
-				'org_id' 		=> $e->organization->id,
+				'org_name' 		=> $e->club->name,
+				'org_id' 		=> $e->club->id,
 				'event'			=> $e->id,
 				);
 			Cart::insert($item);
@@ -60,8 +60,8 @@ public function addtocart()
 				'price'			=> $e->group_fee,
 				'quantity'		=> $qty,
 				'tax'      		=> 0,
-				'org_name' 		=> $e->organization->name,
-				'org_id' 		=> $e->organization->id,
+				'org_name' 		=> $e->club->name,
+				'org_id' 		=> $e->club->id,
 				'event'			=> $e->id,
 				);
 			Cart::insert($item);
@@ -209,7 +209,7 @@ public function store()
 		
 
 		if($payment->id){
-			$organization = "";
+			$club = "";
 			foreach( Cart::contents() as $item){
 				$salesfee = ($item->price / getenv("SV_FEE")) - $item->price; 
 				$sale = new Item;
@@ -228,11 +228,11 @@ public function store()
 				$participant->payment 	= $payment->id;
 				$participant->save();
 
-				$organization[] = $item->org_id;
+				$club[] = $item->org_id;
 			}	
 		}
 		//email receipt 
-		$payment->receipt($transaction, $organization);
+		$payment->receipt($transaction, $club);
 		return Redirect::action('PaymentController@success')->with('result',$transaction);
 	}
 }
