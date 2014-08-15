@@ -41,28 +41,30 @@ public function addtocart()
 		if(!$group == 1){
 
 			$item = array(
-				'id'			=> $e->id.$group,
+				'id'				=> $e->id.$group,
 				'name'			=> $e->name. ' - Player Registration',
 				'price'			=> $e->fee,
-				'quantity'		=> $qty,
-				'tax'      		=> 0,
-				'org_name' 		=> $e->club->name,
+				'quantity'	=> $qty,
+				'tax'      	=> 0,
+				'org_name' 	=> $e->club->name,
 				'org_id' 		=> $e->club->id,
 				'event'			=> $e->id,
+				'player_id'	=> array()
 				);
 			Cart::insert($item);
 
 		}else{
 
 			$item = array(
-				'id'			=> $e->id.$group,
+				'id'				=> $e->id.$group,
 				'name'			=> $e->name . ' - Team Registration',
 				'price'			=> $e->group_fee,
-				'quantity'		=> $qty,
-				'tax'      		=> 0,
-				'org_name' 		=> $e->club->name,
+				'quantity'	=> $qty,
+				'tax'     	=> 0,
+				'org_name'	=> $e->club->name,
 				'org_id' 		=> $e->club->id,
 				'event'			=> $e->id,
+				'player_id'	=> array()
 				);
 			Cart::insert($item);
 		}
@@ -197,14 +199,14 @@ public function store()
 	}else{
 		
 		$payment->user        	= $user->id;
-		$payment->type     		= $transaction->type;
+		$payment->type     			= $transaction->type;
 		$payment->transaction   = $transaction->transactionid;	
-		$payment->subtotal 		= $transaction->subtotal;
+		$payment->subtotal 			= $transaction->subtotal;
 		$payment->service_fee   = $transaction->fee;
-		$payment->total   		= $transaction->total;
-		$payment->promo      	= $transaction->promo;
-		$payment->tax   		= $transaction->tax;
-		$payment->discount   	= $transaction->discount;
+		$payment->total   			= $transaction->total;
+		$payment->promo      		= $transaction->promo;
+		$payment->tax   				= $transaction->tax;
+		$payment->discount   		= $transaction->discount;
 		$payment->save();
 		
 
@@ -360,5 +362,20 @@ public function destroy($id)
 {
 //
 }
+
+public function selectplayer()
+{
+	$cart = Cart::contents();
+	// return $cart;
+	return View::make('pages.public.select')
+		->with('page_title', 'Select Player')
+		->with('products',$cart );
+}
+
+public function  addplayer($id)
+{
+	return "here";
+}
+
 
 }

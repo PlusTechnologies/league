@@ -55,15 +55,19 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 Route::get( 'public/event/{id}','EventoController@publico');
 
 //Payment Process routes
-Route::get('cart','PaymentController@index');
-Route::get('cart/remove/{id}','PaymentController@removefromcart');
-Route::post('cart/add','PaymentController@addtocart');
+Route::get('cart',							'PaymentController@index');
+Route::get('cart/remove/{id}',	'PaymentController@removefromcart');
+Route::post('cart/add',					'PaymentController@addtocart');
 
-Route::get( 'checkout',         	 array('before' => 'auth','as' => 'checkout', 'uses' => 'PaymentController@create'));
-Route::get( 'checkout/success',    array('before' => 'auth','as' => 'checkout.success', 'uses' => 'PaymentController@success'));
-Route::post( 'checkout/store',     array('before' => 'auth','as' => 'checkout.store', 'uses' => 'PaymentController@store'));
-Route::post( 'checkout/validate',  array('before' => 'auth','as' => 'checkout.validate', 'uses' => 'PaymentController@validate'));
-Route::post( 'checkout/discount',  array('before' => 'auth','as' => 'checkout.discount', 'uses' => 'DiscountController@validate'));
+Route::get('cart/select',				array('before' => 'auth','as' => 'checkout.select', 'uses' => 'PaymentController@selectplayer'));
+Route::post('cart/select/{id}',	array('before' => 'auth','as' => 'checkout.select.add', 'uses' => 'PaymentController@addplayer'));
+
+
+Route::get( 'checkout',         	 array('before' => 'auth','as' => 'checkout', 					'uses' => 'PaymentController@create'));
+Route::get( 'checkout/success',    array('before' => 'auth','as' => 'checkout.success', 	'uses' => 'PaymentController@success'));
+Route::post( 'checkout/store',     array('before' => 'auth','as' => 'checkout.store', 		'uses' => 'PaymentController@store'));
+Route::post( 'checkout/validate',  array('before' => 'auth','as' => 'checkout.validate', 	'uses' => 'PaymentController@validate'));
+Route::post( 'checkout/discount',  array('before' => 'auth','as' => 'checkout.discount', 	'uses' => 'DiscountController@validate'));
 
 //API
 Route::get('api/graph/discount', 		'GraphController@discount');

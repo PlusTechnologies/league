@@ -375,7 +375,6 @@ box-shadow: 0 3px 20px rgba(0, 0, 0, .175);*/
 .app-title .image i{
    font-size:50px;
    line-height: 0;
-   padding-right: 25px;
 }
 div.toolbar-view {
    background: linear-gradient(#3895cb, #015e94) repeat scroll 0 0 rgba(0, 0, 0, 0);

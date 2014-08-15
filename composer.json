@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"zizaco/confide": "~4.0@dev",
-		"intervention/image": "2.*"
+		"intervention/image": "2.*",
+		"nesbot/carbon": "*"
 	},
 	"autoload": {
 		"classmap": [
