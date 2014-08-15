@@ -1,4 +1,6 @@
-<?php namespace Intervention\Image;
+<?php
+
+namespace Intervention\Image;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Response as IlluminateResponse;
@@ -20,23 +22,11 @@ class ImageServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('intervention/image');
-    }
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $app = $this->app;
-
-        $app['image'] = $app->share(function ($app) {
-            return new ImageManager($app['config']);
-        });
 
         // try to create imagecache route only if imagecache is present
-        if (class_exists('Intervention\Image\ImageCache')) {
+        if (class_exists('Intervention\\Image\\ImageCache')) {
+
+            $app = $this->app;
 
             // load imagecache config
             $app['config']->package('intervention/imagecache', __DIR__.'/../../../../imagecache/src/config', 'imagecache');
@@ -98,6 +88,20 @@ class ImageServiceProvider extends ServiceProvider
                 }))->where(array('template' => join('|', array_keys($config->get('imagecache::templates'))), 'filename' => '^[\/\w.-]+$'));
             }
         }
+    }
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $app = $this->app;
+
+        $app['image'] = $app->share(function ($app) {
+            return new ImageManager($app['config']->get('image::config'));
+        });
     }
 
     /**
