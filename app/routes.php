@@ -130,4 +130,3 @@ Route::get('edit',[
 /*
 *Update the profile information
 */
-Route::POST( 'pages/user/profile/edit','UsersController@updateProfile');
