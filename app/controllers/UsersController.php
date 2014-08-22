@@ -242,5 +242,25 @@ class UsersController extends Controller
   {
 
   }
+/**
+  * Displays the user profile
+  *
+  * @return  Illuminate\Http\Response
+  */
+  public function getUserProfile()
+  {
+      $title = 'User Profile Details';
+      return View::make('pages.user.profile.profile')->with('page_title', $title);
+  }
 
+  public function editUserProfile()
+  {
+      $title = 'Edit User Profile';
+      return View::make('pages.user.profile.edit')->with('page_title', $title);
+  }
+
+  public function updateProfile()
+  {
+      return 'In here but not getting it all...About to update your information';
+  }
 }

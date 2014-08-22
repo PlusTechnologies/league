@@ -115,3 +115,19 @@ HTML::macro('smart_link', function($route)
     { $active = "active";} else { $active = '';}
     return $active;
 });
+
+/*
+*Get the profile page route
+*/
+Route::get( 'pages/user/profile/profile','UsersController@getUserProfile');
+/*
+* Edit profile route
+*/
+Route::get('edit',[
+	'as' => 'edit_profile',
+	'uses' => 'UsersController@editUserProfile'
+	]);
+/*
+*Update the profile information
+*/
+Route::POST( 'pages/user/profile/edit','UsersController@updateProfile');
