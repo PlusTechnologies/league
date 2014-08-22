@@ -122,9 +122,9 @@ label {
 .widget .btn-group.mbl, .widget .form-group {
     margin-bottom: 0px !important;
 }
-.widget button.btn {
+/*.widget button.btn {
     padding:10px 0px 10px 5px;
-}
+}*/
 .space-top-1 {
     margin-top:1em;
 }

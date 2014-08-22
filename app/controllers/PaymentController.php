@@ -37,7 +37,6 @@ public function addtocart()
 		$id 	= Input::get('event');
 		$qty	= Input::get('qty');
 		$e = Evento::with('club')->whereId(Input::get('event'))->firstOrFail();
-
 		if(!$group == 1){
 
 			$item = array(
@@ -49,12 +48,11 @@ public function addtocart()
 				'org_name' 	=> $e->club->name,
 				'org_id' 		=> $e->club->id,
 				'event'			=> $e->id,
-				'player_id'	=> array()
+				'player_id'	=> ''
 				);
 			Cart::insert($item);
 
 		}else{
-
 			$item = array(
 				'id'				=> $e->id.$group,
 				'name'			=> $e->name . ' - Team Registration',
@@ -64,7 +62,7 @@ public function addtocart()
 				'org_name'	=> $e->club->name,
 				'org_id' 		=> $e->club->id,
 				'event'			=> $e->id,
-				'player_id'	=> array()
+				'player_id'	=> ''
 				);
 			Cart::insert($item);
 		}
@@ -188,7 +186,7 @@ public function store()
 	$user =Auth::user();
 	$param = array(
 		'customer_vault_id'	=> Input::get('vault'),
-		'discount'			=> Input::get('discount')
+		'discount'					=> Input::get('discount')
 	);
 
 	$payment = new Payment;
@@ -216,19 +214,32 @@ public function store()
 				$salesfee = ($item->price / getenv("SV_FEE")) - $item->price; 
 				$sale = new Item;
 				$sale->description 	= $item->name;
-				$sale->quantity 	= $item->quantity;
-				$sale->price 		= $item->price;
-				$sale->fee 			= $salesfee;
-				$sale->item      	= $item->event;
-				$sale->type     	= 1;
+				$sale->quantity 		= $item->quantity;
+				$sale->price 				= $item->price;
+				$sale->fee 					= $salesfee;
+				$sale->item      		= $item->event;
+				$sale->type     		= 1;
 				// $sale->discout	= ;
 				
 				Payment::find($payment->id)->Items()->save($sale);
-				$participant = new Participant;
-				$participant->event 	= $item->event;
-				$participant->user 		= $user->id;
-				$participant->payment 	= $payment->id;
-				$participant->save();
+				if($item->player_id){
+					foreach($item->player_id as $key => $playerid){
+						$participant = new Participant;
+						$participant->event 		= $item->event;
+						$participant->user 			= $user->id;
+						$participant->player 		= $playerid;
+						$participant->payment 	= $payment->id;
+						$participant->save();
+					}
+					
+				}else{
+					$participant 						= new Participant;
+					$participant->event 		= $item->event;
+					$participant->user 			= $user->id;
+					$participant->payment 	= $payment->id;
+					$participant->save();
+				}
+				
 
 				$club[] = $item->org_id;
 			}	
@@ -274,20 +285,19 @@ public function validate()
 	$user =Auth::user();
 	//validation done prior ajax
 	$param = array(
-		'ccnumber'			=> Input::get('card'),
+		'ccnumber'		=> Input::get('card'),
 		'ccexp'				=> Input::get('month').Input::get('year'),
-		'cvv'      			=> Input::get('cv'),
-		'address1'      	=> Input::get('address'),
-		'city'      		=> Input::get('city'),
-		'state'      		=> Input::get('state'),
-		'zip'				=> Input::get('zip')
+		'cvv'      		=> Input::get('cv'),
+		'address1'    => Input::get('address'),
+		'city'      	=> Input::get('city'),
+		'state'      	=> Input::get('state'),
+		'zip'					=> Input::get('zip')
 	);
 
 
 
 	$payment = new Payment;
 	$transaction = $payment->create_customer($param);
-
 
 	if($transaction->response == 3 || $transaction->response == 2 ){
 		$data = array(
@@ -365,17 +375,70 @@ public function destroy($id)
 
 public function selectplayer()
 {
+	$user =Auth::user();
 	$cart = Cart::contents();
+
 	// return $cart;
 	return View::make('pages.public.select')
 		->with('page_title', 'Select Player')
+		->withPlayers($user->players)
 		->with('products',$cart );
 }
 
-public function  addplayer($id)
-{
-	return "here";
-}
+public function  addplayertocart($id)
+{	
 
+	//get current values
+	$cart 		= Cart::item($id);
+	$player 	= $cart->player_id;
+	$selected = Input::get('player');
+	$index 		= Input::get('index');
+	
+	//validation
+	if(!$selected){
+		return Redirect::back();
+	}
+
+	//get player information
+	$player_data = Player::find($selected);
+
+	if($cart->player_id){
+		$array_count =  count($cart->player_id);
+	}else{ 
+		$array_count = '0';
+	};
+
+ 	//validate the number of player by the quantity of items that required a player
+ 	if( $array_count >= $cart->quantity){
+ 		return  $cart->toArray();
+ 		// return  'true';
+ 		return Redirect::back();
+ 	}else{
+ 		// return  'false array 0';
+ 		if($player){
+			$player[$index]= $selected;
+			$cart->player_id = $player;
+			//return 	$cart->toArray();
+			return Redirect::back();
+		}else{
+			$player[$index]= $selected;
+			$cart->player_id = $player;
+			//return  $cart->toArray();
+			return Redirect::back();
+		}
+ 	}
+
+	//return $new;
+	
+}
+public function removeplayertocart($id){
+	$index   	= Input::get('index');
+	$cart 		= Cart::item($id);
+	$player 	= $cart->player_id;
+	unset($player[$index]);
+	$cart->player_id = $player;
+
+	return Redirect::back();
+}
 
 }

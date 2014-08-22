@@ -90,19 +90,19 @@ class CardFlex{
 
 		$user =Auth::user();
 		$credentials = array(
-				'customer_vault'=> 'add_customer',
-				'username'		=> getenv("CF_NAME"),
-				'password'		=> getenv("CF_PASS"),
-				'first_name' 	=> $user->firstname,
-				'last_name'		=> $user->lastname,
-				'email' 		=> $user->email,
-				'phone'			=> $user->mobile
+				'customer_vault'	=> 'add_customer',
+				'username'				=> getenv("CF_NAME"),
+				'password'				=> getenv("CF_PASS"),
+				'first_name' 			=> $user->firstname,
+				'last_name'				=> $user->lastname,
+				'email' 					=> $user->email,
+				'phone'						=> $user->mobile
 		);
 
-		$merge = array_merge($credentials,$param);
+		$merge 	= array_merge($credentials,$param);
 		$params = http_build_query($merge) . "\n";
-		$uri = "https://secure.cardflexonline.com/api/transact.php";
-		$ch = curl_init($uri);
+		$uri 		= "https://secure.cardflexonline.com/api/transact.php";
+		$ch 		= curl_init($uri);
 		curl_setopt_array($ch, array(
 		CURLOPT_RETURNTRANSFER  =>true,
 		CURLOPT_VERBOSE     => 1,
@@ -113,8 +113,6 @@ class CardFlex{
 		curl_close($ch);
 		$response = array_merge_recursive($output);
 		return $response;
-
-
 		
 	}
 

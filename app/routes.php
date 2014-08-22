@@ -59,9 +59,9 @@ Route::get('cart',							'PaymentController@index');
 Route::get('cart/remove/{id}',	'PaymentController@removefromcart');
 Route::post('cart/add',					'PaymentController@addtocart');
 
-Route::get('cart/select',				array('before' => 'auth','as' => 'checkout.select', 'uses' => 'PaymentController@selectplayer'));
-Route::post('cart/select/{id}',	array('before' => 'auth','as' => 'checkout.select.add', 'uses' => 'PaymentController@addplayer'));
-
+Route::get('cart/select',					array('before' => 'auth','as' => 'checkout.select', 'uses' => 'PaymentController@selectplayer'));
+Route::post('cart/select/{id}',		array('before' => 'auth','as' => 'checkout.select.addplayer', 'uses' => 'PaymentController@addplayertocart'));
+Route::delete('cart/select/{id}', array('before' => 'auth','as' => 'checkout.select.removeplayer', 'uses' => 'PaymentController@removeplayertocart'));
 
 Route::get( 'checkout',         	 array('before' => 'auth','as' => 'checkout', 					'uses' => 'PaymentController@create'));
 Route::get( 'checkout/success',    array('before' => 'auth','as' => 'checkout.success', 	'uses' => 'PaymentController@success'));
