@@ -29,7 +29,7 @@ Route::get('users/confirm/{code}', 'UsersController@getConfirm');
 Route::get('users/reset_password/{token}', 'UsersController@getReset');
 Route::get('users/reset_password', 'UsersController@postReset');
 Route::controller( 'users', 'UsersController');
-Route::resource( 'players', 'PlayerController');
+
 //Custome Confide RESTfull
 Route::post('users',                      'UsersController@create');
 Route::post('signup/family/player', 			'PlayerController@store');
@@ -46,9 +46,11 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::resource('club.discount', 'DiscountController');
 	Route::resource('club.teams', 'TeamController');
 	Route::resource('club.communication', 'CommunicationController');
+	Route::resource( 'player', 'PlayerController');
+	Route::get( 'player', 					array('as' => 'player', 'uses' => 'PlayerController@index'));
 	Route::get( 'club.accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
 	Route::get( 'club.roster', 			array('as' => 'roster', 'uses' => 'RosterController@index'));
-	Route::get( 'player', 									array('as' => 'player', 'uses' => 'PlayerController@index'));
+	
 
 });
 

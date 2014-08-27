@@ -16,7 +16,7 @@
 		</div>
 			<h3>Main</h3>
 
-			<a href="/dashboard/club" class="{{ HTML::smart_link('dashboard/club') }}">
+			<a href="/dashboard" class="{{ HTML::smart_link('dashboard') }}">
 				<i class="retinaicon-essentials-006"></i> Dashboard
 			</a>
 
@@ -24,10 +24,7 @@
 				<i class="retinaicon-essentials-008"></i> Account Settings
 			</a>
 			{{Route::is('dashboard.club.index')}}
-			@if(Route::is('dashboard.club.show') || 
-				Route::is('dashboard.club.discount.index')|| 
-				Route::is('dashboard.club.event.index')
-			)
+			@if(Route::is('dashboard.club.show') || Route::is('dashboard.club.discount.index')|| Route::is('dashboard.club.event.index'))
 				<a href="{{URL::action('ClubController@show', $club->id)}}" class="{{HTML::smart_link('dashboard.club.show') }}">
              	 <i class="retinaicon-essentials-020"></i> Overview
             	</a>

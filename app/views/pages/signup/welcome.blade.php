@@ -25,7 +25,6 @@
                             </div>
                         </div>
                         @endif
-                        <h3>What is your role?</h3>
                         <hr>
                         <div class="row text-center">
                             <div class="col-xs-12 col-sm-4 col-md-4">

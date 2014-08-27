@@ -1,6 +1,6 @@
 <?php
 
-class PlayerController extends \BaseController {
+class PlayerController extends BaseController {
 
 
   public function createplayer()
@@ -22,7 +22,11 @@ class PlayerController extends \BaseController {
 	 */
 	public function index()
 	{
-		return "we are here";
+		$user = Auth::user();
+		$title = 'League Together - Player';
+    return View::make('pages.user.player.default')
+    ->with('page_title', $title)
+     ->with('user', $user);
 	}
 
 	/**

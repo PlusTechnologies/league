@@ -66,9 +66,9 @@
               <a href="#" class="btn btn-info btn-sm btn-block" >Add New Player</a>
             </div> 
             <div class="col-xs-12 col-sm-4 col-md-4">
-              <button  type="submit"class="btn btn-primary btn-sm btn-block" href="#">Finish
+              <a  href="{{ URL::route('dashboard') }}" class="btn btn-primary btn-sm btn-block" href="#">Finish
                 <i class="fa fa-arrow-right"></i>
-              </button>
+              </a>
             </div>
           </div>
         </div>
