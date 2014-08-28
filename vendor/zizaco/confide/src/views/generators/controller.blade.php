@@ -43,16 +43,18 @@ class {{ $class }} extends Controller
         $user = $repo->signup(Input::all());
 
         if ($user->id) {
-            Mail::queueOn(
-                Config::get('confide::email_queue'),
-                Config::get('confide::email_account_confirmation'),
-                compact('user'),
-                function ($message) use ($user) {
-                    $message
-                        ->to($user->email, $user->username)
-                        ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
-                }
-            );
+            if (Config::get('confide::signup_email')) {
+                Mail::queueOn(
+                    Config::get('confide::email_queue'),
+                    Config::get('confide::email_account_confirmation'),
+                    compact('user'),
+                    function ($message) use ($user) {
+                        $message
+                            ->to($user->email, $user->username)
+                            ->subject(Lang::get('confide::confide.email.account_confirmation.subject'));
+                    }
+                );
+            }
 
             return Redirect::action('{{ $namespace ? $namespace.'\\' : '' }}{{ $class }}{{ (! $restful) ? '@login' : '@postLogin' }}')
                 ->with('notice', Lang::get('confide::confide.alerts.account_created'));
@@ -189,7 +191,7 @@ class {{ $class }} extends Controller
                 ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-            return Redirect::action('{{ $namespace ? $namespace.'\\' : '' }}{{ $class }}@reset_password', array('token'=>$input['token']))
+            return Redirect::action('{{ $namespace ? $namespace.'\\' : '' }}{{ $class }}@resetPassword', array('token'=>$input['token']))
                 ->withInput()
                 ->with('error', $error_msg);
         }

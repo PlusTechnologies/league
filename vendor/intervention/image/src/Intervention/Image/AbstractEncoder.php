@@ -61,6 +61,13 @@ abstract class AbstractEncoder
     abstract protected function processTiff();
 
     /**
+     * Processes and returns encoded image as BMP string
+     *
+     * @return string
+     */
+    abstract protected function processBmp();
+
+    /**
      * Process a given image
      *
      * @param  Image   $image
@@ -87,6 +94,7 @@ abstract class AbstractEncoder
 
             case 'png':
             case 'image/png':
+            case 'image/x-png':
                 $this->result = $this->processPng();
                 break;
 
@@ -94,13 +102,29 @@ abstract class AbstractEncoder
             case 'jpeg':
             case 'image/jpg':
             case 'image/jpeg':
+            case 'image/pjpeg':
                 $this->result = $this->processJpeg();
                 break;
 
             case 'tif':
             case 'tiff':
             case 'image/tiff':
+            case 'image/tif':
+            case 'image/x-tif':
+            case 'image/x-tiff':
                 $this->result = $this->processTiff();
+                break;
+
+            case 'bmp':
+            case 'image/bmp':
+            case 'image/ms-bmp':
+            case 'image/x-bitmap':
+            case 'image/x-bmp':
+            case 'image/x-ms-bmp':
+            case 'image/x-win-bitmap':
+            case 'image/x-windows-bmp':
+            case 'image/x-xbitmap':
+                $this->result = $this->processBmp();
                 break;
                 
             default:
@@ -119,9 +143,11 @@ abstract class AbstractEncoder
      */
     protected function processDataUrl()
     {
+        $mime = $this->image->mime ? $this->image->mime : 'image/png';
+
         return sprintf('data:%s;base64,%s',
-            $this->image->mime,
-            base64_encode($this->process($this->image, null, $this->quality))
+            $mime,
+            base64_encode($this->process($this->image, $mime, $this->quality))
         );
     }
 
