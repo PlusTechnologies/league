@@ -11,33 +11,40 @@
           <div class="row">
               <div class="col-md-12">
                 {{ Form::open(array('id'=>'show_accounts','method' => 'post', 'files'=>true, 'class'=>'form-inline')) }}
-                    <div class="col-xs-3">
+                    <!-- <div class="col-xs-3">
                       <div class="form-group">
                         <label class="sr-only">Event</label>
                         {{Form::select('size', array('C' => 'Camp', 'T' => 'Training', 'Tr' => 'Tour', 'Tor' => 'Tornament')) }}
                       </div>
+                    </div> -->
+                    <div class="col-xs-3">
+                      <div class="form-group">
+                        <label class="sr-only">From</label>
+                        <div class="input-group input-group-sm">
+                        {{ Form::text('date_from', '', array('class' => 'form-control datepicker')) }}
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-xs-3">
                       <div class="form-group">
-                        <label>From</label>
+                        <label class="sr-only">To</label>
+                        <div class="input-group input-group-sm">
                         {{ Form::text('date_from', '', array('class' => 'form-control datepicker')) }}
-                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                       </div>
-                      
+                      </div>
                     </div>
                     <div class="col-xs-3">
-                      <div class="form-group">
-                        <label>To</label>
-                        {{ Form::text('date_from', '', array('class' => 'form-control datepicker')) }}
-                        <span class="glyphicon glyphicon-calendar"></span>
+                      <div class="form-group pull-left">
+                        <button type="submit" id="submit" class="btn btn-default">View</button>
                       </div>
                     </div>
-                    <div class="col-xs-1">
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-default">View</button>
+                    <div class="col-xs-3">
+                      <div class="form-group pull-right">
+                        <button type="submit" id="download" class="btn btn-primary">Download</button>
                       </div>
                     </div>
-                    
                 {{ Form::close()}}
               </div>
           </div>
@@ -54,8 +61,9 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <td>Completed</td>
-                          <td width="15%" class='pull-right'>Amount</td>
+                          <td width="15%">Completed</td>
+                          <td width="70%"></td>
+                          <td width="15%">Amount</td>
                         </tr>
                       </thead> 
                       <tbody> 
