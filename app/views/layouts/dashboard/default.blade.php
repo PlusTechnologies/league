@@ -34,10 +34,10 @@
 	            <a href="{{URL::action('EventoController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.event.index')}}">
 	              <i class="retinaicon-essentials-092"></i> Events
 	            </a>
-	            <a href="#">
+	            <a href="{{URL::action('CommunicationController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.communication.index')}}">
 	              <i class="retinaicon-communication-023"></i> Communication
 	            </a>
-	            <a href="#">
+	            <a href="{{URL::action('AccountingController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.accounting.index')}}">
 	              <i class="retinaicon-design-078"></i> Accounting
 	            </a>
 	        	<a href="{{URL::action('DiscountController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.discount.index')}}">

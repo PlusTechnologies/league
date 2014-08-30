@@ -11,7 +11,7 @@ class Decoder extends \Intervention\Image\AbstractDecoder
      * Initiates new image from path in filesystem
      *
      * @param  string $path
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function initFromPath($path)
     {
@@ -27,7 +27,6 @@ class Decoder extends \Intervention\Image\AbstractDecoder
         switch ($info[2]) {
             case IMAGETYPE_PNG:
                 $core = imagecreatefrompng($path);
-                // imagepalettetotruecolor($core);
                 $this->gdResourceToTruecolor($core);
                 break;
 
@@ -37,13 +36,12 @@ class Decoder extends \Intervention\Image\AbstractDecoder
 
             case IMAGETYPE_GIF:
                 $core = imagecreatefromgif($path);
-                // imagepalettetotruecolor($core);
                 $this->gdResourceToTruecolor($core);
                 break;
 
             default:
                 throw new \Intervention\Image\Exception\NotReadableException(
-                    "Unable to read image type. Only use JPG, PNG or GIF images with GD driver."
+                    "Unable to read image type. GD driver is only able to decode JPG, PNG or GIF files."
                 );
         }
 
@@ -59,7 +57,7 @@ class Decoder extends \Intervention\Image\AbstractDecoder
      * Initiates new image from GD resource
      *
      * @param  Resource $resource
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function initFromGdResource($resource)
     {
@@ -70,7 +68,7 @@ class Decoder extends \Intervention\Image\AbstractDecoder
      * Initiates new image from Imagick object
      *
      * @param  Imagick $object
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function initFromImagick(\Imagick $object)
     {
@@ -83,7 +81,7 @@ class Decoder extends \Intervention\Image\AbstractDecoder
      * Initiates new image from binary data
      *
      * @param  string $data
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function initFromBinary($binary)
     {

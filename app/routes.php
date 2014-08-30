@@ -47,8 +47,10 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::resource('club.teams', 'TeamController');
 	Route::resource('club.communication', 'CommunicationController');
 	Route::resource( 'player', 'PlayerController');
-	Route::get( 'player', 								array('as' => 'player', 'uses' => 'PlayerController@index'));
+	Route::get( 'player', 					array('as' => 'player', 'uses' => 'PlayerController@index'));
 	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
+	Route::get( 'club/{id}/communication', 	array('as' => 'communication', 'uses' => 'CommunicationController@index'));
+	Route::get( 'club.roster', 				array('as' => 'roster', 'uses' => 'RosterController@index'));
 });
 
 Route::get( 'public/event/{id}','EventoController@publico');

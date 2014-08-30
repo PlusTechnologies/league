@@ -63,7 +63,7 @@ class Image extends File
      *
      * @param  string  $format
      * @param  integer $quality
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function encode($format = null, $quality = 90)
     {
@@ -75,11 +75,18 @@ class Image extends File
      *
      * @param  string  $path
      * @param  integer $quality
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function save($path = null, $quality = null)
     {
-        $path = is_null($path) ? ($this->dirname .'/'. $this->basename) : $path;
+        $path = is_null($path) ? $this->basePath() : $path;
+
+        if (is_null($path)) {
+            throw new Exception\NotWritableException(
+                "Can't write to undefined path."
+            );
+        }
+
         $data = $this->encode(pathinfo($path, PATHINFO_EXTENSION), $quality);
         $saved = @file_put_contents($path, $data);
 
@@ -99,7 +106,7 @@ class Image extends File
      * Runs a given filter on current image
      *
      * @param  FiltersFilterInterface $filter
-     * @return Intervention\Image\Image
+     * @return \Intervention\Image\Image
      */
     public function filter(Filters\FilterInterface $filter)
     {
@@ -109,7 +116,7 @@ class Image extends File
     /**
      * Returns current image driver
      *
-     * @return Intervention\Image\AbstractDriver
+     * @return \Intervention\Image\AbstractDriver
      */
     public function getDriver()
     {
@@ -251,6 +258,20 @@ class Image extends File
     public function mime()
     {
         return $this->mime;
+    }
+
+    /**
+     * Get fully qualified path to image
+     *
+     * @return string
+     */
+    public function basePath()
+    {
+        if ($this->dirname && $this->basename) {
+            return ($this->dirname .'/'. $this->basename);
+        }
+
+        return null;
     }
 
     /**
