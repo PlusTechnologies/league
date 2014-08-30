@@ -4,9 +4,9 @@
   <div class="row">
     <div class="col-sm-12 app-frame">
       <div class="row">
-        <div class="col-md-7 col-md-push-5">
-          <div class="row">
-            <div class="col-md-12">
+        <div class="col-md-6 col-md-push-6">
+          <div class="row dynamicHTML" id="dynamicHTML">
+            <div id="hidden" class="col-md-12" hidden>
                 <div>
                   <h2>
                     New Message
@@ -44,12 +44,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-5 col-md-pull-7">
+        <div class="col-md-6 col-md-pull-6">
           <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12">
                   <br>
-                  <a href="#" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Compose</a>
+                  <button id="compose" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Compose</button>
                   <br>
                   <h3>Sent Messages
                   </h3>
@@ -68,6 +68,10 @@
 <script>
 $(function() {
   $( ".datepicker" ).datepicker();
+});
+
+$( "#compose" ).click(function() {
+  $( "#hidden" ).show( "fold", 1000 );
 });
 </script>
 @stop

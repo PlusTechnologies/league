@@ -863,3 +863,8 @@ table > thead > tr > th{
 .payment-description{
    font-size: 14px;
 }
+
+/*communication overide styling*/
+.dynamicHTML{
+    min-height: 600px;
+}
