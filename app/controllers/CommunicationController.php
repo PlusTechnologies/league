@@ -35,7 +35,12 @@ class CommunicationController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$communication = new Communication;
+
+		$communication->recepient 		= Input::get( 'send_to' );
+		$communication->message 		= Input::get( 'message' );
+
+		$communication->save();
 	}
 
 

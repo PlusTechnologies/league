@@ -13,7 +13,7 @@
                   </h2>
                   <hr>
                 </div>
-                  {{Form::open()}}
+                  {{Form::open(array('action' => 'CommunicationController@store','id'=>'send_communication','method' => 'post', 'files'=>true))}}
                     <div class="col-xs-12">
                       <div class="form-group">
                         <label>To</label>
@@ -34,7 +34,7 @@
                             <button type="submit" id="send" class="btn btn-primary">Send</button>
                           </div>
                           <div class="form-group">
-                            <button type="submit" id="cancel" class="btn btn-default">Cancel</button>
+                            <a href="#" id="cancel" class="btn btn-default">Cancel</a>
                           </div>
                         </div>
                         </div>
