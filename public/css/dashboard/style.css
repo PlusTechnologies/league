@@ -297,6 +297,7 @@ a.nav-btn {
    position: absolute;
    top: 0;
    width: 100%;
+   z-index: 10;
 }
 .relative {
    position: relative;
@@ -326,7 +327,6 @@ a.nav-btn {
    border-style: solid;
    border-radius: 5px;
    background-color: #fff;
-   padding: 0 40px;
 /*    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 box-shadow: 0 3px 20px rgba(0, 0, 0, .175);*/
 }
@@ -791,9 +791,9 @@ table > thead > tr > th{
 .date-space{
    border-radius: 5px;
    border: 1px solid #a2a2a2;
-   
    text-align: center;
    letter-spacing: -1px;
+   min-width: 80px;
    
 }
 .date-space .date-mo{
@@ -862,4 +862,70 @@ table > thead > tr > th{
 }
 .payment-description{
    font-size: 14px;
+}
+/*dahboard player*/
+.nav-player-dashboard{
+   background-color: #363B48;
+   border-radius: 0;
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   padding:15px 0;
+   top: -56px;
+   margin-bottom: 0px;
+}
+.user-name-title{
+   font-size: 25px;
+   color: rgba(255, 255, 255, 1);
+   font-weight: lighter;
+   padding-left: 15px;
+}
+.account-subnavigation {
+   background: #ebebeb;
+   top: -56px;
+   position: relative;
+
+}
+.account-subnavigation ul {
+   width: 100%;
+}
+.account-subnavigation .nav>li:first-child {
+   border-left: 0;
+}
+.account-subnavigation .nav>li:last-child {
+   border-right: 0;
+}
+.account-subnavigation .nav>li {
+   height: 91px;
+}
+.account-subnavigation .nav>li a {
+   color: #959595;
+   cursor: pointer;
+   background-color: transparent;
+}
+.account-subnavigation .nav>li a:focus, .account-subnavigation .nav>li a:hover {
+   color: #000;
+   background-color: transparent;
+}
+.account-subnavigation .nav>li a {
+   padding: 18px 6px 16px;
+   line-height: 1.1;
+   height: 100%;
+   font-weight: lighter;
+}
+.account-subnavigation span.icon-am {
+   font-size: 30px;
+   margin-bottom: 3px;
+}
+.account-subnavigation span {
+   display: block;
+   letter-spacing: .05ex;
+}
+.account-subnavigation .nav>li {
+   width: 16.6%;
+}
+.account-subnavigation .nav>li {
+   text-align: center;
+   font-size: 14px;
+   color: #666;
+   border-right: 1px solid #d5d5d5;
+   border-left: 1px solid #fff;
 }

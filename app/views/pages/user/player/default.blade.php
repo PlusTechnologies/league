@@ -1,28 +1,80 @@
 @extends('layouts.dashboard.default')
 @section('content')
+<nav class="navbar nav-player-dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="org-thumb">
+          {{HTML::image($user->avatar, $user->firstname, array('class'=>'','width'=>85));}}
+          <span class="user-name-title">{{$user->firstname}} {{$user->lastname}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav role="sub-navigation" class="account-subnavigation clear-fix ng-scope">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <ul class="nav navbar-nav navbar-left ng-scope" ng-controller="SubnavCtrl">
+      <li id="account-nav-overview" ng-class="{ selected: isActive('/overview'), selected: isActive('/') }" class="selected">
+        <a href="#!">
+          <span class="icon-am retinaicon-essentials-006"></span> 
+          <span class="subnav-link-name ng-scope" translate="">Overview</span>
+        </a>
+      </li>
+      <li>
+        <a href="#!/plans">
+          <span class="icon-am retinaicon-finance-001"></span> 
+          <span class="subnav-link-name ng-scope">Payment History</span>
+        </a>
+      </li>
+      <li>
+        <a href="#!/account">
+          <span class="icon-am retinaicon-communication-006"></span>
+          <span class="subnav-link-name ng-scope">Players</span>
+        </a>
+      </li>
+      <li>
+        <a href="#!/security">
+          <span class="icon-am retinaicon-communication-018"></span>
+          <span class="subnav-link-name ng-scope">Invitations</span>
+        </a>
+      </li>
+      <li>
+        <a href="#!/security">
+          <span class="icon-am retinaicon-essentials-127"></span>
+          <span class="subnav-link-name ng-scope">Games Schedule</span>
+        </a>
+      </li>
+      <li>
+        <a href="#!/profile">
+          <span class="icon-am retinaicon-essentials-007"></span> 
+          <span class="subnav-link-name ng-scope">Profile</span>
+        </a>
+      </li>
+    </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 app-frame">
-      <div class="row">
-        <div class="col-sm-12">
+    <div class="col-md-10 col-md-offset-1 ">
+
+        <div class="col-sm-12 app-frame">
+          
           <div class="app-title">
             <div class="row">
               <div class="col-sm-12">
-                <div class="org-header">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="org-thumb">
-                        {{HTML::image($user->avatar, $user->firstname, array('class'=>'','width'=>100));}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="org-name">Welcome! {{$user->firstname}}</h3>
+                
                 <h2 class="home-title">Overview</h2>
               </div>
             </div>
           </div>
-
+          
           <div class="row">
             <div class="col-md-12">
               <div class="panel panel-default">
@@ -45,7 +97,7 @@
                         <div class="date-da">15</div>
                         <div class="date-we">Monday</div>
                       </div>
-                      <div class="col-md-9 event-space">
+                      <div class="col-md-8 event-space">
                         <div class="event-title">Tryout - Boys Summer</div>
                         <div class="event-club">C2C Lacrosse</div>
                         <div class="event-join">
@@ -59,7 +111,7 @@
                         <div class="date-da">15</div>
                         <div class="date-we">Monday</div>
                       </div>
-                      <div class="col-md-9 event-space">
+                      <div class="col-md-8 event-space">
                         <div class="event-title">Tryout - Boys Summer</div>
                         <div class="event-club">C2C Lacrosse</div>
                         <div class="event-join">
@@ -73,7 +125,7 @@
                         <div class="date-da">15</div>
                         <div class="date-we">Monday</div>
                       </div>
-                      <div class="col-md-9 event-space">
+                      <div class="col-md-8 event-space">
                         <div class="event-title">Tryout - Boys Summer</div>
                         <div class="event-club">C2C Lacrosse</div>
                         <div class="event-join">
@@ -161,7 +213,7 @@
             </div>
           </div>
 
-           <div class="row">
+          <div class="row">
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -226,9 +278,9 @@
               </div>
             </div>
           </div>
-
+        
         </div>  
-      </div>
+
     </div>
   </div>
   <div class="row">
