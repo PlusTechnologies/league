@@ -64,12 +64,10 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1 ">
 
-        <div class="col-sm-12 app-frame">
-          
+        <div class="col-sm-12">
           <div class="app-title">
             <div class="row">
               <div class="col-sm-12">
-                
                 <h2 class="home-title">Overview</h2>
               </div>
             </div>
@@ -277,8 +275,7 @@
                 </div>
               </div>
             </div>
-          </div>
-        
+          </div>        
         </div>  
 
     </div>

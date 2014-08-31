@@ -929,3 +929,7 @@ table > thead > tr > th{
    border-right: 1px solid #d5d5d5;
    border-left: 1px solid #fff;
 }
+/*communication overide styling*/
+.dynamicHTML{
+    min-height: 600px;
+}
