@@ -3,6 +3,18 @@
 class CommunicationController extends \BaseController {
 
 	/**
+	 * @var communicationForm.
+	 *
+	 * @return Response
+	 */
+	private $communicationForm;
+
+	function _construct(CommunicationForm $communicationForm)
+	{
+		$this->CommunicationForm = $communicationForm;
+	}
+
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -33,14 +45,37 @@ class CommunicationController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id)
 	{
-		$communication = new Communication;
 
+		$communication = new Communication;
+		//get current club
+		$club = Club::find($id);
+		// get the POST data
+		$input = Input::all();
+		$ignored = null;
+		// attempt validation
+		if ($communication->validate($input,$ignored))
+		{
 		$communication->recepient 		= Input::get( 'send_to' );
 		$communication->message 		= Input::get( 'message' );
 
 		$communication->save();
+		if ( $communication->id )
+			{
+                // Redirect with success message.
+				return Redirect::action('CommunicationController@index', $club->id)
+				->with( 'messages', 'Message sent successfully');
+			}
+		}
+		else
+		{
+		    // failure, get errors
+		    $errors = $communication->errors();
+		    return Redirect::action('CommunicationController@create',$club->id )
+        	->withErrors($errors)
+        	->withInput();
+		}
 	}
 
 
