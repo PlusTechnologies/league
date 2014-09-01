@@ -5,7 +5,11 @@ class Communication extends Eloquent {
 
 	 // Validation ***************************************************
     protected $rules = array(
+<<<<<<< Updated upstream
 			'recepient'=>'sometimes|required|email',
+=======
+			'recepient'=>'required',
+>>>>>>> Stashed changes
 			'message'=>'required|max:500'
 	);
 
@@ -27,7 +31,6 @@ class Communication extends Eloquent {
         return true;
     }
 
-
     public function errors()
     {
         return $this->errors;
@@ -35,7 +38,7 @@ class Communication extends Eloquent {
 
     public function message()
     {
-        return $this->hasMany('Message');
+        return $this->hasMany('message');
     }
 
 }

@@ -28,8 +28,8 @@ class CommunicationController extends \BaseController {
 		->with('user',$user)
 		->with('club',$club)
 		->with('page_title', $title);
+		
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -63,10 +63,12 @@ class CommunicationController extends \BaseController {
 		$club = Club::find($id);
 		// get the POST data
 		$input = Input::all();
-		$ignored = null;
+
+       // return var_dump($input);
 		// attempt validation
-		if ($communication->validate($input,$ignored))
+		if ($communication->validate($input))
 		{
+			$communication->recepient 		= $club;
 			$communication->recepient 		= Input::get( 'recepient' );
 			$communication->message 		= Input::get( 'message' );
 
@@ -82,7 +84,7 @@ class CommunicationController extends \BaseController {
 		{
 		    // failure, get errors
 		    $errors = $communication->errors();
-		    return Redirect::action('CommunicationController@create',$club->id )
+		    return Redirect::action('CommunicationController@index',$club->id )
         	->withErrors($errors)
         	->withInput();
 		}
@@ -97,7 +99,7 @@ class CommunicationController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		return $communication;
 	}
 
 
