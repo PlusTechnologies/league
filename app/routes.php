@@ -41,16 +41,19 @@ Route::get('dashboard', 		array('before' => 'auth','as' => 'dashboard', 'uses' =
 Route::get('elements', 			array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
 
 Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function() {
+	Route::get( 'player', 					array('as' => 'player', 				'uses' => 'PlayerController@index'));
+	Route::get( 'player/settings',	 		array('as' => 'dashboard.player.edit',	'uses' => 'PlayerController@edit'));
+	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting',				'uses' => 'AccountingController@index'));
+	Route::get( 'club/{id}/communication', 	array('as' => 'communication',			'uses' => 'CommunicationController@index'));
+	Route::get( 'club.roster', 				array('as' => 'roster',					'uses' => 'RosterController@index'));
+
 	Route::resource('club', 'ClubController');
 	Route::resource('club.event', 'EventoController');
 	Route::resource('club.discount', 'DiscountController');
 	Route::resource('club.teams', 'TeamController');
 	Route::resource('club.communication', 'CommunicationController');
-	Route::resource( 'player', 'PlayerController');
-	Route::get( 'player', 					array('as' => 'player', 'uses' => 'PlayerController@index'));
-	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
-	Route::get( 'club/{id}/communication', 	array('as' => 'communication', 'uses' => 'CommunicationController@index'));
-	Route::get( 'club.roster', 				array('as' => 'roster', 'uses' => 'RosterController@index'));
+	Route::resource('player', 'PlayerController');
+	
 });
 
 Route::get( 'public/event/{id}','EventoController@publico');

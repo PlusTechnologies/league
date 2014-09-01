@@ -10,9 +10,11 @@ class CommunicationController extends \BaseController {
 	public function index($id)
 	{
 		$user = Auth::user();
+		$club = Club::find($id);
 		$title = 'Communication Dashboard';
 		return View::make('pages.user.club.communication.default') 
 		->with('user',$user)
+		->with('club',$club)
 		->with('page_title', $title);
 	}
 
@@ -22,9 +24,15 @@ class CommunicationController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		$user = Auth::user();
+		$title = 'Communication create';
+		$club = Club::find($id);
+		return View::make('pages.user.club.communication.create') 
+		->with('user',$user)
+		->with('club',$club)
+		->with('page_title', $title);
 	}
 
 

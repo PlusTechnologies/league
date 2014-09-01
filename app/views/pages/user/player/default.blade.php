@@ -17,38 +17,44 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <ul class="nav navbar-nav navbar-left ng-scope" ng-controller="SubnavCtrl">
-      <li id="account-nav-overview" ng-class="{ selected: isActive('/overview'), selected: isActive('/') }" class="selected">
-        <a href="#!">
+      <li id="account-nav-overview" class="selected">
+        <a href="{{URL::action('PlayerController@show')}}">
           <span class="icon-am retinaicon-essentials-006"></span> 
           <span class="subnav-link-name ng-scope" translate="">Overview</span>
         </a>
       </li>
       <li>
-        <a href="#!/plans">
+        <a href="{{URL::action('PlayerController@show')}}">
           <span class="icon-am retinaicon-finance-001"></span> 
-          <span class="subnav-link-name ng-scope">Payment History</span>
+          <span class="subnav-link-name ng-scope">Payments</span>
         </a>
       </li>
       <li>
-        <a href="#!/account">
+        <a href="{{URL::action('PlayerController@show')}}">
           <span class="icon-am retinaicon-communication-006"></span>
           <span class="subnav-link-name ng-scope">Players</span>
         </a>
       </li>
       <li>
-        <a href="#!/security">
+        <a href="{{URL::action('PlayerController@show')}}">
+          <span class="icon-am retinaicon-business-042"></span>
+          <span class="subnav-link-name ng-scope">Clubs</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{URL::action('PlayerController@show')}}">
           <span class="icon-am retinaicon-communication-018"></span>
           <span class="subnav-link-name ng-scope">Invitations</span>
         </a>
       </li>
       <li>
-        <a href="#!/security">
+        <a href="{{URL::action('PlayerController@show')}}">
           <span class="icon-am retinaicon-essentials-127"></span>
           <span class="subnav-link-name ng-scope">Games Schedule</span>
         </a>
       </li>
       <li>
-        <a href="#!/profile">
+        <a href="{{URL::action('PlayerController@edit')}}">
           <span class="icon-am retinaicon-essentials-007"></span> 
           <span class="subnav-link-name ng-scope">Profile</span>
         </a>
@@ -59,19 +65,23 @@
   </div>
 </nav>
 
-
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 ">
 
+      <div class="col-sm-6">
+        <span class="section-title">
+          <span class="icon-am retinaicon-essentials-006"></span> 
+          Overview
+        </span>
+        <div class="section-description">
+          <p>Here are the most important things for today</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+      </div>
+
         <div class="col-sm-12">
-          <div class="app-title">
-            <div class="row">
-              <div class="col-sm-12">
-                <h2 class="home-title">Overview</h2>
-              </div>
-            </div>
-          </div>
           
           <div class="row">
             <div class="col-md-12">

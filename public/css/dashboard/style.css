@@ -905,6 +905,15 @@ table > thead > tr > th{
    color: #000;
    background-color: transparent;
 }
+.account-subnavigation .nav>li:focus, .account-subnavigation .nav>li:hover {
+   color: #000;
+   background-color: #eee;
+}
+.account-subnavigation .nav>li.selected, .account-subnavigation .nav>li.selected a, .account-subnavigation .nav>li.selected:hover, .account-subnavigation .nav>li:hover, .account-subnavigation .nav>li:hover a {
+color: #000;
+background-color: none;
+}
+
 .account-subnavigation .nav>li a {
    padding: 18px 6px 16px;
    line-height: 1.1;
@@ -920,7 +929,7 @@ table > thead > tr > th{
    letter-spacing: .05ex;
 }
 .account-subnavigation .nav>li {
-   width: 16.6%;
+   width: 14.28%;
 }
 .account-subnavigation .nav>li {
    text-align: center;
@@ -928,6 +937,17 @@ table > thead > tr > th{
    color: #666;
    border-right: 1px solid #d5d5d5;
    border-left: 1px solid #fff;
+}
+.section-title{
+   font-weight: lighter;
+   font-size: 30px;
+   border-bottom: 1px solid #333;
+   display: block;
+   margin-bottom: 20px;
+}
+.section-description p{
+   font-size: 18px;
+   font-weight: 300;
 }
 /*communication overide styling*/
 .dynamicHTML{
