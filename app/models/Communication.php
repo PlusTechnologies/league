@@ -1,16 +1,16 @@
 <?php
 class Communication extends Eloquent {
 
-	protected $fillable = array('send_to','message');
+	protected $fillable = array('recepient','message');
 
 	 // Validation ***************************************************
-    public static $rules = array(
-			'send_to'=>'sometimes|required|email',
+    protected $rules = array(
+			'recepient'=>'sometimes|required|email',
 			'message'=>'required|max:500'
 	);
 
     protected $messages = array(
-        'send_to.required'          => 'Please enter a recepient',
+        'recepient.required'          => 'Please enter a recepient',
         'message.required'          => 'Message body cannot be empty'
     );
 

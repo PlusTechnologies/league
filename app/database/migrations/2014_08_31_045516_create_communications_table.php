@@ -15,8 +15,10 @@ class CreateCommunicationsTable extends Migration {
 		Schema::create('communications', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('club_id')->unsigned()->index();
+			$table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
 			$table->string('recepient');
-			$table->string('message', 500);
+			$table->string('message');
 			$table->timestamps();
 		});
 	}

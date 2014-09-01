@@ -56,6 +56,8 @@ class CommunicationController extends \BaseController {
 	public function store($id)
 	{
 
+		return Input::all();
+
 		$communication = new Communication;
 		//get current club
 		$club = Club::find($id);
@@ -65,8 +67,8 @@ class CommunicationController extends \BaseController {
 		// attempt validation
 		if ($communication->validate($input,$ignored))
 		{
-		$communication->recepient 		= Input::get( 'send_to' );
-		$communication->message 		= Input::get( 'message' );
+			$communication->recepient 		= Input::get( 'recepient' );
+			$communication->message 		= Input::get( 'message' );
 
 		$communication->save();
 		if ( $communication->id )
