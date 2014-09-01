@@ -56,8 +56,6 @@ class CommunicationController extends \BaseController {
 	public function store($id)
 	{
 
-		return Input::all();
-
 		$communication = new Communication;
 		//get current club
 		$club = Club::find($id);
@@ -68,23 +66,30 @@ class CommunicationController extends \BaseController {
 		// attempt validation
 		if ($communication->validate($input))
 		{
-			$communication->recepient 		= $club;
+			$communication->club_id 		= $club->id;
 			$communication->recepient 		= Input::get( 'recepient' );
 			$communication->message 		= Input::get( 'message' );
 
 		$communication->save();
 		if ( $communication->id )
 			{
+
                 // Redirect with success message.
-				return Redirect::action('CommunicationController@index', $club->id)
-				->with( 'messages', 'Message sent successfully');
+                $comm = new Communication;
+                $notify = $comm->notification($communication->id);
+                return $notify;
+                if($notify > 0){
+                	return Redirect::action('CommunicationController@index', $club->id)
+					->with( 'messages', 'Message sent successfully');
+                }
+				
 			}
 		}
 		else
 		{
 		    // failure, get errors
 		    $errors = $communication->errors();
-		    return Redirect::action('CommunicationController@index',$club->id )
+		    return Redirect::action('CommunicationController@create',$club->id )
         	->withErrors($errors)
         	->withInput();
 		}

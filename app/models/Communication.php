@@ -5,18 +5,14 @@ class Communication extends Eloquent {
 
 	 // Validation ***************************************************
     protected $rules = array(
-<<<<<<< Updated upstream
-			'recepient'=>'sometimes|required|email',
-=======
-			'recepient'=>'required',
->>>>>>> Stashed changes
-			'message'=>'required|max:500'
-	);
+     'recepient'=>'required|max:10',
+     'message'=>'required|max:500'
+     );
 
     protected $messages = array(
         'recepient.required'          => 'Please enter a recepient',
         'message.required'          => 'Message body cannot be empty'
-    );
+        );
 
     protected $errors;
 
@@ -40,5 +36,68 @@ class Communication extends Eloquent {
     {
         return $this->hasMany('message');
     }
+
+    public function notification($id) {
+      $messages = Communication::find($id);
+      $case = $messages->recepient;
+      $club = Club::find($messages->club_id);
+      switch ($case) {
+          case 1:
+            $list = Follower::Where('club_id','=',$club->id)
+                    ->join('users', 'users.id', '=', 'followers.user_id')
+                    ->select('users.email', 'users.mobile')
+                    ->get();
+                    //get the message body
+                    //Loop user list and send email body
+              foreach ($list as $key => $value) {
+
+                $messageBody = $messages->message;
+                $phone = $value['mobile'];
+                $email = $value['email'];
+                $data = array('data'=>$messageBody,'phone'=>$phone);
+
+                Mail::send('emails.receipt.notification', $data, function($message)
+                {
+                    $message->from('leagueTogether@sports.com', 'League Together');
+
+                    $message->to('nyanzic@gmail.com');
+                });
+                
+              }
+
+              return 1;
+            break;
+          case 2:
+             $list1 = Follower::Where('club_id','=',$club->id)
+                    ->join('users', function($join)
+                        {
+                            $join->on('users.id', '=', 'followers.user_id')
+                                 ->where('users.Type', '=', 2);
+                        })
+                    ->select('users.email', 'users.mobile')
+                    ->get();
+                    
+                    //get the message body
+                    //Loop user list and send email body
+              foreach ($list1 as $key => $found) {
+
+                $messageBody1 = $messages->message;
+                $phone = $found['mobile'];
+                $email = $found['email'];
+                $data = array('data'=>$messageBody1,'phone'=>$phone);
+
+                Mail::send('emails.receipt.notification', $data, function($message)
+                {
+                    $message->from('leagueTogether@sports.com', 'League Together');
+
+                    $message->to('nyanzic@gmail.com');
+                });
+                
+              }
+
+              return 1;
+          break;
+      }
+  }
 
 }
