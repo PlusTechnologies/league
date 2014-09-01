@@ -6,7 +6,6 @@
       <div class="row">
         <div class="col-md-6 col-md-push-6">
           <div class="row dynamicHTML" id="dynamicHTML">
-            
           </div>
         </div>
         <div class="col-md-6 col-md-pull-6">
