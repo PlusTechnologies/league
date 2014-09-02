@@ -51,7 +51,7 @@
                         <button type="submit" id="send" class="btn btn-primary">Send</button>
                       </div>
                       <div class="form-group">
-                        <a href="#" id="cancel" class="btn btn-default">Cancel</a>
+                        <a href="{{URL::action('CommunicationController@index', $club->id)}}" id="cancel" class="btn btn-default">Cancel</a>
                       </div>
                     </div>
                   </div>
