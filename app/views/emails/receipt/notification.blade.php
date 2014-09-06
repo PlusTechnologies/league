@@ -444,9 +444,9 @@
                       
                       <td valign="top" class="mcnTextContent" style="padding-top: 9px;padding-left: 18px;padding-bottom: 9px;padding-right: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
                         
-                        <p style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">Shane,</p>
-                        <p style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">When I orbited the Earth in a spaceship, I saw for the first time how beautiful our planet is. Mankind, let us preserve and increase this beauty, and not destroy it!</p>
-                        <p style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">Where ignorance lurks, so too do the frontiers of discovery and imagination.</p>
+                        <p style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">Dear Charles,</p>
+                        <p style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">The message from the table should go here but it gives me no reason to understand why it's not working!</p>
+                        <p style="margin: 1em 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #363b48;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">Do not reply to this email since it's a one way communication.</p>
                       </td>
                     </tr>
                   </tbody></table>

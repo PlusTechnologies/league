@@ -73,15 +73,16 @@ class CommunicationController extends \BaseController {
 		$communication->save();
 		if ( $communication->id )
 			{
-
                 // Redirect with success message.
                 $comm = new Communication;
                 $notify = $comm->notification($communication->id);
                 if($notify > 0){
                 	return Redirect::action('CommunicationController@index', $club->id)
 					->with( 'messages', 'Message sent successfully');
-                }
-				
+                }else{
+                	return Redirect::action('CommunicationController@index', $club->id)
+					->with( 'messages', 'Message was not sent... Either the users selected dont exist or something went wrong!');
+                }	
 			}
 		}
 		else

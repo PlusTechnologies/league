@@ -45,57 +45,66 @@ class Communication extends Eloquent {
           case 1:
             $list = Follower::Where('club_id','=',$club->id)
                     ->join('users', 'users.id', '=', 'followers.user_id')
-                    ->select('users.email', 'users.mobile')
+                    ->select('users.email', 'users.mobile', 'users.firstname', 'users.lastname')
                     ->get();
-                    //get the message body
-                    //Loop user list and send email body
-              foreach ($list as $key => $value) {
 
+                //Get the message body
                 $messageBody = $messages->message;
-                $phone = $value['mobile'];
-                $email = $value['email'];
-                $data = array('data'=>$messageBody,'phone'=>$phone);
 
-                Mail::send('emails.receipt.notification', $data, function($message)
-                {
-                    $message->from('leagueTogether@sports.com', 'League Together');
+                //Loop user list and send email body
+                foreach ($list as $key => $value) {
 
-                    $message->to('nyanzic@gmail.com');
-                });
-                
-              }
+                    $phone = $value['mobile'];
+                    $email = $value['email'];
+                    $name = $value['firstname'].' '.$value['lastname'];
+                    $data = array('messagedata'=>$messageBody,'phone'=>$phone, 'name'=>$name);
 
-              return 1;
-            break;
-          case 2:
-             $list1 = Follower::Where('club_id','=',$club->id)
-                    ->join('users', function($join)
+                    try{
+                        Mail::send('emails.receipt.notification', $data, function($message)
                         {
-                            $join->on('users.id', '=', 'followers.user_id')
-                                 ->where('users.Type', '=', 2);
+                            $message->to('nyanzic@gmail.com')
+                                    ->subject('Test notification');    
+                        });
+                        return 1;
+                    }catch(exception $e){
+                        return 0;
+                    } 
+                }
+
+            break;
+
+          case 2:
+             $list1 = Roster::Where('player_id','=',$club->id)
+                    ->join('player_user', function($join)
+                        {
+                            $join->on('player_user.player_id', '=', 'rosters.player_id' AND 'player_user.user_id', '=', 'users.id')
+                                ->where('users.Type', '=', 2);
                         })
-                    ->select('users.email', 'users.mobile')
+                    ->select('users.email', 'users.mobile', 'users.firstname', 'users.lastname')
                     ->get();
-                    
-                    //get the message body
-                    //Loop user list and send email body
-              foreach ($list1 as $key => $found) {
 
-                $messageBody1 = $messages->message;
-                $phone = $found['mobile'];
-                $email = $found['email'];
-                $data = array('data'=>$messageBody1,'phone'=>$phone);
+                //Get the message body
+                $messageBody = $messages->message;
 
-                Mail::send('emails.receipt.notification', $data, function($message)
-                {
-                    $message->from('leagueTogether@sports.com', 'League Together');
+                //Loop user list and send email body
+                foreach ($list as $key => $value) {
 
-                    $message->to('nyanzic@gmail.com');
-                });
-                
-              }
+                    $phone = $value['mobile'];
+                    $email = $value['email'];
+                    $name = $value['firstname'].' '.$value['lastname'];
+                    $data = array('messagedata'=>$messageBody,'phone'=>$phone, 'name'=>$name);
 
-              return 1;
+                    try{
+                        Mail::send('emails.receipt.notification', $data, function($message)
+                        {
+                            $message->to('nyanzic@gmail.com')
+                                    ->subject('Test notification');    
+                        });
+                        return 1;
+                    }catch(exception $e){
+                        return 0;
+                    } 
+                }
           break;
       }
   }

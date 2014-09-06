@@ -58,7 +58,7 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::get( 'player', 					array('as' => 'player', 'uses' => 'PlayerController@index'));
 	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting', 'uses' => 'AccountingController@index'));
 	Route::get( 'club/{id}/communication', 	array('as' => 'communication', 'uses' => 'CommunicationController@index'));
-	
+	Route::get( 'club/{id}/communication', 	array('as' => 'send_message', 'uses' => 'CommunicationController@create'));
 	Route::get( 'club.roster', 				array('as' => 'roster', 'uses' => 'RosterController@index'));
 });
 

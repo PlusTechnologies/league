@@ -24,6 +24,19 @@
                 </div>
               </div>
               @endif
+
+              @if(Session::has('messages'))
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="alert alert-info alert-dismissable">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <h4>{{ Session::get('messages') }}</h4>
+                      </div>
+                    </div>
+                  </div>
+              </div>  
+              @endif
               <div>
                 <h2>
                   New Message
