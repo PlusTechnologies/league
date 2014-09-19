@@ -36,8 +36,6 @@ class Payment extends Eloquent {
     public function receipt($param, $club){
         setlocale(LC_MONETARY,"en_US");
         $user = Auth::user();
-
-
         $query = array(
             'report_type'       => 'customer_vault',
             'customer_vault_id' => $user->customer_id

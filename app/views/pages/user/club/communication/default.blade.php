@@ -7,9 +7,10 @@
         <div class="col-md-6 col-md-push-6">
           <div class="row dynamicHTML" id="dynamicHTML">
           </div>
-        </div>
-        <div class="col-md-6 col-md-pull-6">
-          <div class="row">
+      </div>
+      <div class="col-md-6 col-md-pull-6">
+        <div class="row">
+          <div class="col-md-12">
             <div class="col-md-12">
                 <div class="col-md-12">
                   <br>
@@ -23,21 +24,17 @@
                 </div>
                 <!-- Pull Messages into here -->
             </div>
+             
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
 @stop
 @section('script')
 <script>
-$(function() {
-  $( ".datepicker" ).datepicker();
-});
 
-$( "#compose" ).click(function() {
-  $( "#hidden" ).show( "fold", 1000 );
-});
 </script>
 @stop

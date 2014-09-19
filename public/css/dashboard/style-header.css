@@ -1,0 +1,243 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  margin-top: 54px;
+}
+.footer {
+    background-color: #363b48;
+    bottom: 0;
+    height: 60px;
+    position: absolute;
+    width: 100%;
+    padding-top: 25px;
+}
+.footer p {
+  font-size: 12px;
+}
+/* Navigation bar 
+*/
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+   border-color: rgba(116, 119, 134, 0.5);
+}
+.navbar-default {
+   background-color: #363B48;
+}
+.navbar-default .navbar-nav > li > a {
+   color: #f4f5f0;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+   color: #47c9b0;
+}
+.navbar-default .navbar-toggle:before {
+   color: #f4f5f0;
+}
+.navbar-toggle:before {
+   color: #47c9b0;
+}
+.navbar-brand-center {
+   position: absolute;
+   width: 96%;
+}
+.navbar-brand > .logo {
+   width: 2.75em;
+   height: 2.75em;
+   margin-top: -0.75em;
+}
+.navbar-right > li {
+   float: right;
+}
+.navbar-brand-center > .logo {
+   height: 5.75em;
+   margin: 0.4em auto;
+   width: 5.75em;
+   background-size: contain;
+   background-repeat: no-repeat;
+   display: block;
+}
+.navbar-nav > li > a {
+   padding: 0.5em 1.5em;
+}
+.navbar-dashboard-top{
+   border-radius: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+   z-index: 10;
+}
+.relative {
+   position: relative;
+}
+
+.navbar-right > li {
+   float: right;
+}
+.cart {
+   font-size: 2em;
+}
+a.nav-btn {
+   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+   border: 2px solid;
+   margin-left: 1em;
+   position: relative;
+   top: 5px;
+   margin-top: 0.5em;
+}
+/* Vertical Navigation bar */
+
+.navi-header{
+   width: 300px;
+   height: 230px;
+   padding: 20px;
+   text-align: center;
+}
+.navi-header a{
+   font-weight: 400;
+}
+.navi-header > .image { 
+   border: 1px solid rgba(180,186,205,0.5);
+   border-radius: 50%;
+   height: 90px;
+   line-height: 85px;
+   margin: auto;
+   position: relative;
+   vertical-align: middle;
+   width: 90px;
+   z-index: 2;
+}
+.navi-header > .image > img { 
+   margin: 0 5px;
+}
+.navi-header > h3 { 
+   color: #b4bacd !important;
+   font-size: 20px !important;
+   padding-top: 15px !important;
+}
+.navi-header > .showLeft{
+   border: 1px solid rgba(180, 186, 205, 0.5);
+   border-radius: 15px;
+   font-size: 10px;
+   margin: 0 auto;
+   max-width: 120px;
+   padding: 5px;
+   color: #b4bacd;
+}
+.special-character{
+   color: #47c9b0;
+   font-size: 55px;
+   left: -5px;
+   line-height: 0;
+   position: relative;
+   top: -3px;
+   vertical-align: middle;
+}
+.showLeft:hover, .showLeft:focus{
+   background-color:#47c9b0 !important;
+   color:#363b48 !important;
+}
+.showLeft:hover > .special-character, .showLeft:focus > .special-character{
+   color:#363b48 !important;
+}
+
+.cbp-spmenu {
+   background: #363b48;
+   position: fixed;
+   box-shadow:
+   inset -10px 0px 10px -7px rgba(0,0,0,1);
+   overflow-x: auto;
+}
+
+.cbp-spmenu a {
+   display: block;
+   color: rgba(180,186,205,0.5);
+   font-size: 12px;
+   font-weight: 400;
+   text-transform: uppercase;
+}
+.cbp-spmenu a > i {
+   padding-right: 5px;
+}
+.cbp-spmenu h3 {
+   color: rgba(180, 186, 205, 0.2);
+   font-size: 30px;
+   font-weight: 100;
+   padding: 0 20px;
+}
+.cbp-spmenu a:hover, .cbp-spmenu > .active {
+   background: #258ecd;
+   color: #F4F5F0;
+}
+
+.cbp-spmenu a:active {
+   background: #afdefa;
+   color: #47a3da;
+}
+.cbp-spmenu-vertical {
+   width: 300px;
+   height: 100%;
+   top: 0;
+   z-index: 1050;
+}
+.cbp-spmenu-vertical a {
+   border-bottom: 1px solid rgba(180,186,205,0.1);
+   padding: 0.8em 2em;
+}
+.cbp-spmenu-left {
+   left: -300px;
+}
+.cbp-spmenu-left.cbp-spmenu-open {
+   left: 0px;
+}
+/* Push classes applied to the body */
+
+.cbp-spmenu-push-toright {
+   left: 240px;
+}
+.cbp-spmenu-push-toleft {
+   left: -300px;
+}
+/* Transitions */
+.cbp-spmenu,
+.cbp-spmenu-push {
+   -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+   transition: all 0.3s ease;
+}
+@media screen and (max-height: 26.375em){
+
+   .cbp-spmenu-vertical {
+      font-size: 90%;
+      width: 190px;
+   }
+   .cbp-spmenu-left,
+   .cbp-spmenu-push-toleft {
+      left: -190px;
+   } 
+   .cbp-spmenu-right {
+      right: -190px;
+   }
+   .cbp-spmenu-push-toright {
+      left: 190px;
+   }
+   .navi-header {
+      width: 190px;
+   }
+   .navi-header > h3 {
+      font-size: 12px !important;
+      padding-top: 15px !important;
+   }
+} 
+/* General Conteiner*/
+
+body > .container {
+  padding: 0px 30px 0;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
