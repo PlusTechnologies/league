@@ -53,15 +53,15 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::resource('player', 'PlayerController');
 });
 
-Route::get( 'account', 					array('before' => 'auth', 'as' => 'account', 			'uses' => 'AccountController@index'));
-Route::get( 'account/settings',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@edit'));
-Route::get( 'account/payments',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@payments'));
-Route::get( 'account/players',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@players'));
-Route::get( 'account/clubs',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@clubs'));
-Route::get( 'account/evetns',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@events'));
-Route::get( 'account/announcements',	array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@announcements'));
-Route::get( 'account/schedule',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@schedule'));
-Route::get( 'account/invitations',	 	array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@invitations'));
+Route::get( 'account', 					array('before' => 'auth', 'as' => 'account', 				'uses' => 'AccountController@index'));
+Route::get( 'account/settings',	 		array('before' => 'auth', 'as' => 'account.settings',		'uses' => 'AccountController@edit'));
+Route::get( 'account/payments',	 		array('before' => 'auth', 'as' => 'account.payments',		'uses' => 'AccountController@payments'));
+Route::get( 'account/players',	 		array('before' => 'auth', 'as' => 'account.players',		'uses' => 'AccountController@players'));
+Route::get( 'account/clubs',	 		array('before' => 'auth', 'as' => 'account.clubs',			'uses' => 'AccountController@clubs'));
+Route::get( 'account/events',	 		array('before' => 'auth', 'as' => 'account.events',			'uses' => 'AccountController@events'));
+Route::get( 'account/announcements',	array('before' => 'auth', 'as' => 'account.announcements',	'uses' => 'AccountController@announcements'));
+Route::get( 'account/schedule',	 		array('before' => 'auth', 'as' => 'account.schedule',		'uses' => 'AccountController@schedule'));
+Route::get( 'account/invitations',	 	array('before' => 'auth', 'as' => 'account.invitations',	'uses' => 'AccountController@invitations'));
 
 Route::get( 'public/event/{id}','EventoController@publico');
 

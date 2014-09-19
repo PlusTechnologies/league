@@ -17,7 +17,7 @@ class CreateCommunicationsTable extends Migration {
 			$table->increments('id');
 			$table->integer('club_id')->unsigned()->index();
 			$table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
-			$table->string('recepient');
+			$table->integer('recepient');
 			$table->string('message');
 			$table->timestamps();
 		});
