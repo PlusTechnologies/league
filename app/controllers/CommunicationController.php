@@ -63,16 +63,17 @@ class CommunicationController extends \BaseController {
 		$club = Club::find($id);
 		// get the POST data
 		$input = Input::all();
-		$ignored = null;
 		// attempt validation
-		if ($communication->validate($input,$ignored))
+		if ($communication->validate($input))
 		{
 			$communication->recepient 		= Input::get( 'recepient' );
 			$communication->message 		= Input::get( 'message' );
-
-		$communication->save();
+			$communication->save();
+		
 		if ( $communication->id )
-			{
+			{	
+				Communication::notification($communication->id);
+
                 // Redirect with success message.
 				return Redirect::action('CommunicationController@index', $club->id)
 				->with( 'messages', 'Message sent successfully');

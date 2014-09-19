@@ -64,7 +64,6 @@
 {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
 {{ HTML::script('js/jquery.ui.touch-punch.min.js')}}
 {{ HTML::script('js/bootstrap.min.js') }}
-{{ HTML::script('js/bootstrap-select.js')}}
 {{ HTML::script('js/bootstrap-switch.js')}}
 {{ HTML::script('js/flatui-checkbox.js')}}
 {{ HTML::script('js/flatui-radio.js')}}

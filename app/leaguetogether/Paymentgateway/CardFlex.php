@@ -48,22 +48,22 @@ class CardFlex{
 		$total = $fee + $tax + $subtotal;
 		
 		$charged = array(
-					'date'		=> $now,
-					'promo'		=> $promo,
-					'discount'	=> $discount,
-					'subtotal'	=> $subtotal,
-					'fee'		=> $fee,
-					'tax'		=> $tax, 
-					'total'		=> $total
+				'date'			=> $now,
+				'promo'			=> $promo,
+				'discount'	=> $discount,
+				'subtotal'	=> $subtotal,
+				'fee'				=> $fee,
+				'tax'				=> $tax, 
+				'total'			=> $total
 		);
 
 		$credentials = array(
-						'username'		=> getenv("CF_NAME"),
-						'password'		=> getenv("CF_PASS"),
-						'amount' 			=> $total,
-						'email'				=> $user->email,
-						'phone'				=> $user->mobile,
-						'orderdescription'	=> $desc
+				'username'		=> getenv("CF_NAME"),
+				'password'		=> getenv("CF_PASS"),
+				'amount' 			=> $total,
+				'email'				=> $user->email,
+				'phone'				=> $user->mobile,
+				'orderdescription'	=> $desc
 		);
 
 		$merge = array_merge($type,$param,$credentials);

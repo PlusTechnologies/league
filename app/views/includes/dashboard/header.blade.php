@@ -7,12 +7,15 @@
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/morris.css')}}
   {{HTML::style('css/font-retina.css')}}
+  {{HTML::style('css/croppic.css')}}
   @if(Route::currentRouteName() == "dashboard.club.create" ||
   Route::currentRouteName() == "dashboard.club.event.create"
   )
   {{ HTML::style('css/dashboard/redactor.css')}}
   @endif
   {{HTML::style('css/dashboard/style.css')}}
+  {{HTML::style('css/dashboard/style-header.css')}}
+
   <link rel="shortcut icon" href="images/favicon.ico">
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
   <!--[if lt IE 9]>

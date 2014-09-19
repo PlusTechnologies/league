@@ -85,6 +85,7 @@ init();
 });
 });
 // Select trigget
+//$('.selectpicker').selectpicker();
 //$("select").selectpicker({style: 'select-block btn-select', menuStyle: 'dropdown-inverse'});
 //datepickers
 // var datepickerSelector = '#start, #end, #dob';

@@ -75,10 +75,12 @@ class ClubController extends BaseController {
             $club->email     		= Input::get( 'email' );
             $club->add1   			= Input::get( 'add1' );
             $club->city     		= Input::get( 'city' );
-            $club->state       	= Input::get( 'state' );
-            $club->description 	= Input::get( 'description' );
+            $club->state       		= Input::get( 'state' );
+            $club->description 		= Input::get( 'description' );
             $club->zip       		= Input::get( 'zip' );
-            $club->logo 				= Input::get('logo');
+            $club->logo 			= Input::get('logo');
+            $club->processor_user	= Input::get('cfuser');
+            $club->processor_pass	= Input::get('cfpass');
             $id = Auth::user()->id;
             User::find($id)->Clubs()->save($club);
 

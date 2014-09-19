@@ -123,7 +123,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="form-group">
                     <label class=" control-label">Gender</label>
-                    {{Form::select('gender', array(''=>'','M' => 'Boy', 'F' => 'Girl'), '', array('class'=>'select-block','tabindex'=>'5') ) }}
+                    {{Form::select('gender', array(''=>'','M' => 'Boy', 'F' => 'Girl'), '', array('class'=>'select-block selectpicker','tabindex'=>'5') ) }}
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
@@ -143,7 +143,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="form-group">
                     <label class="control-label">You are the player's?</label>
-                    {{Form::select('relation', array(''=>'Select Relationship','Mother' => 'Mother', 'Father' => 'Father','Legal Guardian'=>'Legal Guardian','Personal Assistant'=>'Personal Assistant'), '', array('class'=>'select-block','tabindex'=>'5') ) }}
+                    {{Form::select('relation', array(''=>'Select Relationship','Mother' => 'Mother', 'Father' => 'Father','Legal Guardian'=>'Legal Guardian','Personal Assistant'=>'Personal Assistant'), '', array('class'=>'select-block selectpicker','tabindex'=>'5') ) }}
                   </div>
                 </div>
               </div> 
@@ -209,7 +209,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="form-group">
                     <label class=" control-label">Gender</label>
-                    {{Form::select('gender', array(''=>'','M' => 'Boy', 'F' => 'Girl'), '', array('id'=>'gender-edit','class'=>'select-block','tabindex'=>'5') ) }}
+                    {{Form::select('gender', array(''=>'','M' => 'Boy', 'F' => 'Girl'), '', array('id'=>'gender-edit','class'=>'select-block selectpicker','tabindex'=>'5') ) }}
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
@@ -229,7 +229,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="form-group">
                     <label class="control-label">You are the player's?</label>
-                    {{Form::select('relation', array(''=>'Select Relationship','Mother' => 'Mother', 'Father' => 'Father','Legal Guardian'=>'Legal Guardian','Personal Assistant'=>'Personal Assistant'), '', array('id'=>'relation-edit','class'=>'select-block','tabindex'=>'5') ) }}
+                    {{Form::select('relation', array(''=>'Select Relationship','Mother' => 'Mother', 'Father' => 'Father','Legal Guardian'=>'Legal Guardian','Personal Assistant'=>'Personal Assistant'), '', array('id'=>'relation-edit','class'=>'select-block selectpicker','tabindex'=>'5') ) }}
                   </div>
                 </div>
               </div> 

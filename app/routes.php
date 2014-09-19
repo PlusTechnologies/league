@@ -25,10 +25,11 @@ Route::get('signup/club/create', 	array('as' => 'signup.club.create', 	'uses' =>
 
 
 // Confide RESTful route
-Route::get('users/confirm/{code}', 'UsersController@getConfirm');
-Route::get('users/reset_password/{token}', 'UsersController@getReset');
-Route::get('users/reset_password', 'UsersController@postReset');
-Route::controller( 'users', 'UsersController');
+Route::get('users/confirm/{code}', 			'UsersController@getConfirm');
+Route::get('users/reset_password/{token}', 	'UsersController@getReset');
+Route::get('users/reset_password', 			'UsersController@postReset');
+Route::get('users/{$id}', 					'UsersController@update');
+Route::controller( 'users', 				'UsersController');
 
 //Custome Confide RESTfull
 Route::post('users',                      'UsersController@create');
@@ -41,20 +42,26 @@ Route::get('dashboard', 		array('before' => 'auth','as' => 'dashboard', 'uses' =
 Route::get('elements', 			array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
 
 Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function() {
-	Route::get( 'player', 					array('as' => 'player', 				'uses' => 'PlayerController@index'));
-	Route::get( 'player/settings',	 		array('as' => 'dashboard.player.edit',	'uses' => 'PlayerController@edit'));
 	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting',				'uses' => 'AccountingController@index'));
 	Route::get( 'club/{id}/communication', 	array('as' => 'communication',			'uses' => 'CommunicationController@index'));
 	Route::get( 'club.roster', 				array('as' => 'roster',					'uses' => 'RosterController@index'));
-
 	Route::resource('club', 'ClubController');
 	Route::resource('club.event', 'EventoController');
 	Route::resource('club.discount', 'DiscountController');
 	Route::resource('club.teams', 'TeamController');
 	Route::resource('club.communication', 'CommunicationController');
 	Route::resource('player', 'PlayerController');
-	
 });
+
+Route::get( 'account', 					array('before' => 'auth', 'as' => 'account', 			'uses' => 'AccountController@index'));
+Route::get( 'account/settings',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@edit'));
+Route::get( 'account/payments',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@payments'));
+Route::get( 'account/players',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@players'));
+Route::get( 'account/clubs',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@clubs'));
+Route::get( 'account/evetns',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@events'));
+Route::get( 'account/announcements',	array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@announcements'));
+Route::get( 'account/schedule',	 		array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@schedule'));
+Route::get( 'account/invitations',	 	array('before' => 'auth', 'as' => 'account.settings',	'uses' => 'AccountController@invitations'));
 
 Route::get( 'public/event/{id}','EventoController@publico');
 

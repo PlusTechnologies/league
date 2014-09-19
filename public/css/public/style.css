@@ -401,3 +401,7 @@ a.nav-btn {
 .cropControls i {
     background-image: url("/images/cropperIcons.png");
 }
+.footer p{
+    font-size: 12px;
+    font-weight: lighter;
+}

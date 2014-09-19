@@ -21,7 +21,7 @@ class DashboardController extends BaseController {
 			return Redirect::action('ClubController@index');
 		}
 
-		return Redirect::action('PlayerController@index');
+		return Redirect::action('AccountController@index');
 	}
 
 	public function element()

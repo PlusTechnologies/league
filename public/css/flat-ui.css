@@ -1349,6 +1349,7 @@ fieldset[disabled] .btn-link:focus {
   border-right-width: 6px;
   border-left-width: 6px;
 }
+//*
 .select {
   display: inline-block;
   margin-bottom: 10px;
@@ -1374,6 +1375,7 @@ fieldset[disabled] .btn-link:focus {
   /* 2 */
 
 }
+/*
 .select.select-block:after {
   clear: both;
 }
@@ -1462,6 +1464,7 @@ fieldset[disabled] .btn-link:focus {
   border-bottom-color: #ffffff;
   border-top-color: #ffffff;
 }
+*/
 legend {
   display: block;
   width: 100%;
@@ -3637,6 +3640,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   background-color: #edeff1;
   color: #34495e;
 }
+
 .dropdown-menu {
   background-color: #f3f4f5;
   border: none;
@@ -3700,6 +3704,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   /* 2 */
 
 }
+
 .dropdown-menu li > a:after {
   clear: both;
 }
@@ -3742,6 +3747,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
 .navbar-fixed-bottom .dropdown .dropdown-menu {
   margin-bottom: 8px;
 }
+
 .dropup .dropdown-arrow,
 .navbar-fixed-bottom .dropdown .dropdown-arrow {
   border-bottom: none;
@@ -3843,6 +3849,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
     display: none;
   }
 }
+
 .table {
   font-size: 16px;
 }

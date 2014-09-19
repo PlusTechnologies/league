@@ -1,6 +1,6 @@
     <div class="footer">
       <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+        <p class="text-muted text-center">Copyright © 2014 League Toguether Incorporated. All rights reserved.</p>
       </div>
     </div>
 
@@ -8,7 +8,6 @@
 {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
 {{ HTML::script('js/jquery.ui.touch-punch.min.js')}}
 {{ HTML::script('js/bootstrap.min.js') }}
-{{ HTML::script('js/bootstrap-select.js')}}
 {{ HTML::script('js/bootstrap-switch.js')}}
 {{ HTML::script('js/flatui-checkbox.js')}}
 {{ HTML::script('js/flatui-radio.js')}}
@@ -21,5 +20,6 @@
 {{ HTML::script('js/jquery.validate.min.js')}}
 {{ HTML::script('js/select2.min.js')}}
 {{ HTML::script('js/dashboard/redactor.js')}}
+{{ HTML::script('js/bootstrap-select.min.js')}}
 {{ HTML::script('js/standard.js')}}
 {{ HTML::script('js/croppic.js')}}

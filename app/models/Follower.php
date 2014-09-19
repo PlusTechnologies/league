@@ -7,4 +7,7 @@ class Follower extends Eloquent {
 	public function Users() {
         return $this->belongsTo('User');    
   }
+
+ 
+
 }

@@ -22,11 +22,7 @@ class PlayerController extends BaseController {
 	 */
 	public function index()
 	{
-		$user = Auth::user();
-		$title = 'League Together - Player';
-    return View::make('pages.user.player.default')
-    ->with('page_title', $title)
-     ->with('user', $user);
+		
 	}
 
 	/**
@@ -119,7 +115,7 @@ class PlayerController extends BaseController {
 	 */
 	public function edit()
 	{
-		return "Settings here";
+		
 
 	}
 

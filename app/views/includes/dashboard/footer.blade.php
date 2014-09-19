@@ -1,4 +1,8 @@
-
+<div class="footer">
+  <div class="container">
+    <p class="text-muted text-center">Copyright © 2014 League Toguether Incorporated. All rights reserved.</p>
+  </div>
+</div>
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
 {{ HTML::script('js/jquery-ui-1.10.4.custom.min.js') }}
 {{ HTML::script('js/jquery.ui.touch-punch.min.js')}}
@@ -20,3 +24,4 @@
 {{ HTML::script('js/dashboard/redactor.js')}}
 @endif
 {{ HTML::script('js/dashboard/application.js')}}
+{{ HTML::script('js/croppic.js')}}

@@ -238,10 +238,15 @@ class UsersController extends Controller
 
   }
 
-  public function storeplayer()
+  public function update($id)
   {
 
+    $repo = App::make('UserRepository');
+    $user = $repo->signup(Input::all());
+    return $user;
+
   }
+
 /**
   * Displays the user profile
   *
@@ -258,7 +263,6 @@ class UsersController extends Controller
       $title = 'Edit User Profile';
       return View::make('pages.user.profile.edit')->with('page_title', $title);
   }
-
   public function updateProfile()
   {
       return 'In here but not getting it all...About to update your information';

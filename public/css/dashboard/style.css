@@ -1,14 +1,3 @@
-/** **/
-body, html {
-   height: 100%;
-   width: 100%;
-   background-color:  #FAFAFA;
-}
-body{
-   padding-top: 110px;
-   color: #363B48;
-}
-
 h1, h2, h3, h4, h5, h6 {
    /*font-family:'Open Sans Condensed', sans-serif;*/
    font-weight: normal;
@@ -35,158 +24,6 @@ h3{
 ol, ul {
    list-style: none;
 }
-/** Navigation CSS **/
-
-.link-active{
-
-}
-.navi-header{
-   width: 300px;
-   height: 230px;
-   padding: 20px;
-   text-align: center;
-}
-.navi-header a{
-   font-weight: 400;
-}
-.navi-header > .image { 
-   border: 1px solid rgba(180,186,205,0.5);
-   border-radius: 50%;
-   height: 90px;
-   line-height: 85px;
-   margin: auto;
-   position: relative;
-   vertical-align: middle;
-   width: 90px;
-   z-index: 2;
-}
-.navi-header > .image > img { 
-   margin: 0 5px;
-}
-.navi-header > h3 { 
-   color: #b4bacd !important;
-   font-size: 20px !important;
-   padding-top: 15px !important;
-}
-.navi-header > .showLeft{
-   border: 1px solid rgba(180, 186, 205, 0.5);
-   border-radius: 15px;
-   font-size: 10px;
-   margin: 0 auto;
-   max-width: 120px;
-   padding: 5px;
-   color: #b4bacd;
-}
-.special-character{
-   color: #47c9b0;
-   font-size: 55px;
-   left: -5px;
-   line-height: 0;
-   position: relative;
-   top: -3px;
-   vertical-align: middle;
-}
-.showLeft:hover, .showLeft:focus{
-   background-color:#47c9b0 !important;
-   color:#363b48 !important;
-}
-.showLeft:hover > .special-character, .showLeft:focus > .special-character{
-   color:#363b48 !important;
-}
-
-.cbp-spmenu {
-   background: #363b48;
-   position: fixed;
-   box-shadow:
-   inset -10px 0px 10px -7px rgba(0,0,0,1);
-   overflow-x: auto;
-}
-
-.cbp-spmenu a {
-   display: block;
-   color: rgba(180,186,205,0.5);
-   font-size: 12px;
-   font-weight: 400;
-   text-transform: uppercase;
-}
-.cbp-spmenu a > i {
-   padding-right: 5px;
-}
-.cbp-spmenu h3 {
-   color: rgba(180, 186, 205, 0.2);
-   font-size: 30px;
-   font-weight: 100;
-   padding: 0 20px;
-}
-.cbp-spmenu a:hover, .cbp-spmenu > .active {
-   background: #258ecd;
-   color: #F4F5F0;
-}
-
-.cbp-spmenu a:active {
-   background: #afdefa;
-   color: #47a3da;
-}
-.cbp-spmenu-vertical {
-   width: 300px;
-   height: 100%;
-   top: 0;
-   z-index: 1050;
-}
-.cbp-spmenu-vertical a {
-   border-bottom: 1px solid rgba(180,186,205,0.1);
-   padding: 0.8em 2em;
-}
-.cbp-spmenu-left {
-   left: -300px;
-}
-.cbp-spmenu-left.cbp-spmenu-open {
-   left: 0px;
-}
-/* Push classes applied to the body */
-
-.cbp-spmenu-push {
-   overflow-x: hidden;
-   position: relative;
-   left: 0;
-}
-.cbp-spmenu-push-toright {
-   left: 240px;
-}
-.cbp-spmenu-push-toleft {
-   left: -300px;
-}
-/* Transitions */
-.cbp-spmenu,
-.cbp-spmenu-push {
-   -webkit-transition: all 0.3s ease;
-   -moz-transition: all 0.3s ease;
-   transition: all 0.3s ease;
-}
-@media screen and (max-height: 26.375em){
-
-   .cbp-spmenu-vertical {
-      font-size: 90%;
-      width: 190px;
-   }
-   .cbp-spmenu-left,
-   .cbp-spmenu-push-toleft {
-      left: -190px;
-   } 
-   .cbp-spmenu-right {
-      right: -190px;
-   }
-   .cbp-spmenu-push-toright {
-      left: 190px;
-   }
-   .navi-header {
-      width: 190px;
-   }
-   .navi-header > h3 {
-      font-size: 12px !important;
-      padding-top: 15px !important;
-   }
-} 
 
 /** Flat UI Overrides **/
 .ui-datepicker{
@@ -241,70 +78,7 @@ label {
    font-weight: normal;
    font-size: 13px;
 }
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-   border-color: rgba(116, 119, 134, 0.5);
-}
-.navbar-default {
-   background-color: #363B48;
-}
-.navbar-default .navbar-nav > li > a {
-   color: #f4f5f0;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-   color: #47c9b0;
-}
-.navbar-default .navbar-toggle:before {
-   color: #f4f5f0;
-}
-.navbar-toggle:before {
-   color: #47c9b0;
-}
-.navbar-brand-center {
-   position: absolute;
-   width: 97.5%;
-}
-.navbar-brand > .logo {
-   width: 2.75em;
-   height: 2.75em;
-   margin-top: -0.75em;
-}
-.navbar-right > li {
-   float: right;
-}
-.navbar-brand-center > .logo {
-   height: 5.75em;
-   margin: 0.4em auto;
-   width: 5.75em;
-   background-size: contain;
-   background-repeat: no-repeat;
-}
-.navbar-nav > li > a {
-   padding: 0.5em 1.5em;
-}
-a.nav-btn {
-   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-   border: 2px solid;
-   margin-left: 1em;
-   position: relative;
-   top: 5px;
-   margin-top: 0.5em;
-}
-.navbar-right > li {
-   float: right;
-}
-.navbar-dashboard-top{
-   border-radius: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
-   z-index: 10;
-}
-.relative {
-   position: relative;
-}
-.cart {
-   font-size: 2em;
-}
+
 .table-bordered {
    margin-bottom: 0em;
 }
@@ -793,7 +567,7 @@ table > thead > tr > th{
    border: 1px solid #a2a2a2;
    text-align: center;
    letter-spacing: -1px;
-   min-width: 80px;
+   max-width: 80px;
    
 }
 .date-space .date-mo{
@@ -831,16 +605,17 @@ table > thead > tr > th{
    margin-top: 0.825em;
 }
 .club-space img{
-   width: 55px;
+   width: 75px;
 }
 .annoucement-club{
-   font-size: 11px;
+   font-size: 14px;
    font-weight: 600;
 }
 .annoucement-date{
    font-size: 11px;
    font-weight: 400;
    color: #a2a2a2;
+   float: right;
 }
 .payment-date{
    max-width: 50px;
@@ -863,14 +638,18 @@ table > thead > tr > th{
 .payment-description{
    font-size: 14px;
 }
+.payment-method{
+   font-size: 12px;
+   color: #a2a2a2;
+}
 /*dahboard player*/
 .nav-player-dashboard{
    background-color: #363B48;
    border-radius: 0;
    border-top: 1px solid rgba(255, 255, 255, 0.1);
    padding:15px 0;
-   top: -56px;
-   margin-bottom: 0px;
+   display: block;
+   position: relative;
 }
 .user-name-title{
    font-size: 25px;
@@ -880,9 +659,8 @@ table > thead > tr > th{
 }
 .account-subnavigation {
    background: #ebebeb;
-   top: -56px;
    position: relative;
-
+   margin-bottom: 40px;
 }
 .account-subnavigation ul {
    width: 100%;
@@ -929,7 +707,7 @@ background-color: none;
    letter-spacing: .05ex;
 }
 .account-subnavigation .nav>li {
-   width: 14.28%;
+   width: 16.6%;
 }
 .account-subnavigation .nav>li {
    text-align: center;
@@ -948,6 +726,25 @@ background-color: none;
 .section-description p{
    font-size: 18px;
    font-weight: 300;
+}
+.item-list-dashboard .row{
+   margin-bottom: 10px;
+   min-height: 105px;
+
+}
+/*** image upload crop ***/
+
+#upimage {
+    width: 200px;
+    height: 200px;
+    position:relative; /* or fixed or absolute */
+    background: #ccc url("/images/default-avatar.png") no-repeat center;
+    background-size: 200px 200px;
+    margin: 0 auto;
+}
+
+.cropControls i {
+    background-image: url("/images/cropperIcons.png");
 }
 /*communication overide styling*/
 .dynamicHTML{

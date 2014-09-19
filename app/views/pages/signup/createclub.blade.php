@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-9">
                     <h3>{{$club->name}}</h3>
-                    <p><strong>Registared: </strong>{{date('M d, Y',strtotime($club->created_at));}} <br>
+                    <p><strong>Registered: </strong>{{date('M d, Y',strtotime($club->created_at));}} <br>
                       
                     </p>
                     <p>
@@ -126,7 +126,7 @@
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="form-group">
                         <label>State</label>
-                        <select data-label="State" class="select-block" data-type="text" name="state">
+                        <select data-label="State" class="select-block form-control" data-type="text" name="state">
                             <option></option>
                             <option value="AL">Alabama</option>
                             <option value="AZ">Arizona</option>
@@ -189,7 +189,21 @@
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="form-group">
                         <label>Sport</label>
-                        {{Form::select('sport', array(''=>'','1' => 'Lacrosse'), '', array('class'=>'select-block','tabindex'=>'1') ) }}
+                        {{Form::select('sport', array(''=>'','1' => 'Lacrosse'), '', array('class'=>'select-block form-control','tabindex'=>'1') ) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="form-group">
+                        <label>CardFlex Username</label>
+                        {{Form::text('cfuser', '', array('id'=>'cfname','class'=>'form-control','placeholder'=>'User Name','tabindex'=>'7')) }}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="form-group">
+                        <label>CardFlex Password</label>
+                        {{Form::password('cfpass', array('id'=>'cfpass','class'=>'form-control','placeholder'=>'Password','tabindex'=>'8')) }}
                     </div>
                 </div>
             </div>
