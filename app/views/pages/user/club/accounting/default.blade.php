@@ -10,13 +10,14 @@
           <p class="text-center"><small >Review Club's expenditures by category e.g Camp, tour etc...</small> </p>
           <div class="row">
               <div class="col-md-12">
-                {{ Form::open(array('id'=>'show_accounts','method' => 'post', 'files'=>true, 'class'=>'form-inline')) }}
-                    <!-- <div class="col-xs-3">
+                {{ Form::open(array('action' => array('AccountingController@accounthistory', $club->id),'id'=>'accounts_history','method' => 'post', 'class'=>'form-inline')) }}
+                <div class="row">
+                    <div class="col-xs-3">
                       <div class="form-group">
                         <label class="sr-only">Event</label>
                         {{Form::select('size', array('C' => 'Camp', 'T' => 'Training', 'Tr' => 'Tour', 'Tor' => 'Tornament')) }}
                       </div>
-                    </div> -->
+                    </div> 
                     <div class="col-xs-3">
                       <div class="form-group">
                         <label class="sr-only">From</label>
@@ -30,21 +31,19 @@
                       <div class="form-group">
                         <label class="sr-only">To</label>
                         <div class="input-group input-group-sm">
-                        {{ Form::text('date_from', '', array('class' => 'form-control datepicker')) }}
+                        {{ Form::text('date_to', '', array('class' => 'form-control datepicker')) }}
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                       </div>
                       </div>
                     </div>
                     <div class="col-xs-3">
-                      <div class="form-group pull-left">
-                        <button type="submit" id="submit" class="btn btn-default">View</button>
-                      </div>
-                    </div>
-                    <div class="col-xs-3">
-                      <div class="form-group pull-right">
+                      <p>
+                        <button type="submit" id="download" class="btn btn-primary">Generate</button>
                         <button type="submit" id="download" class="btn btn-primary">Download</button>
-                      </div>
-                    </div>
+                      </p>
+                    </div> 
+                    
+                </div>
                 {{ Form::close()}}
               </div>
           </div>

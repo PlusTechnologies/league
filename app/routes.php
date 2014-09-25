@@ -43,6 +43,8 @@ Route::get('elements', 			array('before' => 'auth','as' => 'elements', 'uses' =>
 
 Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function() {
 	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting',				'uses' => 'AccountingController@index'));
+	Route::post( 'club/{id}/accounting', 	array('as' => 'accounting_history',				'uses' => 'AccountingController@accounthistory'));
+	
 	Route::get( 'club/{id}/communication', 	array('as' => 'communication',			'uses' => 'CommunicationController@index'));
 	Route::get( 'club.roster', 				array('as' => 'roster',					'uses' => 'RosterController@index'));
 	Route::resource('club', 'ClubController');
@@ -50,6 +52,7 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::resource('club.discount', 'DiscountController');
 	Route::resource('club.teams', 'TeamController');
 	Route::resource('club.communication', 'CommunicationController');
+	//Route::resource('club.accounting', 'AccountingController');
 	Route::resource('player', 'PlayerController');
 });
 
@@ -141,3 +144,13 @@ Route::get('edit',[
 /*
 *Update the profile information
 */
+
+/*
+* view accounting history
+*/
+Route::get('view',[
+	'as' => 'get_view_account_history',
+	'uses' => 'AccountingController@accounthistory'
+	]);
+
+
