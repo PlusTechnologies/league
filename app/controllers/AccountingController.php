@@ -10,9 +10,11 @@ class AccountingController extends BaseController {
 	public function index($id)
 	{
 		$user = Auth::user();
+		$club = Club::find($id);
 		$title = 'Accounting Overview';
 		return View::make('pages.user.club.accounting.default') 
 		->with('user',$user)
+		->with('club', $club)
 		->with('page_title', $title);
 	}
 
@@ -45,7 +47,7 @@ class AccountingController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show()
+	public function show($id)
 	{
 		return 'all entries go into the table';
 	}
@@ -86,5 +88,19 @@ class AccountingController extends BaseController {
 		//
 	}
 
+	/**
+	 * Retrieve accounting history for the specified period.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function accounthistory($id)
+	{	
+		
+		$eventData = Input::all();
+		$pay = new Payment;
+		$data = $pay->history($eventData, $id);
 
+	 	return $data;
+	}
 }

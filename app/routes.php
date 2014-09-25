@@ -51,6 +51,7 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::resource('club.teams', 					'TeamController');
 	Route::resource('club.communication', 	'CommunicationController');
 	Route::resource('player', 							'PlayerController');
+
 });
 
 Route::get( 'account', 							array('before' => 'auth', 'as' => 'account', 							'uses' => 'AccountController@index'));
@@ -141,3 +142,13 @@ Route::get('edit',[
 /*
 *Update the profile information
 */
+
+/*
+* view accounting history
+*/
+Route::get('view',[
+	'as' => 'get_view_account_history',
+	'uses' => 'AccountingController@accounthistory'
+	]);
+
+

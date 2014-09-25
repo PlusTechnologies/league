@@ -68,4 +68,10 @@ class Payment extends Eloquent {
 
     }
 
+   public function history($param, $id){
+       //convert object to array
+        $data = json_decode(json_encode($param),false);
+        return $data->size; 
+    } 
+
 }
