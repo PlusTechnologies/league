@@ -42,26 +42,26 @@ Route::get('dashboard', 		array('before' => 'auth','as' => 'dashboard', 'uses' =
 Route::get('elements', 			array('before' => 'auth','as' => 'elements', 'uses' => 'DashboardController@element'));
 
 Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function() {
-	Route::get( 'club/{id}/accounting', 	array('as' => 'accounting',				'uses' => 'AccountingController@index'));
+	Route::get( 'club/{id}/accounting', 		array('as' => 'accounting',				'uses' => 'AccountingController@index'));
 	Route::get( 'club/{id}/communication', 	array('as' => 'communication',			'uses' => 'CommunicationController@index'));
-	Route::get( 'club.roster', 				array('as' => 'roster',					'uses' => 'RosterController@index'));
-	Route::resource('club', 'ClubController');
-	Route::resource('club.event', 'EventoController');
-	Route::resource('club.discount', 'DiscountController');
-	Route::resource('club.teams', 'TeamController');
-	Route::resource('club.communication', 'CommunicationController');
-	Route::resource('player', 'PlayerController');
+	Route::get( 'club.roster', 							array('as' => 'roster',					'uses' => 'RosterController@index'));
+	Route::resource('club', 								'ClubController');
+	Route::resource('club.event', 					'EventoController');
+	Route::resource('club.discount', 				'DiscountController');
+	Route::resource('club.teams', 					'TeamController');
+	Route::resource('club.communication', 	'CommunicationController');
+	Route::resource('player', 							'PlayerController');
 });
 
-Route::get( 'account', 					array('before' => 'auth', 'as' => 'account', 				'uses' => 'AccountController@index'));
-Route::get( 'account/settings',	 		array('before' => 'auth', 'as' => 'account.settings',		'uses' => 'AccountController@edit'));
-Route::get( 'account/payments',	 		array('before' => 'auth', 'as' => 'account.payments',		'uses' => 'AccountController@payments'));
-Route::get( 'account/players',	 		array('before' => 'auth', 'as' => 'account.players',		'uses' => 'AccountController@players'));
-Route::get( 'account/clubs',	 		array('before' => 'auth', 'as' => 'account.clubs',			'uses' => 'AccountController@clubs'));
-Route::get( 'account/events',	 		array('before' => 'auth', 'as' => 'account.events',			'uses' => 'AccountController@events'));
-Route::get( 'account/announcements',	array('before' => 'auth', 'as' => 'account.announcements',	'uses' => 'AccountController@announcements'));
-Route::get( 'account/schedule',	 		array('before' => 'auth', 'as' => 'account.schedule',		'uses' => 'AccountController@schedule'));
-Route::get( 'account/invitations',	 	array('before' => 'auth', 'as' => 'account.invitations',	'uses' => 'AccountController@invitations'));
+Route::get( 'account', 							array('before' => 'auth', 'as' => 'account', 							'uses' => 'AccountController@index'));
+Route::get( 'account/settings',	 		array('before' => 'auth', 'as' => 'account.settings',			'uses' => 'AccountController@edit'));
+Route::get( 'account/payments',	 		array('before' => 'auth', 'as' => 'account.payments',			'uses' => 'AccountController@payments'));
+Route::get( 'account/players',	 		array('before' => 'auth', 'as' => 'account.players',			'uses' => 'AccountController@players'));
+Route::get( 'account/clubs',	 			array('before' => 'auth', 'as' => 'account.clubs',				'uses' => 'AccountController@clubs'));
+Route::get( 'account/events',	 			array('before' => 'auth', 'as' => 'account.events',				'uses' => 'AccountController@events'));
+Route::get( 'account/announcements',array('before' => 'auth', 'as' => 'account.announcements','uses' => 'AccountController@announcements'));
+Route::get( 'account/schedule',	 		array('before' => 'auth', 'as' => 'account.schedule',			'uses' => 'AccountController@schedule'));
+Route::get( 'account/invitations',	array('before' => 'auth', 'as' => 'account.invitations',	'uses' => 'AccountController@invitations'));
 
 Route::get( 'public/event/{id}','EventoController@publico');
 
@@ -70,9 +70,9 @@ Route::get('cart',							'PaymentController@index');
 Route::get('cart/remove/{id}',	'PaymentController@removefromcart');
 Route::post('cart/add',					'PaymentController@addtocart');
 
-Route::get('cart/select',					array('before' => 'auth','as' => 'checkout.select', 'uses' => 'PaymentController@selectplayer'));
-Route::post('cart/select/{id}',		array('before' => 'auth','as' => 'checkout.select.addplayer', 'uses' => 'PaymentController@addplayertocart'));
-Route::delete('cart/select/{id}', array('before' => 'auth','as' => 'checkout.select.removeplayer', 'uses' => 'PaymentController@removeplayertocart'));
+Route::get('cart/select',					array('before' => 'auth','as' => 'checkout.select', 						'uses' => 'PaymentController@selectplayer'));
+Route::post('cart/select/{id}',		array('before' => 'auth','as' => 'checkout.select.addplayer', 	'uses' => 'PaymentController@addplayertocart'));
+Route::delete('cart/select/{id}', array('before' => 'auth','as' => 'checkout.select.removeplayer','uses' => 'PaymentController@removeplayertocart'));
 
 Route::get( 'checkout',         	 array('before' => 'auth','as' => 'checkout', 					'uses' => 'PaymentController@create'));
 Route::get( 'checkout/success',    array('before' => 'auth','as' => 'checkout.success', 	'uses' => 'PaymentController@success'));
