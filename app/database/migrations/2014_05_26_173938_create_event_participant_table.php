@@ -20,6 +20,8 @@ class CreateEventParticipantTable extends Migration {
 			$table->foreign('event')->references('id')->on('events')->onDelete('cascade');
 			$table->integer('payment')->unsigned()->index();
 			$table->foreign('payment')->references('id')->on('payments')->onDelete('cascade');
+			$table->integer('player')->unsigned()->index();
+			$table->foreign('player')->references('id')->on('players')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

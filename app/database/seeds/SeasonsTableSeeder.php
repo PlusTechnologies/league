@@ -9,7 +9,7 @@ class SeasonsTableSeeder extends Seeder {
 		foreach(range(1, 15) as $index)
 		{	
 			Seasons::create(
-				array('name'=>$years,'description'=> 'Seasons'.' '. $years)
+				array('name'=>$years,'description'=> 'Season'.' '. $years)
 			);
 			$years = $years + 1;
 		}

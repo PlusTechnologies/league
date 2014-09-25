@@ -9,15 +9,30 @@ class AccountingController extends BaseController {
 	 */
 	public function index($id)
 	{
+		$result = Session::get('result_query');
+		setlocale(LC_MONETARY,"en_US");
 		$user = Auth::user();
 		$club = Club::find($id);
+		$pay = new Payment;
+		$param = false;
+		$payhistory = $pay->history($param, $club);
 		$title = 'Accounting Overview';
+
+		if($result){
+			return View::make('pages.user.club.accounting.default') 
+		->with('user',$user)
+		->with('club', $club)
+		->with('history', $result)
+		->with('page_title', $title);
+		}else{
 		return View::make('pages.user.club.accounting.default') 
 		->with('user',$user)
 		->with('club', $club)
+		->with('history', $payhistory)
 		->with('page_title', $title);
+		}
+		
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.

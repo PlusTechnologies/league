@@ -51,13 +51,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title ">
-                
-                <div class="row">
-                  <div class = "col-md-12">Account History
-                    <table class="table table-hover">
+          <table class="table table-hover">
                       <thead>
                         <tr>
                           <td width="15%">Completed</td>
@@ -65,40 +59,19 @@
                           <td width="15%">Amount</td>
                         </tr>
                       </thead> 
-                      <tbody> 
+                      <tbody>
+                        @foreach($history as $listitem) 
                         <tr>
-                          <td width="15%"><span class='small'>Aug 1</span></td>
-                          <td width="70%"><span class='small'>Tour payment</span></td>
-                          <td width="15%"><span class='small'>-$ 800</td>
+                          <td width="15%"><span class='small'>{{$listitem->created_at}}</span></td>
+                          <td width="70%"><span class='small'>{{$listitem->description}}</span></td>
+                          <td width="15%"><span class='small'>{{money_format('%.2n',$listitem->price)}}</td>
                         </tr>
-                        <tr>
-                          <td width="15%"><span class='small'>Aug 8</span></td>
-                          <td width="70%"><span class='small'>Training payment</span></td>
-                          <td width="15%"><span class='small'>-$ 300</span></td>
-                        </tr>
-                        <tr>
-                          <td width="15%"><span class='small'>Aug 14</span></td>
-                          <td width="70%"><span class='small'>Camp payment</span></td>
-                          <td width="15%"><span class='small'>-$ 250</span></td>
-                        </tr>
-                        <tr>
-                          <td width="15%"><span class='small'>Aug 18</span></td>
-                          <td width="70%"><span class='small'>Tornament payment</span></td>
-                          <td width="15%"><span class='small'>-$ 250</span></td>
-                        </tr>
-                        <tr>
-                          <td width="15%"><span class='small'>Aug 25</span></td>
-                          <td width="70%"><span class='small'>Camp payment</span></td>
-                          <td width="15%"><span class='small'>-$ 250</span></td>
-                        </tr>
+                        @endforeach
+
+                        
+                       
                       </tbody>
                     </table>
-                  </div>
-                </div> 
-              </h3>
-            </div>
-            
-          </div>
         </div>
       </div>
     </div>

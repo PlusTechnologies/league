@@ -29,7 +29,7 @@ class CreateSeasonsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('season');
+		Schema::drop('seasons');
 	}
 
 }

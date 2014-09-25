@@ -3,7 +3,7 @@
   <title>{{ $page_title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{HTML::style('bootstrap/css/bootstrap.css')}}
-<!--   {{HTML::style('css/flat-ui.css')}} -->
+  {{HTML::style('css/flat-ui.css')}}
   {{HTML::style('css/font-awesome.min.css')}}
   {{HTML::style('css/morris.css')}}
   {{HTML::style('css/font-retina.css')}}

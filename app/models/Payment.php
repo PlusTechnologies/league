@@ -69,9 +69,22 @@ class Payment extends Eloquent {
     }
 
    public function history($param, $id){
-       //convert object to array
-        $data = json_decode(json_encode($param),false);
-        return $data->size; 
+
+        if($param){
+            // 1- validate dates, make sure start date is less than end date
+            // 2- Build query where create_at is more than start less than end
+
+            return $param;
+            return Redirect::action('AccountingController@Index')->with('result_query',$transaction);
+            
+
+        }else{
+            
+            $paydata = Item::where('club_id', '=', $id->id)->get();
+            return $paydata;
+        }
+
+       
     } 
 
 }

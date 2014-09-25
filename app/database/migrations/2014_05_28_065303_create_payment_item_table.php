@@ -17,6 +17,8 @@ class CreatePaymentItemTable extends Migration {
 			$table->increments('id');
 			$table->integer('payment_id')->unsigned()->index();
 			$table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
+			$table->integer('club_id')->unsigned()->index();
+			$table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
 			$table->integer('item');
 			$table->integer('type');
 			$table->text('description');

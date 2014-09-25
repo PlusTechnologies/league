@@ -214,6 +214,7 @@ public function store()
 				$salesfee = ($item->price / getenv("SV_FEE")) - $item->price; 
 				$sale = new Item;
 				$sale->description 	= $item->name;
+				$sale->club_id			= $item->org_id;
 				$sale->quantity 		= $item->quantity;
 				$sale->price 				= $item->price;
 				$sale->fee 					= $salesfee;
