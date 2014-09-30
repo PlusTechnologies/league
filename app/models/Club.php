@@ -25,6 +25,12 @@ class Club extends Eloquent{
     {
         return $this->hasMany('evento');
     }
+
+    public function Programs()
+    {
+        return $this->hasMany('program');
+    }
+
     public function Discounts()
     {
         return $this->hasMany('discount');

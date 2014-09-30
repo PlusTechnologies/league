@@ -256,7 +256,6 @@ class DiscountController extends BaseController {
 
 		return Redirect::action('DiscountController@index', $club)->withErrors($status);
 
-		
 	}
 
 }

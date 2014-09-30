@@ -27,7 +27,7 @@
 				<a href="{{URL::action('ClubController@show', $club->id)}}" class="{{HTML::smart_link('dashboard.club.show') }}">
              	 <i class="retinaicon-essentials-020"></i> Overview
             	</a>
-	            <a href="#">
+	            <a href="{{URL::action('TeamController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.team.index')}}">
 	              <i class="retinaicon-communication-006"></i> Teams
 	            </a>
 	            <a href="{{URL::action('EventoController@index', $club->id)}}" class="{{ HTML::smart_link('dashboard.club.event.index')}}">

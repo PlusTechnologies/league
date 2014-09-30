@@ -8,7 +8,7 @@
           <div class="image"><i class="retinaicon-communication-006"></i></div>
           <h2 class="text-center">Teams</h2>
           <p class="text-center"><small >Create teams and keep track of roster.</small> </p>
-          <a class="btn btn-primary btn-sm" href="{{ URL::action('EventoController@create', $club->id) }}"> Create new team</a>
+          <a class="btn btn-primary btn-sm" href="{{ URL::action('TeamController@create', $club->id) }}"> Create new team</a>
         </div>
       </div>
       <br>
@@ -17,18 +17,18 @@
         <div class="col-md-6">
           <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label class="col-sm-4"><h4>Select Season</h4></label>
+              <label class="col-sm-4"><h5>Select Season</h5></label>
               <div class="col-sm-8">
                 <select class="form-control">
-                  <option value="1">2015</option>
-                  <option value="2">2016</option>
+                  @foreach ($seasons as $season)
+                    <option value="{{$season->id}}">{{$season->name}}</option> 
+                  @endforeach
                 </select>
               </div>
             </div>
           </form>
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-12">
           <div class="panel panel-default">

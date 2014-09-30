@@ -20,4 +20,4 @@ $('.showLeft, #showLeft').click(function(e) {
         $(this).closest('.input-group, .form-group').removeClass('focus');
     });
 //Dropdown menus padding and style
-$("select").selectpicker({style: 'select-block btn-select', menuStyle: 'dropdown-inverse'});
+//$("select").selectpicker({style: 'select-block btn-select', menuStyle: 'dropdown-inverse'});

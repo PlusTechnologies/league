@@ -8,6 +8,7 @@ class TeamController extends BaseController {
         $this->beforeFilter('csrf', ['on' => array('create','edit')]);
     }
 
+
 	/**
 	 * Display a listing of the resource.
 	 * GET /team
@@ -16,13 +17,15 @@ class TeamController extends BaseController {
 	 */
 	public function index($id)
 	{
-		setlocale(LC_MONETARY,"en_US");
+		
 		$user= Auth::user();
-		$club= Club::find($id)->with('events')->first();
+		$club= Club::find($id)->with('programs')->firstOrfail();
+		$seasons = Seasons::all();
 		$title = 'League Together - '.$club->name.' Teams';
 		return View::make('pages.user.club.team.default')
 		->with('page_title', $title)
 		->with('club', $club)
+		->with('seasons', $seasons)
 		->withUser($user);
 	}
 
@@ -32,9 +35,19 @@ class TeamController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
+
+		setlocale(LC_MONETARY,"en_US");
+		$user= Auth::user();
+		$club= Club::find($id);
+		$seasons = Seasons::all();
+		$title = 'League Together - '.$club->name.' Teams';
+		return View::make('pages.user.club.team.create')
+		->with('page_title', $title)
+		->with('club', $club)
+		->with('seasons', $seasons)
+		->withUser($user);		
 	}
 
 	/**
@@ -43,9 +56,48 @@ class TeamController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($club)
 	{
-		//
+		//get current club
+		$user = Auth::user();
+		$messages = array(
+			'name.required'									=> 'Name is required.',
+			'due.required'									=> 'Dues amount is required.',
+			'club_id.required'							=> 'Club ID is required.',
+			'season_id.required'						=> 'Season ID is required.',
+			'program_id.required'						=> 'Program ID is required.',
+			'early_dues.required'						=> 'Early bird dues required.',
+			'early_dues_deadline.required'	=> 'Deadline is required'
+		);
+
+		$otherdata = array('user_id'=>$user->id,'club_id'=>$id);
+		$validator = Validator::make(array_merge(Input::all(),$otherdata), Program::$rules, $messages);
+
+		return array_merge(Input::all(),$otherdata);
+				
+		if($validator->passes()){
+			$program = new Program;
+			$program->name    		= Input::get('name' );
+			$program->club_id    	= $id;
+			$program->user_id    	= $user->id;
+			$program->description = Input::get('description' );
+			$program->save();
+
+			if ($program->id) {
+				$success[] = array('Program Sucessfully added');
+				return Redirect::back()->withErrors($success);   
+
+			} else {
+				$error = $user->errors()->all(':message');
+				return Redirect::back()
+				->withInput()
+				->withErrors($error);
+			}
+		}
+		$error = $validator->errors()->all(':message');
+		return Redirect::back()
+		->withErrors($error)
+		->withInput();
 	}
 
 	/**

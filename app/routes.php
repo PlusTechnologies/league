@@ -50,6 +50,7 @@ Route::group(								array('before' =>'auth', 'prefix' => 'dashboard'), function
 	Route::resource('club.event', 					'EventoController');
 	Route::resource('club.discount', 				'DiscountController');
 	Route::resource('club.teams', 					'TeamController');
+	Route::resource('club.programs', 				'ProgramController');
 	Route::resource('club.communication', 	'CommunicationController');
 	Route::resource('player', 							'PlayerController');
 
