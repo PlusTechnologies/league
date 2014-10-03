@@ -9,6 +9,7 @@ class AccountingController extends BaseController {
 	 */
 	public function index($id)
 	{
+		$queryError = Session::get('message');
 		$result = Session::get('result_query');
 		setlocale(LC_MONETARY,"en_US");
 		$user = Auth::user();
@@ -17,6 +18,15 @@ class AccountingController extends BaseController {
 		$param = false;
 		$payhistory = $pay->history($param, $club);
 		$title = 'Accounting Overview';
+
+		if($queryError){
+		return View::make('pages.user.club.accounting.default') 
+		->with('user',$user)
+		->with('club', $club)
+		->with('history', $payhistory)
+		->with('messages', $queryError)
+		->with('page_title', $title);
+		}
 
 		if($result){
 			return View::make('pages.user.club.accounting.default') 
@@ -29,7 +39,7 @@ class AccountingController extends BaseController {
 		->with('user',$user)
 		->with('club', $club)
 		->with('history', $payhistory)
-		->with('page_title', $title);
+		->with('page_title', $title);	
 		}
 		
 	}
@@ -110,12 +120,23 @@ class AccountingController extends BaseController {
 	 * @return Response
 	 */
 	public function accounthistory($id)
-	{	
+	{
 		
 		$eventData = Input::all();
 		$pay = new Payment;
-		$data = $pay->history($eventData, $id);
+		$transaction = $pay->history($eventData, $id);
 
-	 	return $data;
+		if($transaction){
+
+			return Redirect::action('AccountingController@index', $id)
+			->with('result_query',$transaction);
+
+		}else{
+
+			$errors = "Incorrect dates!";
+			return Redirect::action('AccountingController@index', $id)
+			->with('message',$errors);
+		}
+	 	
 	}
 }

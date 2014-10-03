@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AccountController' => $baseDir . '/app/controllers/AccountController.php',
     'AccountingController' => $baseDir . '/app/controllers/AccountingController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Club' => $baseDir . '/app/models/Club.php',
@@ -20,7 +21,7 @@ return array(
     'CreateEventParticipantTable' => $baseDir . '/app/database/migrations/2014_05_26_173938_create_event_participant_table.php',
     'CreateEventTable' => $baseDir . '/app/database/migrations/2014_05_22_222349_create_event_table.php',
     'CreateFollowersTable' => $baseDir . '/app/database/migrations/2014_08_13_161717_create_followers_table.php',
-    'CreatePaymentItemTable' => $baseDir . '/app/database/migrations/2014_05_28_065403_create_payment_item_table.php',
+    'CreatePaymentItemTable' => $baseDir . '/app/database/migrations/2014_05_28_065303_create_payment_item_table.php',
     'CreatePaymentTable' => $baseDir . '/app/database/migrations/2014_05_26_173625_create_payment_table.php',
     'CreatePlayersTable' => $baseDir . '/app/database/migrations/2014_05_04_165813_create_players_table.php',
     'CreateRostersTable' => $baseDir . '/app/database/migrations/2014_08_14_043136_create_rosters_table.php',
@@ -45,7 +46,11 @@ return array(
     'PaymentController' => $baseDir . '/app/controllers/PaymentController.php',
     'Player' => $baseDir . '/app/models/Player.php',
     'PlayerController' => $baseDir . '/app/controllers/PlayerController.php',
+    'Roster' => $baseDir . '/app/models/Roster.php',
+    'Seasons' => $baseDir . '/app/models/Seasons.php',
+    'SeasonsTableSeeder' => $baseDir . '/app/database/seeds/SeasonsTableSeeder.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
+    'TeamController' => $baseDir . '/app/controllers/TeamController.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'User' => $baseDir . '/app/models/User.php',
     'UserRepository' => $baseDir . '/app/models/UserRepository.php',

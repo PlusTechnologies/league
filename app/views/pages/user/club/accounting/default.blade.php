@@ -4,6 +4,38 @@
   <div class="row">
     <div class="col-sm-12 app-frame">
       <div class="row ">
+        <div class="row">
+          @if($errors->has())
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <div class="alert alert-warning alert-dismissable">
+                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                      <ul>
+                        @foreach ($errors->all() as $error) 
+                        <li>{{$error}}</li>
+                        @endforeach
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @endif
+
+              @if(Session::has('messages'))
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="alert alert-info alert-dismissable">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <h4>{{ Session::get('messages') }}</h4>
+                      </div>
+                    </div>
+                  </div>
+              </div>  
+              @endif
+        </div>
         <div class="col-sm-12 app-title">
           <div class="image"><i class="retinaicon-essentials-116"></i></div>
           <h2 class="text-center">Accounting</h2>

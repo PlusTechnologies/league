@@ -69,14 +69,26 @@ class Payment extends Eloquent {
     }
 
    public function history($param, $id){
-
+        
         if($param){
             // 1- validate dates, make sure start date is less than end date
             // 2- Build query where create_at is more than start less than end
+            $datefrom       = Carbon::parse($param['date_from']);
+            $dateto         = Carbon::parse($param['date_to']);
+            if($dateto <= $datefrom){
+                $messages = array(
+                        'date_to'  => 'Date to must be greater than date from.',
+                        );
+                $paydata = $messages['date_to'];
+                return false;
+            }else{
+                  $paydata = Item::whereBetween('created_at', array($datefrom, $dateto))
+                    ->where('club_id', '=', $id)
+                    ->get();
 
-            return $param;
-            return Redirect::action('AccountingController@Index')->with('result_query',$transaction);
-            
+                return $paydata;
+                //return Redirect::action('AccountingController@Index')->with('result_query',$transaction);
+            }
 
         }else{
             
