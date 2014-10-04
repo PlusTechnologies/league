@@ -113,10 +113,14 @@ class PlayerController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit()
+	public function edit($id)
 	{
-		
+		$title 		= "Update Player Info";
+		$player 	= Player::find($id);
 
+		return View::make('pages.user.update.editplayer')
+		->with('playerinfo', $player)
+		->with('page_title', $title);
 	}
 
 	/**

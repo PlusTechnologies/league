@@ -111,7 +111,8 @@
                           <p>
                             {{ Form::open(array('action' => array('PlayerController@destroy', $player->id), 'method' => 'DELETE', 'id'=>'p-delete')) }}
                             <div class="btn-group btn-group-xs">
-                              <button type="button" class="btn btn-primary edit-player" data-id="{{$player->id}}">Edit</button>
+                              <!-- <button type="button" class="btn btn-primary edit-player" data-id="{{$player->id}}">Edit</button> -->
+                              <a  href="{{URL::action('PlayerController@edit', $player->id)}}" id="edit" class="btn btn-primary edit-player">Edit</a>
                               <button type="submit" class="btn btn-danger">Delete</button>
                             </div>
                             {{ Form::close() }}
