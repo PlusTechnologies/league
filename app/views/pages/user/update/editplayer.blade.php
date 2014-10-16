@@ -23,7 +23,7 @@
       <div class="row">
         @if($playerinfo)
         <div class="col-md-12">
-          {{ Form::open(array('action' => 'PlayerController@store','id'=>'new_account','method' => 'post', 'files'=>true)) }}
+          {{ Form::open(array('action' => array('PlayerController@update', $playerinfo->id),'id'=>'update_account','method' => 'post', 'files'=>true)) }}
           <div class="panel-body">
             <div class="row">
               <div class="col-md-4">
@@ -77,13 +77,13 @@
                   <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
                       <label class="control-label">US Lacrosse ID</label>
-                      {{Form::text('laxid', '', array('id'=>'lax','class'=>'form-control input-sm','placeholder'=>'US Lacross','tabindex'=>'7')) }}
+                      {{Form::text('laxid', $playerinfo->laxid, array('id'=>'lax','class'=>'form-control input-sm','placeholder'=>'US Lacross','tabindex'=>'7')) }}
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
                       <label class="control-label">You are the player's?</label>
-                      {{Form::select('relation', array(''=>'Select Relationship','Mother' => 'Mother', 'Father' => 'Father','Legal Guardian'=>'Legal Guardian','Personal Assistant'=>'Personal Assistant'), '', array('class'=>'select-block selectpicker','tabindex'=>'5') ) }}
+                      {{Form::select('relation', array(''=>'Select Relationship','Mother' => 'Mother', 'Father' => 'Father','Legal Guardian'=>'Legal Guardian','Personal Assistant'=>'Personal Assistant'), $playerinfo->pivot->relation, array('class'=>'select-block selectpicker','tabindex'=>'5') ) }}
                     </div>
                   </div>
                 </div> 

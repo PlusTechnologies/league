@@ -20,14 +20,10 @@ class Player extends Eloquent {
 		->withTimestamps();    
   }
 
-  /*public function players()
- {
-     return $this->hasMany('Player');
- }*/
-
-  public function getPlayer($id){
-  	$playerData = Player::where('id', '=', $id)->get();
+  /*public function relation($id){
+  	$playerRelation = Player::find($id)
+  						join ->get();
   	return $playerData;
-  }
+  }*/
 
 }

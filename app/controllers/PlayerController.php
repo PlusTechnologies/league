@@ -115,9 +115,9 @@ class PlayerController extends BaseController {
 	 */
 	public function edit($id)
 	{
+		$user = Auth::user();
 		$title 		= "Update Player Info";
-		$player 	= Player::find($id);
-
+		$player 	= $user->players()->where('players.id','=' ,$id)->FirstOrFail();
 		return View::make('pages.user.update.editplayer')
 		->with('playerinfo', $player)
 		->with('page_title', $title);
@@ -132,8 +132,7 @@ class PlayerController extends BaseController {
 	 */
 	public function update($id)
 	{
-
-		$user = Auth::user();
+	$user = Auth::user();
     $messages = array(
         'firstname.required'      => 'First name is required.',
         'lastname.required'       => 'Last name is required',
