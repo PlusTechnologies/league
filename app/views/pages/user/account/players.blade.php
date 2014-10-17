@@ -70,6 +70,7 @@
         </span>
         <div class="section-description">
           <p>Manage your list of players, add, update, edit and modified their profile. </p>
+          <a href="{{URL::action('ClubController@followsave')}}" id="cancel" class="btn btn-primary pull-right">Follow Club</a>
         </div>
         <br>
         <br>

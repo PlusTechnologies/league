@@ -20,10 +20,5 @@ class Player extends Eloquent {
 		->withTimestamps();    
   }
 
-  /*public function relation($id){
-  	$playerRelation = Player::find($id)
-  						join ->get();
-  	return $playerData;
-  }*/
 
 }
